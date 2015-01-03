@@ -1,0 +1,15 @@
+#+TITLE:       Migrating to a Statically Generated Blog
+#+DATE:        2015-01-02
+#+TAGS:        meta
+
+Up until now, I have been utilizing Google's [[https://blogger.com][Blogger]] service. It made sense: I use a lot of Google's services, and Blogger is well integrated with a lot of them; free hosting, decent flexibility.
+
+However, I am slowly migrating towards the idea of my entire online presence being managed by me and not by hosted services (more on the motivation for this in a later post), and also to the idea that my website is the hub for all of this. A statically generated site meets these goals while being both cheap and simple.
+
+It's also easier to use general web-development techniques now that I'm not hamstrung by a service's blogging engine. As you can see I've kept the look and feel very simple, but there are interesting things you can do with web technologies that I may take advantage of in the future.
+
+The software I'm utilizing is [[https://github.com/kelvinh/org-page][Org-page]], an [[http://www.gnu.org/software/emacs/][Emacs]] plug-in which allows you to do you writing in [[http://orgmode.org/][Org mode]], which is where I spend a lot of my time. Org-page in itself is a nice tool, however over time I may eventually fork it or write one of my own.
+
+Currently I'm using [[https://pages.github.com/][GitHub Pages]] for hosting although this is probably largely unimportant and may change in the future.
+
+I will back-fill entries made from Blogger in the near future. Until then, things will look a little sparse.

@@ -1,0 +1,46 @@
+#+TITLE:
+#+KEYWORDS:		Lisp, Emacs, Linux, Programming, Blog, Katherine Cox-Buday
+#+LANGUAGE:		en
+#+OPTIONS:		H:3 num:nil toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+DESCRIPTION:	Katherine Cox-Buday
+
+#+ATTR_HTML: :class img-responsive img-rounded pull-left :style margin-right:15px
+[[file:blog/static/me.png]]
+Hi, I'm Katherine Cox-Buday, and this is probably the best way to reach anything I do.
+
+I am a computer scientist currently working at [[http://www.canonical.com/][Canonical]] (of [[http://www.ubuntu.com/][Ubuntu]] fame) on [[https://jujucharms.com/][Juju]], a cloud orchestration system. My hobbies include software engineering, creative writing, Go (igo, baduk, weiquei), and guitar, all of which I pursue intermittently and with various levels of dedication.
+
+I am a practicing Buddhist, and I am currently exploring the [[http://secularbuddhism.org/][secular]] school of thought. Above all, I wish peace and happiness to all people, and -- by extension -- to you :)
+#+HTML: <div class="clearfix"></div>
+
+* Charities I Support
+
+Charity is important to me. Here are the charities I'm currently focusing on:
+
+- NAMI (National Alliance on Mental Illness)
+- HRC (The Human Rights Campaign)
+- WWF (World Wildlife Fund)
+- Wikimedia Foundation (Wikipedia)
+- Girls Who Code
+
+* Elsewhere                                                        :noexport:
+
+#+ATTR_HTML: :width 90 :class img-responsive pull-left :style margin:0 1em 1em 0;width:64px;height:64px
+[[https://jujucharms.com/][file:blog/static/juju_orange_hex.svg]]
+By day I work on Juju, an awesome open source cloud-orchestartion system. It's written in Go, and I spend my entire day around smart people. It's fantastic.
+#+HTML: <div class="clearfix"></div>
+
+#+ATTR_HTML: :width 90 :class img-responsive pull-left :style margin:0 1em 1em 0;width:64px;height:64px
+[[https://github.com/katco-][file:blog/static/mark-github-128.png]]
+Most (but not all) of my work is here. The work that isn't isn't worth seeing.
+#+HTML: <div class="clearfix"></div>
+
+#+ATTR_HTML: :rel publisher :target _top :alt Google+ :class img-responsive pull-left :style margin:0 1em 1em 0;width:64px;height:64px
+[[https://plus.google.com/u/0/100662126766165980060?prsrc%3D3][https://ssl.gstatic.com/images/icons/gplus-64.png]]
+I'm most active here.
+#+HTML: <div class="clearfix"></div>
+
+#+ATTR_HTML: :alt Twitter :class img-responsive pull-left :style margin:0 1em 1em 0;width:64px;height:64px
+[[https://twitter.com/katco_][file:blog/static/Twitter_bird_logo_2012.svg]]
+I don't usually post things here; it's mostly for following others.
+#+HTML: <div class="clearfix"></div>
