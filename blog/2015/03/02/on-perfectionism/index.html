@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-  <title> - Katherine Cox-Buday</title>
+  <title>On Perfectionism - Katherine Cox-Buday</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="author" content="Katherine Cox-Buday" />
-  <meta name="description" content="Katherine Cox-Buday" />
-  <meta name="keywords" content="Lisp, Emacs, Linux, Programming, Blog, Katherine Cox-Buday" />
 
   <!-- Mobile support -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,42 +30,57 @@
   </div>
   <div class="col-sm-9">
     <div class="post">
-      <h3></h3>
+      <h3>On Perfectionism</h3>
       <p>
-<img src="/assets/me.png" alt="me.png" class="img-responsive img-rounded pull-left" style="margin-right:15px" />
-Hi, I'm Katherine Cox-Buday, and this is probably the best way to reach anything I do.
+I recently came across this Tweet:
 </p>
 
-<p>
-I am a computer scientist currently working at <a href="http://www.canonical.com/">Canonical</a> (of <a href="http://www.ubuntu.com/">Ubuntu</a> fame) on <a href="https://jujucharms.com/">Juju</a>, a cloud orchestration system. My hobbies include software engineering, creative writing, Go (igo, baduk, weiquei), and guitar, all of which I pursue intermittently and with various levels of dedication.
-</p>
+<div class="org-src-container">
 
-<p>
-I am a practicing Buddhist, and I am currently exploring the <a href="http://secularbuddhism.org/">secular</a> school of thought. Above all, I wish peace and happiness to all people, and &#x2013; by extension &#x2013; to you :)
-</p>
-<div class="clearfix"></div>
-
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Charities I Support</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-Charity is important to me. Here are the charities I'm currently focusing on:
-</p>
-
-<ul class="org-ul">
-<li>NAMI (National Alliance on Mental Illness)
-</li>
-<li>HRC (The Human Rights Campaign)
-</li>
-<li>WWF (World Wildlife Fund)
-</li>
-<li>Wikimedia Foundation (Wikipedia)
-</li>
-<li>Girls Who Code
-</li>
-</ul>
+<pre class="src src-html">&lt;blockquote class="twitter-tweet" lang="en"&gt;&lt;p&gt;&lt;a href="http://t.co/meyTVhEscW"&gt;http://t.co/meyTVhEscW&lt;/a&gt; &lt;a href="http://t.co/VyIujIx2dZ"&gt;pic.twitter.com/VyIujIx2dZ&lt;/a&gt;&lt;/p&gt;&amp;mdash; Paul Baumgart (@paulbaumgart) &lt;a href="https://twitter.com/paulbaumgart/status/571788242174918656"&gt;February 28, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+</pre>
 </div>
-</div>
+
+<p>
+I've spent most of my career in the financial industry. There, it was unacceptable to release code which didn't work, and acceptable for the time between releases to span months; because if you got something wrong, it could have led to significant financial losses. It was a different type of job, and discussion of the pros/cons of this type of environment is probably outside the scope of this post.
+</p>
+
+<p>
+I've changed jobs now, but I'm still trying to shake one of the detrimental habits the financial industry trained me into: perfectionism.
+</p>
+
+<p>
+Now admittedly, I can't rest <i>all</i> of the blame on my previous job. Perfectionism is something that's innate to my character as well. Perhaps working in that type of environment just helped further crystallize a way of working.
+</p>
+
+<p>
+And it's not all bad. It's partially what drives me: the desire to release pristine code leads to (what I consider) some nice patches and projects. It is sometimes the driving force behind <i>starting</i> some changes. It can be a really positive thing.
+</p>
+
+<p>
+But it can also be negative.
+</p>
+
+<p>
+The Open Source mantra is, "Release early; release often." I think the justification lies within the parable from this tweet. Humans are really good at modeling the future &#x2013; it's what makes us the dominant species on Earth. But when working with things as complex as software, this modeling has limits. The better way to work is to make mistakes as fast as possible, and iterate towards perfection.
+</p>
+
+<p>
+I have found myself trying to get everything perfect before pushing changes up to their respective repositories. And sometimes I even find this blocking me from getting started. <i>All</i> the different approaches, their pros and cons, possible edge cases: they're all floating around in my mind, and it's difficult to just get started and get something working. Usually once I do get a bit of code written, I'm off and away and things are fine, but sometimes it's hard to get past that first block.
+</p>
+
+<p>
+Those familiar with perfectionism are probably nodding their heads. It's a well understood problem, and there are some things you can do to try and get past it.
+</p>
+
+<p>
+In the context of software engineering, one thing I've found that helps is to write tests. Tests are usually much more plain, and are &#x2013; by design &#x2013; meant to test one thing at a time. If edge-cases appear, you should probably write a test for that anyway, and so you can get a fair amount of work by simply building out the scaffolding of the program by writing tests. This gets you to lay down some code, and possibly removes the mental block.
+</p>
+
+<p>
+I haven't found any other useful ways to resist the siren call of perfectionism (indeed I'm having trouble getting this post out!), but I at least thought this tweet would be a friendly reminder as to why it's better to fail as fast as you can.
+</p>
 
     </div>
   </div>
@@ -107,6 +120,9 @@ Charity is important to me. Here are the charities I'm currently focusing on:
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 <div class="container">
+  <script type="text/javascript">
+    $('.post-meta').append('<ul class="list-unstyled"><li><span title="post date" class="post-info">2015-03-02</span></li><li><span title="tags" class="post-info"><a href="/tags/tech/">tech</a></span></li></ul>');
+  </script>
 </div> <!-- /.container -->
 
 <footer class="footer">
