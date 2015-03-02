@@ -1,0 +1,30 @@
+#+TITLE:       On Perfectionism
+#+DATE:        2015-03-02
+#+TAGS:        tech
+
+I recently came across this Tweet:
+
+#+BEGIN_HTML
+  <blockquote class="twitter-tweet" lang="en"><p><a href="http://t.co/meyTVhEscW">http://t.co/meyTVhEscW</a> <a href="http://t.co/VyIujIx2dZ">pic.twitter.com/VyIujIx2dZ</a></p>&mdash; Paul Baumgart (@paulbaumgart) <a href="https://twitter.com/paulbaumgart/status/571788242174918656">February 28, 2015</a></blockquote>
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+#+END_HTML
+
+I've spent most of my career in the financial industry. There, it was unacceptable to release code which didn't work, and acceptable for the time between releases to span months; because if you got something wrong, it could have led to significant financial losses. It was a different type of job, and discussion of the pros/cons of this type of environment is probably outside the scope of this post.
+
+I've changed jobs now, but I'm still trying to shake one of the detrimental habits the financial industry trained me into: perfectionism.
+
+Now admittedly, I can't rest /all/ of the blame on my previous job. Perfectionism is something that's innate to my character as well. Perhaps working in that type of environment just helped further crystallize a way of working.
+
+And it's not all bad. It's partially what drives me: the desire to release pristine code leads to (what I consider) some nice patches and projects. It is sometimes the driving force behind /starting/ some changes. It can be a really positive thing.
+
+But it can also be negative.
+
+The Open Source mantra is, "Release early; release often." I think the justification lies within the parable from this tweet. Humans are really good at modeling the future -- it's what makes us the dominant species on Earth. But when working with things as complex as software, this modeling has limits. The better way to work is to make mistakes as fast as possible, and iterate towards perfection.
+
+I have found myself trying to get everything perfect before pushing changes up to their respective repositories. And sometimes I even find this blocking me from getting started. /All/ the different approaches, their pros and cons, possible edge cases: they're all floating around in my mind, and it's difficult to just get started and get something working. Usually once I do get a bit of code written, I'm off and away and things are fine, but sometimes it's hard to get past that first block.
+
+Those familiar with perfectionism are probably nodding their heads. It's a well understood problem, and there are some things you can do to try and get past it.
+
+In the context of software engineering, one thing I've found that helps is to write tests. Tests are usually much more plain, and are -- by design -- meant to test one thing at a time. If edge-cases appear, you should probably write a test for that anyway, and so you can get a fair amount of work by simply building out the scaffolding of the program by writing tests. This gets you to lay down some code, and possibly removes the mental block.
+
+I haven't found any other useful ways to resist the siren call of perfectionism (indeed I'm having trouble getting this post out!), but I at least thought this tweet would be a friendly reminder as to why it's better to fail as fast as you can.
