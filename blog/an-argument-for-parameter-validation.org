@@ -1,6 +1,7 @@
 #+TITLE:       An Argument for Parameter Validation
 #+DATE:        2014-07-31
 #+TAGS:        tech
+#+OPTIONS: toc:nil
 
 I'm a fan of validating parameters in languages which do not have preconditions.
 
