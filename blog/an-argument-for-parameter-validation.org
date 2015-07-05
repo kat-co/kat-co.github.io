@@ -1,0 +1,137 @@
+#+TITLE:       An Argument for Parameter Validation
+#+DATE:        2015-07-05 Sun
+#+TAGS:        tech
+
+I'm a fan of validating parameters in languages which do not have preconditions.
+
+First, let's define what I mean when I say validation.
+: Parameter validation is ensuring the things you utilize are in a state in which you can use them.
+Many people hear parameter validation and immediately jump to this:
+
+#+BEGIN_SRC java
+  public void AnImportantMethod(report Report, author Author, repository Repository) {
+      if(report == null)
+        throw new NullPointerException("report");
+      if(author == null)
+        throw new NullPointerException("author");
+      if(repository == null)
+        throw new NullPointerException("repository");
+
+
+      // Finally, our code!
+      // ...
+  }
+#+END_SRC
+
+Although checking for null values is a large responsibility of validating parameters, parameter validation isn't constrained to this. If you accept an integer, but want to make sure it falls within a range, that's parameter validation. If you want to ensure the object you're passed is in a known/correct state, that's parameter validation. If you want to make sure your business-object adheres to business rules that pertain to what you're going to do, that's parameter validation.
+
+A code-base of any decent side will have disparate subsystems in various states of coupling. The way these systems interact can be subtle, and the data they share can have an infinite domain (strings, numbers), or at least be very complex (classes which break the law of demeter -- admit it, you have a few). Rather than try and reason about your entire code-base as a whole, I find it much easier to worry about the one thing my component is doing, and make sure it has everything it needs before getting started. So how do you go about this?
+
+When reasoning about the correctness of your data, you have a few options:
+
+1. Relying on the fact that the data was generated and transformed correctly everywhere else.
+2. Defining coarse boundaries and validating data there (think user-input coming in).
+3. Validating the data right before you use it.
+
+Which should you choose?
+
+Let's get a little philosophical. The ways in which the code boundary you are guarding are interacted with are discrete and finite at this moment in time. Let's call that number A. If you're lucky, perhaps A is some small number -- perhaps even 1 -- and you can reason about what data makes it across your code boundary.
+
+But over time, A will change in ways you cannot predict (if you can, talk to me, and we'll make lots of money together). Architecture will change, the scope of your boundary might expand, the permutations that create your arguments might blow your data's domain out to some large number, code that didn't even exist might begin lobbing bytes across: you just don't know.
+
+So perhaps it's because I'm paranoid, but I like to validate my inputs as close to their use as possible. The boundary I usually choose is methods. At the beginning of every method I do any validation I need to do to ensure that I at least started in a known state.
+
+There are advantages and disadvantages to this technique.
+
+* Advantages
+1. *Adherence to the [[http://en.wikipedia.org/wiki/Fail-fast][Fail Fast principle]].*
+
+   Don't know why that's a good thing? Check out [[http://www.martinfowler.com/ieeeSoftware/failFast.pdf][this]] great article.
+
+2. *Complete Coverage*
+
+   No matter how your code is called, it will be validated.
+
+3. *Code Contracts*
+
+   If I'm calling this code, what can I pass in? Are nulls OK? If I'm reading the code, this gives me an indication. If I'm calling the code, I know right away.
+
+* Disadvantages
+
+1. *Performance*
+
+   If you call a guarded block of code repeatedly, validation can slow your program down demonstrably; however, this is an edge case and you shouldn't discard the entire concept of parameter validation at the altar of premature optimization.
+
+2. *Verbosity*
+
+   It's extra lines of code -- no way around it -- however, given the potential benefit, this disadvantage seems insignificant. Further, there's ways to even further minimize this downside discussed below.
+
+3. *Duplication of Effort*
+
+   This is the one I struggle with most. How many times are you going to check that an instance of a string is not empty before you believe it? There's some truth to this, but only in the simple case. As mentioned above, what string you are passed could change in the future; so in a sense we are guarding against the domain of values, not specific instances.
+
+* Smart Parameter Validation
+
+A long chain of if statements at the beginning of your code is cumbersome to write and maintain. It's prone to bugs, and it can actually hide incorrect parameters which are checked after other failing parameters. Do your parameter validation smarter:
+
+#+BEGIN_SRC go
+  func PersistCreeps(dataStore io.Writer, creeps []*game.Creep) error {
+
+      BeginValidation().Validate(
+          IsNotNil(dataStore, "dataStore"),
+          IsNotNil(creeps, "creeps"),
+      ).CheckAndPanic().Validate(
+          GreaterThan(len(creeps), 0, "creeps"),
+      ).CheckAndPanic()
+
+          // ...
+  }
+#+END_SRC
+
+What the heck is that? It's a fluent style of parameter validation I picked up from the author of Paint.Net, Rick Brewster, in an [[http://blog.getpaint.net/2008/12/06/a-fluent-approach-to-c-parameter-validation/][article]] he wrote. It chains together validation, and returns a single error containing all failures. You can also extend it to contain arbitrarily complex validators:
+
+#+BEGIN_SRC go
+  func ReportFitsRepository(report *Report, repository *Repository) Checker {
+      return func() (passes bool, err error) {
+
+          err = fmt.Errorf("A %s report does not belong in a %s repository.", report.Type, repository.Type)
+          passes = (repository.Type == report.Type)
+          return passes, err
+      }
+  }
+
+  func AuthorCanUpload(authorName string, repository *Repository) Checker {
+      return func() (passes bool, err error) {
+          err = fmt.Errorf("%s does not have access to this repository.", authorName)
+          passes = !repository.AuthorCanUpload(authorName)
+          return passes, err
+      }
+  }
+
+  func AuthorIsCollaborator(authorName string, report *Report) Checker {
+      return func() (passes bool, err error) {
+
+          err = fmt.Errorf("The given author was not one of the collaborators for this report.")
+          for _, collaboratorName := range report.Collaborators() {
+              if collaboratorName == authorName {
+                  passes = true
+                  break
+              }
+          }
+          return passes, err
+      }
+  }
+
+  func HandleReport(authorName string, report *Report, repository *Repository) {
+
+      BeginValidation().Validate(
+          AuthorIsCollaborator(authorName, report),
+          AuthorCanUpload(authorName, repository),
+          ReportFitsRepository(report, repository),
+      ).CheckAndPanic()
+  }
+#+END_SRC
+
+Here we can see that parameter validation doesn't have to be verbose, or even hard to write. In fact, if done properly, parameter validation can bring a lot of clarity to your code, and give developers a sense of what you expect data to look like when passing your code boundary.
+
+If you're interested in this style of parameter validation, and are working with Go, check out my validation library, [[https://github.com/kat-co/vala][Vala]].
