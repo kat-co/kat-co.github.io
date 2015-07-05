@@ -179,53 +179,53 @@ Those already utilizing Emacs should strip out the requisite pieces and place th
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="linenr"> 1: </span>(require 'package)
+<pre class="src src-emacs-lisp"><span class="linenr"> 1: </span>(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">package</span>)
 <span class="linenr"> 2: </span>
-<span class="linenr"> 3: </span>;; Install requisite packages
-<span class="linenr"> 4: </span>;;
-<span class="linenr"> 5: </span>;;
+<span class="linenr"> 3: </span><span style="color: #b22222;">;; </span><span style="color: #b22222;">Install requisite packages</span>
+<span class="linenr"> 4: </span><span style="color: #b22222;">;;</span>
+<span class="linenr"> 5: </span><span style="color: #b22222;">;;</span>
 <span class="linenr"> 6: </span>
-<span class="linenr"> 7: </span>(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+<span class="linenr"> 7: </span>(add-to-list 'package-archives '(<span style="color: #8b2252;">"org"</span> . <span style="color: #8b2252;">"http://orgmode.org/elpa/"</span>) t)
 <span class="linenr"> 8: </span>(package-initialize)
-<span class="linenr"> 9: </span>(when (not package-archive-contents)
+<span class="linenr"> 9: </span>(<span style="color: #a020f0;">when</span> (not package-archive-contents)
 <span class="linenr">10: </span>  (package-refresh-contents))
 <span class="linenr">11: </span>
-<span class="linenr">12: </span>(mapcar #'(lambda (package) (unless (package-installed-p package) (package-install package)))
+<span class="linenr">12: </span>(mapcar #'(<span style="color: #a020f0;">lambda</span> (package) (<span style="color: #a020f0;">unless</span> (package-installed-p package) (package-install package)))
 <span class="linenr">13: </span>        '(org-plus-contrib plantuml-mode))
 <span class="linenr">14: </span>
-<span class="linenr">15: </span>;; Set up plantuml.
-<span class="linenr">16: </span>;;
-<span class="linenr">17: </span>;;
+<span class="linenr">15: </span><span style="color: #b22222;">;; </span><span style="color: #b22222;">Set up plantuml.</span>
+<span class="linenr">16: </span><span style="color: #b22222;">;;</span>
+<span class="linenr">17: </span><span style="color: #b22222;">;;</span>
 <span class="linenr">18: </span>
 <span class="linenr">19: </span>(org-babel-do-load-languages
 <span class="linenr">20: </span> 'org-babel-load-languages
 <span class="linenr">21: </span> '((plantuml . t)))
 <span class="linenr">22: </span>
 <span class="linenr">23: </span>(setq org-plantuml-jar-path
-<span class="linenr">24: </span>      (setq plantuml-jar-path (expand-file-name "./plantuml.jar")))
+<span class="linenr">24: </span>      (setq plantuml-jar-path (expand-file-name <span style="color: #8b2252;">"./plantuml.jar"</span>)))
 <span class="linenr">25: </span>
-<span class="linenr">26: </span>;; Setup latex exporting
-<span class="linenr">27: </span>;;
-<span class="linenr">28: </span>;;
+<span class="linenr">26: </span><span style="color: #b22222;">;; </span><span style="color: #b22222;">Setup latex exporting</span>
+<span class="linenr">27: </span><span style="color: #b22222;">;;</span>
+<span class="linenr">28: </span><span style="color: #b22222;">;;</span>
 <span class="linenr">29: </span>
-<span class="linenr">30: </span>(unless (boundp 'org-latex-classes)
+<span class="linenr">30: </span>(<span style="color: #a020f0;">unless</span> (boundp 'org-latex-classes)
 <span class="linenr">31: </span>  (setq org-latex-classes nil))
 <span class="linenr">32: </span>
 <span class="linenr">33: </span>(add-to-list 'org-latex-classes
-<span id="coderef-stylesheet-name" class="coderef-off"><span class="linenr">34: </span>             '("my-style"</span>
-<span id="coderef-stylesheet-loc" class="coderef-off"><span class="linenr">35: </span>               "\\documentclass{./my-style}</span>
-<span class="linenr">36: </span>                 [DEFAULT-PACKAGES]
-<span class="linenr">37: </span>                 [PACKAGES]
-<span class="linenr">38: </span>                 [EXTRA]"
-<span class="linenr">39: </span>               ("\\section{%s}" . "\\section{%s}")
-<span class="linenr">40: </span>               ("\\subsection{%s}" . "\\subsection{%s}")
-<span class="linenr">41: </span>               ("\\subsubsection{%s}" . "\\subsubsection{%s}")
-<span class="linenr">42: </span>               ("\\paragraph{%s}" . "\\paragraph{%s}")
-<span class="linenr">43: </span>               ("\\subparagraph{%s}" . "\\subparagraph{%s}")))
+<span id="coderef-stylesheet-name" class="coderef-off"><span class="linenr">34: </span>             '(<span style="color: #8b2252;">"my-style"</span></span>
+<span id="coderef-stylesheet-loc" class="coderef-off"><span class="linenr">35: </span>               <span style="color: #8b2252;">"\\documentclass{./my-style}</span></span>
+<span class="linenr">36: </span><span style="color: #8b2252;">                 [DEFAULT-PACKAGES]</span>
+<span class="linenr">37: </span><span style="color: #8b2252;">                 [PACKAGES]</span>
+<span class="linenr">38: </span><span style="color: #8b2252;">                 [EXTRA]"</span>
+<span class="linenr">39: </span>               (<span style="color: #8b2252;">"\\section{%s}"</span> . <span style="color: #8b2252;">"\\section{%s}"</span>)
+<span class="linenr">40: </span>               (<span style="color: #8b2252;">"\\subsection{%s}"</span> . <span style="color: #8b2252;">"\\subsection{%s}"</span>)
+<span class="linenr">41: </span>               (<span style="color: #8b2252;">"\\subsubsection{%s}"</span> . <span style="color: #8b2252;">"\\subsubsection{%s}"</span>)
+<span class="linenr">42: </span>               (<span style="color: #8b2252;">"\\paragraph{%s}"</span> . <span style="color: #8b2252;">"\\paragraph{%s}"</span>)
+<span class="linenr">43: </span>               (<span style="color: #8b2252;">"\\subparagraph{%s}"</span> . <span style="color: #8b2252;">"\\subparagraph{%s}"</span>)))
 <span class="linenr">44: </span>
-<span class="linenr">45: </span>;; Switch into CUA mode for those not familar with emacs keybindings.
-<span class="linenr">46: </span>;;
-<span class="linenr">47: </span>;;
+<span class="linenr">45: </span><span style="color: #b22222;">;; </span><span style="color: #b22222;">Switch into CUA mode for those not familar with emacs keybindings.</span>
+<span class="linenr">46: </span><span style="color: #b22222;">;;</span>
+<span class="linenr">47: </span><span style="color: #b22222;">;;</span>
 <span class="linenr">48: </span>
 <span class="linenr">49: </span>(cua-mode)
 </pre>
@@ -262,9 +262,9 @@ Once you have everything set up, things become very easy. The only thing you tru
 
 <div class="org-src-container">
 
-<pre class="src src-org">#+TITLE: My Software Specification
-#+AUTHOR: Katherine Cox-Buday
-#+LaTeX_CLASS: my-style
+<pre class="src src-org"><span style="color: #7f7f7f;">#+TITLE:</span> <span style="color: #191970; font-weight: bold;">My Software Specification</span>
+<span style="color: #7f7f7f;">#+AUTHOR:</span> <span style="color: #191970;">Katherine Cox-Buday</span>
+<span style="color: #b22222;">#+LaTeX_CLASS: my-style</span>
 </pre>
 </div>
 
@@ -274,24 +274,24 @@ That's it. After this, it's all content &#x2013; and it's all in plain text. So 
 
 <div class="org-src-container">
 
-<pre class="src src-org">#+TITLE: My Software Specification
-#+AUTHOR: Katherine Cox-Buday
-#+LaTeX_CLASS: my-style
+<pre class="src src-org"><span style="color: #7f7f7f;">#+TITLE:</span> <span style="color: #191970; font-weight: bold;">My Software Specification</span>
+<span style="color: #7f7f7f;">#+AUTHOR:</span> <span style="color: #191970;">Katherine Cox-Buday</span>
+<span style="color: #b22222;">#+LaTeX_CLASS: my-style</span>
 
-* Heading One
+<span style="color: #0000ff; font-weight: bold;">* Heading One</span>
 
-** Sub Heading A
+<span style="color: #ffffff; font-weight: bold;">*</span><span style="color: #a0522d; font-weight: bold;">*</span><span style="color: #a0522d;"> Sub Heading A</span>
 - List Item 1
 - List Item 2
 
-* Heading Two
+<span style="color: #0000ff;">* Heading Two</span>
 
-| Column 1 | Column 2 |
-|----------+----------|
-| A        |        1 |
-| B        |        2 |
-| C        |        3 |
-|----------+----------|
+<span style="color: #0000ff;">| Column 1 | Column 2 |</span>
+<span style="color: #0000ff;">|----------+----------|</span>
+<span style="color: #0000ff;">| A        |        1 |</span>
+<span style="color: #0000ff;">| B        |        2 |</span>
+<span style="color: #0000ff;">| C        |        3 |</span>
+<span style="color: #0000ff;">|----------+----------|</span>
 </pre>
 </div>
 </div>
@@ -309,9 +309,9 @@ To open a source-code block, enter the following:
 
 <div class="org-src-container">
 
-<pre class="src src-org">#+BEGIN_SRC plantuml
+<pre class="src src-org"><span style="color: #b22222;">#+BEGIN_SRC plantuml</span>
 
-#+END_SRC
+<span style="color: #b22222;">#+END_SRC</span>
 </pre>
 </div>
 
@@ -335,28 +335,28 @@ To further expand our example above, the document might look like this:
 
 <div class="org-src-container">
 
-<pre class="src src-org">#+TITLE: My Software Specification
-#+AUTHOR: Katherine Cox-Buday
-#+LaTeX_CLASS: my-style
+<pre class="src src-org"><span style="color: #7f7f7f;">#+TITLE:</span> <span style="color: #191970; font-weight: bold;">My Software Specification</span>
+<span style="color: #7f7f7f;">#+AUTHOR:</span> <span style="color: #191970;">Katherine Cox-Buday</span>
+<span style="color: #b22222;">#+LaTeX_CLASS: my-style</span>
 
-* Heading One
+<span style="color: #0000ff; font-weight: bold;">* Heading One</span>
 
-** Sub Heading A
+<span style="color: #ffffff; font-weight: bold;">*</span><span style="color: #a0522d; font-weight: bold;">*</span><span style="color: #a0522d;"> Sub Heading A</span>
 - List Item 1
 - List Item 2
 
-* Heading Two
+<span style="color: #0000ff;">* Heading Two</span>
 
-| Column 1 | Column 2 |
-|----------+----------|
-| A        |        1 |
-| B        |        2 |
-| C        |        3 |
-|----------+----------|
+<span style="color: #0000ff;">| Column 1 | Column 2 |</span>
+<span style="color: #0000ff;">|----------+----------|</span>
+<span style="color: #0000ff;">| A        |        1 |</span>
+<span style="color: #0000ff;">| B        |        2 |</span>
+<span style="color: #0000ff;">| C        |        3 |</span>
+<span style="color: #0000ff;">|----------+----------|</span>
 
-#+BEGIN_SRC plantuml
-Bob-&gt;Alice : hello
-#+END_SRC
+<span style="color: #b22222;">#+BEGIN_SRC plantuml</span>
+<span style="color: #7f7f7f;">Bob-&gt;Alice : hello</span>
+<span style="color: #b22222;">#+END_SRC</span>
 </pre>
 </div>
 
@@ -401,9 +401,9 @@ To take advantage of this, all you have to do is specify a code block as such:
 
 <div class="org-src-container">
 
-<pre class="src src-org">#+BEGIN_SRC java :noweb tangle :tangle ~/code/interfaces.java
+<pre class="src src-org"><span style="color: #b22222;">#+BEGIN_SRC java :noweb tangle :tangle ~/code/interfaces.java</span>
 
-#+END_SRC
+<span style="color: #b22222;">#+END_SRC</span>
 </pre>
 </div>
 
@@ -477,7 +477,7 @@ Happy hacking!
 <div class="sidebar-module">
   <form method="get" id="searchform" action="http://www.google.com/search">
     <input type="text" class="form-control" name="q" id="s" placeholder="Search">
-    <input type="hidden" name="q" value="site:blog.kate.cox2.name">
+    <input type="hidden" name="q" value="site:katherine.cox-buday.com">
   </form>
 </div>
 <div class="sidebar-module">
@@ -510,7 +510,7 @@ Happy hacking!
     <div class="row" style="heigh:2em;">
       <div class="col-md-2 vertical-center">
         <a href="https://plus.google.com/+KatherineCoxBuday"><span class="fa fa-google-plus-square fa-2x"></span></a>
-        <a href=""><span class="fa fa-github-square fa-2x"></span></a>
+        <a href="https://github.com/kat-co"><span class="fa fa-github-square fa-2x"></span></a>
         <a href="http://www.linkedin.com/in/katherinecoxbuday"><span class="fa fa-linkedin-square fa-2x"></span></a>
         <a href="https://twitter.com/katco_"><span class="fa fa-twitter-square fa-2x"></span></a>
       </div>
