@@ -1,5 +1,5 @@
 #+TITLE:       An Argument for Parameter Validation
-#+DATE:        2015-07-05 Sun
+#+DATE:        2014-07-31
 #+TAGS:        tech
 
 I'm a fan of validating parameters in languages which do not have preconditions.
