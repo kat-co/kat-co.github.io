@@ -1,0 +1,350 @@
+#+TITLE: Analyzing Opentracing for Go
+#+DATE: 2016-06-06
+#+TAGS: tech
+
+I'm in the middle of designing the architecture for an audit log for [[https://jujucharms.com][Juju]], and some of my colleagues suggested [[http://opentracing.io/][OpenTracing]]. I flipped through the site and it looks like it might meet our needs quite nicely, and so I've set out to do a deeper analysis to make sure it's something that is a good fit. I'm hoping this post will serve as a place I can point my coworkers for that analysis, as well as to help anyone else considering utilizing this project.
+
+Juju is written in Go, and so I'll be taking a look at the [[https://github.com/opentracing/opentracing-go][Go implementation]] of the project. I'm going to ignore any kind of general overview as the project's web page does a pretty good job of that. Instead this post will focus on the things that aren't immediately apparent: ease of use, and performance.
+
+With that said, on to the analysis!
+
+* Key Concepts
+
+- *span*: A logical unit of work in the system.
+- *baggage*: Information intended to be carried on to subsequent spans.
+- *tracer*: Manages spans. A *trace* is a tree of spans.
+- *recorder*: Records span information to the system's backing-store.
+
+* Sanity Check
+
+First of all, the [[https://github.com/opentracing/opentracing-go/blob/master/LICENSE][license]] is MIT. No issues there.
+
+At the time of this post, the project has 110 stars on GitHub, the last merge was 14 days ago, and there are 5 open issues, 15 closed. As far as project activity goes, looks OK.
+
+Juju also has Python bindings to its API, so ideally any tracing standard will be polyglot implementation. It looks like Opentrace does have Python binding, and it also looks like Java, JavaScript, Objective C, C++, PHP, and Ruby are in [[http://opentracing.io/integration/][various stages]] of support. We should be good to go.
+
+* Performance
+
+First the obvious question. If I'm going to be embedding a lot of spans, this needs to be fast. How quick is it to create and tear down a new span?
+
+#+HEADERS: :main no :package "opentrace" :imports '("fmt" "testing" "github.com/opentracing/opentracing-go")
+#+BEGIN_SRC go :exports code :mkdirp yes :tangle /tmp/analyzing-opentrace/b_span_creation_test.go
+  func BenchmarkSpanCreation(b *testing.B) {
+      for i := b.N; i >= 0; i-- {
+          s := opentracing.StartSpan(fmt.Sprintf("span %d", i))
+          s.Finish()
+      }
+  }
+#+END_SRC
+
+#+RESULTS:
+
+#+BEGIN_SRC sh :exports both
+  go test /tmp/analyzing-opentrace/b_span_creation_test.go
+#+END_SRC
+
+#+RESULTS:
+| ok | command-line-arguments | 0.004s |
+
+Looks to be fast enough to be non-impactful. What about creating spans from other spans?
+
+#+HEADERS: :main no :package "opentrace" :imports '("fmt" "testing" "github.com/opentracing/opentracing-go")
+#+BEGIN_SRC go :exports code :tangle /tmp/analyzing-opentrace/b_span_child_creation_test.go
+  func BenchmarkChildSpanCreation(b *testing.B) {
+      p := opentracing.StartSpan("parent-spam")
+      defer p.Finish()
+      for i := b.N; i >= 0; i-- {
+          s := opentracing.StartChildSpan(p, fmt.Sprintf("child-span-%d", i))
+          s.Finish()
+      }
+  }
+#+END_SRC
+
+#+BEGIN_SRC sh
+  go test /tmp/analyzing-opentrace/b_span_child_creation_test.go
+#+END_SRC
+
+#+RESULTS:
+| ok | command-line-arguments | 0.003s |
+
+Also reasonable. Our RPC system utilizes web sockets; if we were to inject span information, how much extra space could we expect it to take up?
+
+#+HEADER: :imports '("fmt" "net/http" "github.com/opentracing/basictracer-go" "github.com/opentracing/opentracing-go")
+#+BEGIN_SRC go :noweb yes
+  tracer := basictracer.New(nil)
+
+  httpReq, _ := http.NewRequest("GET", "http://myservice/", nil)
+  fmt.Printf("Header (before): %v\n", httpReq.Header)
+
+  s := tracer.StartSpan("my-span")
+  // defer s.Finish() <-- Normally we would call this to trigger writes by the recorder
+  s.LogEvent("test event")
+  s.SetBaggageItem("my-baggage", "current user")
+
+  tracer.Inject(s, opentracing.TextMap, opentracing.HTTPHeaderTextMapCarrier(httpReq.Header))
+  fmt.Printf("Header (after): %v\n", httpReq.Header)
+#+END_SRC
+
+#+RESULTS:
+: Header (before): map[]
+: Header (after): map[Ot-Tracer-Traceid:[102153bca7a4622] Ot-Tracer-Spanid:[52b6ec24aa66ccd5] Ot-Tracer-Sampled:[false] Ot-Baggage-My-Baggage:[current+user]]
+
+Looks pretty reasonable; just some information about the spans for the receiver to pick up the trace.
+
+#+NAME: trivial-recorder
+#+BEGIN_SRC go
+  // TrivialRecorder implements the basictracer.Recorder interface.
+  type TrivialRecorder struct {
+      processName string
+      tags        map[string]string
+  }
+
+  // NewTrivialRecorder returns a TrivialRecorder for the given `processName`.
+  func NewTrivialRecorder(processName string) *TrivialRecorder {
+      return &TrivialRecorder{
+          processName: processName,
+          tags:        make(map[string]string),
+      }
+  }
+
+  // ProcessName returns the process name.
+  func (t *TrivialRecorder) ProcessName() string { return t.processName }
+
+  // SetTag sets a tag.
+  func (t *TrivialRecorder) SetTag(key string, val interface{}) *TrivialRecorder {
+      t.tags[key] = fmt.Sprint(val)
+      return t
+  }
+
+  // RecordSpan complies with the basictracer.Recorder interface.
+  func (t *TrivialRecorder) RecordSpan(span basictracer.RawSpan) {
+      fmt.Printf(
+          "RecordSpan: %v[%v, %v us] --> %v logs. std context: %v; baggage: %v\n",
+          span.Operation, span.Start, span.Duration, len(span.Logs),
+          span.Context, span.Baggage)
+      for i, l := range span.Logs {
+          fmt.Printf(
+              "    log %v @ %v: %v --> %v\n", i, l.Timestamp, l.Event, reflect.TypeOf(l.Payload))
+      }
+  }
+#+END_SRC
+
+* Integration with Juju
+
+** Gating API Calls
+
+Juju's API server is the bottleneck gating access to and from a Juju daemon and is the natural place to ensure a trace either exists or is started. Ideally the things calling Juju's API server would have started a trace, but if not, we need to ensure that one exists. Let's first see how we can ensure that all API server connections know about OpenTracing and spans.
+
+Ideally I wish I could decorate our API server endpoints so that the cross-cutting concern of injecting tracing could be encapsulated elsewhere, but Go doesn't make this easy. The next best thing is to inject the tracing information into all API requests.
+
+Go's ~context.Context~ type has become the standard way at providing context to long-running processes, and so it makes sense to create a type that conforms to that interface and also has OpenTracing information embedded so that functions and methods down the call-tree can either perform traces or do the things ~context.Context~ advertises it can do.
+
+It is a little strange to utilize ~context.Context~ along-side Juju's RPC implementation because timeouts are already baked in, but as this has become the standard way of managing things like this in Go, I think we should move this way. So how would we go about injecting a ~context.Context~ into all API calls?
+
+In [[https://github.com/juju/juju/blob/master/apiserver/root.go#L119-L127][apiserver/root.go]] there is a method which utilizes reflection to perform a call on API server methods. It looks like this:
+
+#+CAPTION: github.com/juju/juju/apiserver/root.go
+#+BEGIN_SRC go
+  // Call takes the object Id and an instance of ParamsType to create an
+  // object and place a call on its method. It then returns an instance
+  // of ResultType.
+  func (s *srvCaller) Call(objId string, arg reflect.Value) (reflect.Value, error) {
+      objVal, err := s.creator(objId)
+      if err != nil {
+          return reflect.Value{}, err
+      }
+      return s.objMethod.Call(objVal, arg) // <1>
+  }
+#+END_SRC
+
+The interesting bit is at <1> where we call an API's server endpoint and pass in the method receiver and a struct which is depersisted from the client. The ~Call~ method is something specific to Juju's RPC mechanism and has the following function signature:
+
+#+CAPTION: github.com/rpc/rpcreflect/type.go
+#+BEGIN_SRC go
+  // Call calls the method with the given argument on the given receiver
+  // value. If the method does not return a value, the returned value
+  // will not be valid.
+  Call func(rcvr, arg reflect.Value) (reflect.Value, error)
+#+END_SRC
+
+It's instantiated at the time the RPC call is made and by reflecting on the type of facade registered on the server. Here's the interesting bit:
+
+#+CAPTION: github.com/juju/rpc/rpcreflect/type.go
+#+BEGIN_SRC go
+  func newMethod(m reflect.Method, receiverKind reflect.Kind) *ObjMethod {
+      if m.PkgPath != "" {
+          return nil
+      }
+      var p ObjMethod
+      var assemble func(arg reflect.Value) []reflect.Value
+      // N.B. The method type has the receiver as its first argument
+      // unless the receiver is an interface.
+      receiverArgCount := 1
+      if receiverKind == reflect.Interface {
+          receiverArgCount = 0
+      }
+      t := m.Type
+      switch {                    // <1>
+      case t.NumIn() == 0+receiverArgCount:
+          // Method() ...
+          assemble = func(arg reflect.Value) []reflect.Value {
+              return nil
+          }
+      case t.NumIn() == 1+receiverArgCount:
+          // Method(T) ...
+          p.Params = t.In(receiverArgCount)
+          assemble = func(arg reflect.Value) []reflect.Value {
+              return []reflect.Value{arg}
+          }
+      default:
+          return nil
+      }
+
+      switch {
+      case t.NumOut() == 0:
+          // Method(...)
+          p.Call = func(rcvr, arg reflect.Value) (r reflect.Value, err error) {
+              rcvr.Method(m.Index).Call(assemble(arg))
+              return
+          }
+      case t.NumOut() == 1 && t.Out(0) == errorType:
+          // Method(...) error
+          p.Call = func(rcvr, arg reflect.Value) (r reflect.Value, err error) {
+              out := rcvr.Method(m.Index).Call(assemble(arg))
+              if !out[0].IsNil() {
+                  err = out[0].Interface().(error)
+              }
+              return
+          }
+      case t.NumOut() == 1:
+          // Method(...) R
+          p.Result = t.Out(0)
+          p.Call = func(rcvr, arg reflect.Value) (reflect.Value, error) {
+              out := rcvr.Method(m.Index).Call(assemble(arg))
+              return out[0], nil
+          }
+      case t.NumOut() == 2 && t.Out(1) == errorType:
+          // Method(...) (R, error)
+          p.Result = t.Out(0)
+          p.Call = func(rcvr, arg reflect.Value) (r reflect.Value, err error) {
+              out := rcvr.Method(m.Index).Call(assemble(arg))
+              r = out[0]
+              if !out[1].IsNil() {
+                  err = out[1].Interface().(error)
+              }
+              return
+          }
+      default:
+          return nil
+      }
+      // The parameters and return value must be of struct type.
+      if p.Params != nil && p.Params.Kind() != reflect.Struct { // <2>
+          return nil
+      }
+      if p.Result != nil && p.Result.Kind() != reflect.Struct {
+          return nil
+      }
+      return &p
+  }
+#+END_SRC
+
+You can see at <1> that we're specifying that the there can be at most 1 argument, and at <2> that this argument must be a struct.
+
+If we want to also pass a ~context.Context~ into the API server method, we'll have to modify both the signature, /and/ all the existing API methods. Then, in the generic API server connection handling logic back in [[https://github.com/juju/juju/blob/master/apiserver/root.go#L119-L127][apiserver/root.go]], we would join to the incoming span, or -- if the caller doesn't know about spans -- create our own, and then pass the span into the ~context.Context~. It would probably look something like this:
+
+#+BEGIN_SRC go
+  // Call takes the object Id and an instance of ParamsType to create an
+  // object and place a call on its method. It then returns an instance
+  // of ResultType.
+  func (s *srvCaller) Call(ctx context.Context, objId string, arg reflect.Value) (reflect.Value, error) {
+      objVal, err := s.creator(objId)
+      if err != nil {
+          return reflect.Value{}, err
+      }
+
+      return s.objMethod.Call(objVal, ctx, arg)
+  }
+#+END_SRC
+
+The ~ctx~ would in turn be created further up the stack from our request headers:
+
+#+CAPTION: github.com/juju/juju/rpc/server.go
+#+BEGIN_SRC go
+  func (conn *Conn) handleRequest(hdr *Header) error {
+      serverSpan, err := opentracing.GlobalTracer().Join(
+          "serverSpan",
+          opentracing.TextMap,
+          opentracing.HTTPHeaderTextMapCarrier(hdr),
+      )
+      if err != nil {
+          // Create a root span if necessary
+          serverSpan = opentracing.StartTrace("serverSpan")
+      }
+
+      var ctx context.Context
+      ctx, _ = opentracing.ContextWithSpan(ctx, serverSpan)
+      defer serverSpan.Finish()
+
+      // TODO(perrito666) 2016-05-02 lp:1558657
+      startTime := time.Now()
+      req, err := conn.bindRequest(hdr)
+      if err != nil {
+          conn.notifier.ServerRequest(hdr, nil)
+          if err := conn.readBody(nil, true); err != nil {
+              return err
+          }
+          // We don't transform the error here. bindRequest will have
+          // already transformed it and returned a zero req.
+          return conn.writeErrorResponse(hdr, err, startTime)
+      }
+      var argp interface{}
+      var arg reflect.Value
+      if req.ParamsType() != nil {
+          v := reflect.New(req.ParamsType())
+          arg = v.Elem()
+          argp = v.Interface()
+      }
+      if err := conn.readBody(argp, true); err != nil {
+          conn.notifier.ServerRequest(hdr, nil)
+          // If we get EOF, we know the connection is a
+          // goner, so don't try to respond.
+          if err == io.EOF || err == io.ErrUnexpectedEOF {
+              return err
+          }
+          // An error reading the body often indicates bad
+          // request parameters rather than an issue with
+          // the connection itself, so we reply with an
+          // error rather than tearing down the connection
+          // unless it's obviously a connection issue.  If
+          // the error is actually a framing or syntax
+          // problem, then the next ReadHeader should pick
+          // up the problem and abort.
+          return conn.writeErrorResponse(hdr, req.transformErrors(err), startTime)
+      }
+      if req.ParamsType() != nil {
+          conn.notifier.ServerRequest(hdr, arg.Interface())
+      } else {
+          conn.notifier.ServerRequest(hdr, struct{}{})
+      }
+      conn.mutex.Lock()
+      closing := conn.closing
+      if !closing {
+          conn.srvPending.Add(1)
+          go conn.runRequest(req, ctx, arg, startTime)
+      }
+      conn.mutex.Unlock()
+      if closing {
+          // We're closing down - no new requests may be initiated.
+          return conn.writeErrorResponse(hdr, req.transformErrors(ErrShutdown), startTime)
+      }
+      return nil
+  }
+#+END_SRC
+
+** Backwards compatibility
+
+Since The API server gate looks for an incoming span but does not expect it, all existing clients -- including those from prior versions of Juju -- should be able to utilize the new endpoints. Thus, we should remain backwards compatible, and no new upgrade steps need be written.
+
+** Writing Audit Events to Mongo
+
+Juju uses [[https://www.mongodb.com/][mongoDB]] for it's data tier. All audit events will be written to a Mongo collection. To do this, we'll write our own OpenTracing recorder which will do nothing but persist audit events to the collection. It will probably look very similar to the provided [[https://github.com/opentracing/basictracer-go][basic tracer]].
