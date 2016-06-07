@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <title>Analyzing Opentracing for Go - Katherine Cox-Buday</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="author" content="Katherine Cox-Buday" />
+
+  <!-- Mobile support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+  <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 blog-main">
+          <div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3>Analyzing Opentracing for Go</h3>
+      <div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">Key Concepts</a></li>
+<li><a href="#orgheadline2">Sanity Check</a></li>
+<li><a href="#orgheadline3">Performance</a></li>
+<li><a href="#orgheadline7">Integration with Juju</a>
+<ul>
+<li><a href="#orgheadline4">Gating API Calls</a></li>
+<li><a href="#orgheadline5">Backwards compatibility</a></li>
+<li><a href="#orgheadline6">Writing Audit Events to Mongo</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+I'm in the middle of designing the architecture for an audit log for <a href="https://jujucharms.com/">Juju</a>, and some of my colleagues suggested <a href="http://opentracing.io/">OpenTracing</a>. I flipped through the site and it looks like it might meet our needs quite nicely, and so I've set out to do a deeper analysis to make sure it's something that is a good fit. I'm hoping this post will serve as a place I can point my coworkers for that analysis, as well as to help anyone else considering utilizing this project.
+</p>
+
+<p>
+Juju is written in Go, and so I'll be taking a look at the <a href="https://github.com/opentracing/opentracing-go">Go implementation</a> of the project. I'm going to ignore any kind of general overview as the project's web page does a pretty good job of that. Instead this post will focus on the things that aren't immediately apparent: ease of use, and performance.
+</p>
+
+<p>
+With that said, on to the analysis!
+</p>
+
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Key Concepts</h2>
+<div class="outline-text-2" id="text-orgheadline1">
+<ul class="org-ul">
+<li><b>span</b>: A logical unit of work in the system.</li>
+<li><b>baggage</b>: Information intended to be carried on to subsequent spans.</li>
+<li><b>tracer</b>: Manages spans. A <b>trace</b> is a tree of spans.</li>
+<li><b>recorder</b>: Records span information to the system's backing-store.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Sanity Check</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+<p>
+First of all, the <a href="https://github.com/opentracing/opentracing-go/blob/master/LICENSE">license</a> is MIT. No issues there.
+</p>
+
+<p>
+At the time of this post, the project has 110 stars on GitHub, the last merge was 14 days ago, and there are 5 open issues, 15 closed. As far as project activity goes, looks OK.
+</p>
+
+<p>
+Juju also has Python bindings to its API, so ideally any tracing standard will be polyglot implementation. It looks like Opentrace does have Python binding, and it also looks like Java, JavaScript, Objective C, C++, PHP, and Ruby are in <a href="http://opentracing.io/integration/">various stages</a> of support. We should be good to go.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Performance</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+<p>
+First the obvious question. If I'm going to be embedding a lot of spans, this needs to be fast. How quick is it to create and tear down a new span?
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go">func BenchmarkSpanCreation(b *testing.B) {
+    for i := b.N; i &gt;= 0; i-- {
+        s := opentracing.StartSpan(fmt.Sprintf("span %d", i))
+        s.Finish()
+    }
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">go test /tmp/analyzing-opentrace/b_span_creation_test.go
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">ok</td>
+<td class="org-left">command-line-arguments</td>
+<td class="org-left">0.003s</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Looks to be fast enough to be non-impactful. What about creating spans from other spans?
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go">func BenchmarkChildSpanCreation(b *testing.B) {
+    p := opentracing.StartSpan("parent-spam")
+    defer p.Finish()
+    for i := b.N; i &gt;= 0; i-- {
+        s := opentracing.StartChildSpan(p, fmt.Sprintf("child-span-%d", i))
+        s.Finish()
+    }
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">go test /tmp/analyzing-opentrace/b_span_child_creation_test.go
+</pre>
+</div>
+
+<p>
+Also reasonable. Our RPC system utilizes web sockets; if we were to inject span information, how much extra space could we expect it to take up?
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go">tracer := basictracer.New(nil)
+
+httpReq, _ := http.NewRequest("GET", "http://myservice/", nil)
+fmt.Printf("Header (before): %v\n", httpReq.Header)
+
+s := tracer.StartSpan("my-span")
+// defer s.Finish() &lt;-- Normally we would call this to trigger writes by the recorder
+s.LogEvent("test event")
+s.SetBaggageItem("my-baggage", "current user")
+
+tracer.Inject(s, opentracing.TextMap, opentracing.HTTPHeaderTextMapCarrier(httpReq.Header))
+fmt.Printf("Header (after): %v\n", httpReq.Header)
+</pre>
+</div>
+
+<p>
+Looks pretty reasonable; just some information about the spans for the receiver to pick up the trace.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go" id="orgsrcblock1">// TrivialRecorder implements the basictracer.Recorder interface.
+type TrivialRecorder struct {
+    processName string
+    tags        map[string]string
+}
+
+// NewTrivialRecorder returns a TrivialRecorder for the given `processName`.
+func NewTrivialRecorder(processName string) *TrivialRecorder {
+    return &amp;TrivialRecorder{
+        processName: processName,
+        tags:        make(map[string]string),
+    }
+}
+
+// ProcessName returns the process name.
+func (t *TrivialRecorder) ProcessName() string { return t.processName }
+
+// SetTag sets a tag.
+func (t *TrivialRecorder) SetTag(key string, val interface{}) *TrivialRecorder {
+    t.tags[key] = fmt.Sprint(val)
+    return t
+}
+
+// RecordSpan complies with the basictracer.Recorder interface.
+func (t *TrivialRecorder) RecordSpan(span basictracer.RawSpan) {
+    fmt.Printf(
+        "RecordSpan: %v[%v, %v us] --&gt; %v logs. std context: %v; baggage: %v\n",
+        span.Operation, span.Start, span.Duration, len(span.Logs),
+        span.Context, span.Baggage)
+    for i, l := range span.Logs {
+        fmt.Printf(
+            "    log %v @ %v: %v --&gt; %v\n", i, l.Timestamp, l.Event, reflect.TypeOf(l.Payload))
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7">Integration with Juju</h2>
+<div class="outline-text-2" id="text-orgheadline7">
+</div><div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">Gating API Calls</h3>
+<div class="outline-text-3" id="text-orgheadline4">
+<p>
+Juju's API server is the bottleneck gating access to and from a Juju daemon and is the natural place to ensure a trace either exists or is started. Ideally the things calling Juju's API server would have started a trace, but if not, we need to ensure that one exists. Let's first see how we can ensure that all API server connections know about OpenTracing and spans.
+</p>
+
+<p>
+Ideally I wish I could decorate our API server endpoints so that the cross-cutting concern of injecting tracing could be encapsulated elsewhere, but Go doesn't make this easy. The next best thing is to inject the tracing information into all API requests.
+</p>
+
+<p>
+Go's <code>context.Context</code> type has become the standard way at providing context to long-running processes, and so it makes sense to create a type that conforms to that interface and also has OpenTracing information embedded so that functions and methods down the call-tree can either perform traces or do the things <code>context.Context</code> advertises it can do.
+</p>
+
+<p>
+It is a little strange to utilize <code>context.Context</code> along-side Juju's RPC implementation because timeouts are already baked in, but as this has become the standard way of managing things like this in Go, I think we should move this way. So how would we go about injecting a <code>context.Context</code> into all API calls?
+</p>
+
+<p>
+In <a href="https://github.com/juju/juju/blob/master/apiserver/root.go#L119-L127">apiserver/root.go</a> there is a method which utilizes reflection to perform a call on API server methods. It looks like this:
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name">github.com/juju/juju/apiserver/root.go</label>
+<pre class="src src-go">// Call takes the object Id and an instance of ParamsType to create an
+// object and place a call on its method. It then returns an instance
+// of ResultType.
+func (s *srvCaller) Call(objId string, arg reflect.Value) (reflect.Value, error) {
+    objVal, err := s.creator(objId)
+    if err != nil {
+        return reflect.Value{}, err
+    }
+    return s.objMethod.Call(objVal, arg) // &lt;1&gt;
+}
+</pre>
+</div>
+
+<p>
+The interesting bit is at &lt;1&gt; where we call an API's server endpoint and pass in the method receiver and a struct which is depersisted from the client. The <code>Call</code> method is something specific to Juju's RPC mechanism and has the following function signature:
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name">github.com/rpc/rpcreflect/type.go</label>
+<pre class="src src-go">// Call calls the method with the given argument on the given receiver
+// value. If the method does not return a value, the returned value
+// will not be valid.
+Call func(rcvr, arg reflect.Value) (reflect.Value, error)
+</pre>
+</div>
+
+<p>
+It's instantiated at the time the RPC call is made and by reflecting on the type of facade registered on the server. Here's the interesting bit:
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name">github.com/juju/rpc/rpcreflect/type.go</label>
+<pre class="src src-go">func newMethod(m reflect.Method, receiverKind reflect.Kind) *ObjMethod {
+    if m.PkgPath != "" {
+        return nil
+    }
+    var p ObjMethod
+    var assemble func(arg reflect.Value) []reflect.Value
+    // N.B. The method type has the receiver as its first argument
+    // unless the receiver is an interface.
+    receiverArgCount := 1
+    if receiverKind == reflect.Interface {
+        receiverArgCount = 0
+    }
+    t := m.Type
+    switch {                    // &lt;1&gt;
+    case t.NumIn() == 0+receiverArgCount:
+        // Method() ...
+        assemble = func(arg reflect.Value) []reflect.Value {
+            return nil
+        }
+    case t.NumIn() == 1+receiverArgCount:
+        // Method(T) ...
+        p.Params = t.In(receiverArgCount)
+        assemble = func(arg reflect.Value) []reflect.Value {
+            return []reflect.Value{arg}
+        }
+    default:
+        return nil
+    }
+
+    switch {
+    case t.NumOut() == 0:
+        // Method(...)
+        p.Call = func(rcvr, arg reflect.Value) (r reflect.Value, err error) {
+            rcvr.Method(m.Index).Call(assemble(arg))
+            return
+        }
+    case t.NumOut() == 1 &amp;&amp; t.Out(0) == errorType:
+        // Method(...) error
+        p.Call = func(rcvr, arg reflect.Value) (r reflect.Value, err error) {
+            out := rcvr.Method(m.Index).Call(assemble(arg))
+            if !out[0].IsNil() {
+                err = out[0].Interface().(error)
+            }
+            return
+        }
+    case t.NumOut() == 1:
+        // Method(...) R
+        p.Result = t.Out(0)
+        p.Call = func(rcvr, arg reflect.Value) (reflect.Value, error) {
+            out := rcvr.Method(m.Index).Call(assemble(arg))
+            return out[0], nil
+        }
+    case t.NumOut() == 2 &amp;&amp; t.Out(1) == errorType:
+        // Method(...) (R, error)
+        p.Result = t.Out(0)
+        p.Call = func(rcvr, arg reflect.Value) (r reflect.Value, err error) {
+            out := rcvr.Method(m.Index).Call(assemble(arg))
+            r = out[0]
+            if !out[1].IsNil() {
+                err = out[1].Interface().(error)
+            }
+            return
+        }
+    default:
+        return nil
+    }
+    // The parameters and return value must be of struct type.
+    if p.Params != nil &amp;&amp; p.Params.Kind() != reflect.Struct { // &lt;2&gt;
+        return nil
+    }
+    if p.Result != nil &amp;&amp; p.Result.Kind() != reflect.Struct {
+        return nil
+    }
+    return &amp;p
+}
+</pre>
+</div>
+
+<p>
+You can see at &lt;1&gt; that we're specifying that the there can be at most 1 argument, and at &lt;2&gt; that this argument must be a struct.
+</p>
+
+<p>
+If we want to also pass a <code>context.Context</code> into the API server method, we'll have to modify both the signature, <i>and</i> all the existing API methods. Then, in the generic API server connection handling logic back in <a href="https://github.com/juju/juju/blob/master/apiserver/root.go#L119-L127">apiserver/root.go</a>, we would join to the incoming span, or &#x2013; if the caller doesn't know about spans &#x2013; create our own, and then pass the span into the <code>context.Context</code>. It would probably look something like this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-go">// Call takes the object Id and an instance of ParamsType to create an
+// object and place a call on its method. It then returns an instance
+// of ResultType.
+func (s *srvCaller) Call(ctx context.Context, objId string, arg reflect.Value) (reflect.Value, error) {
+    objVal, err := s.creator(objId)
+    if err != nil {
+        return reflect.Value{}, err
+    }
+
+    return s.objMethod.Call(objVal, ctx, arg)
+}
+</pre>
+</div>
+
+<p>
+The <code>ctx</code> would in turn be created further up the stack from our request headers:
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name">github.com/juju/juju/rpc/server.go</label>
+<pre class="src src-go">func (conn *Conn) handleRequest(hdr *Header) error {
+    serverSpan, err := opentracing.GlobalTracer().Join(
+        "serverSpan",
+        opentracing.TextMap,
+        opentracing.HTTPHeaderTextMapCarrier(hdr),
+    )
+    if err != nil {
+        // Create a root span if necessary
+        serverSpan = opentracing.StartTrace("serverSpan")
+    }
+
+    var ctx context.Context
+    ctx, _ = opentracing.ContextWithSpan(ctx, serverSpan)
+    defer serverSpan.Finish()
+
+    // TODO(perrito666) 2016-05-02 lp:1558657
+    startTime := time.Now()
+    req, err := conn.bindRequest(hdr)
+    if err != nil {
+        conn.notifier.ServerRequest(hdr, nil)
+        if err := conn.readBody(nil, true); err != nil {
+            return err
+        }
+        // We don't transform the error here. bindRequest will have
+        // already transformed it and returned a zero req.
+        return conn.writeErrorResponse(hdr, err, startTime)
+    }
+    var argp interface{}
+    var arg reflect.Value
+    if req.ParamsType() != nil {
+        v := reflect.New(req.ParamsType())
+        arg = v.Elem()
+        argp = v.Interface()
+    }
+    if err := conn.readBody(argp, true); err != nil {
+        conn.notifier.ServerRequest(hdr, nil)
+        // If we get EOF, we know the connection is a
+        // goner, so don't try to respond.
+        if err == io.EOF || err == io.ErrUnexpectedEOF {
+            return err
+        }
+        // An error reading the body often indicates bad
+        // request parameters rather than an issue with
+        // the connection itself, so we reply with an
+        // error rather than tearing down the connection
+        // unless it's obviously a connection issue.  If
+        // the error is actually a framing or syntax
+        // problem, then the next ReadHeader should pick
+        // up the problem and abort.
+        return conn.writeErrorResponse(hdr, req.transformErrors(err), startTime)
+    }
+    if req.ParamsType() != nil {
+        conn.notifier.ServerRequest(hdr, arg.Interface())
+    } else {
+        conn.notifier.ServerRequest(hdr, struct{}{})
+    }
+    conn.mutex.Lock()
+    closing := conn.closing
+    if !closing {
+        conn.srvPending.Add(1)
+        go conn.runRequest(req, ctx, arg, startTime)
+    }
+    conn.mutex.Unlock()
+    if closing {
+        // We're closing down - no new requests may be initiated.
+        return conn.writeErrorResponse(hdr, req.transformErrors(ErrShutdown), startTime)
+    }
+    return nil
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5">Backwards compatibility</h3>
+<div class="outline-text-3" id="text-orgheadline5">
+<p>
+Since The API server gate looks for an incoming span but does not expect it, all existing clients &#x2013; including those from prior versions of Juju &#x2013; should be able to utilize the new endpoints. Thus, we should remain backwards compatible, and no new upgrade steps need be written.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6">Writing Audit Events to Mongo</h3>
+<div class="outline-text-3" id="text-orgheadline6">
+<p>
+Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All audit events will be written to a Mongo collection. To do this, we'll write our own OpenTracing recorder which will do nothing but persist audit events to the collection. It will probably look very similar to the provided <a href="https://github.com/opentracing/basictracer-go">basic tracer</a>.
+</p>
+</div>
+</div>
+</div>
+
+    </div>
+  </div>
+</div> <!-- /.container -->
+
+        </div> <!-- /.blog-main -->
+        <div class="col-sm-3 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+  <a href="/"><span class="fa fa-home fa-2x"></span></a>
+  <a href="/rss.xml"><span class="fa fa-rss-square fa-2x"></span></a>
+  <a href="/tags/"><span class="fa fa-tags fa-2x"></span></a>
+</div>
+<div class="sidebar-module">
+  <form method="get" id="searchform" action="http://www.google.com/search">
+    <input type="text" class="form-control" name="q" id="s" placeholder="Search">
+    <input type="hidden" name="q" value="site:katherine.cox-buday.com">
+  </form>
+</div>
+<div class="sidebar-module">
+  <h4>Categories</h4>
+  <ol class="list-unstyled">
+    <li><a href="/blog/">Blog</a></li>
+    <!-- <li><a href="https://github.com/kelvinh/org-page">GitHub</a></li> -->
+  </ol>
+</div>
+        </div> <!-- /.blog-sidebar -->
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    <script src="//code.jquery.com/jquery-latest.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+<script src="/media/js/main.js"></script>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div class="container">
+  <script type="text/javascript">
+    $('.post-meta').append('<ul class="list-unstyled"><li><span title="post date" class="post-info">2016-06-06</span></li><li><span title="tags" class="post-info"><a href="/tags/tech/">tech</a></span></li></ul>');
+  </script>
+</div> <!-- /.container -->
+
+<footer class="footer">
+  <div class="container text-muted">
+    <div class="row" style="heigh:2em;">
+      <div class="col-md-2 vertical-center">
+        <a href="https://plus.google.com/+KatherineCoxBuday"><span class="fa fa-google-plus-square fa-2x"></span></a>
+        <a href="https://github.com/kat-co"><span class="fa fa-github-square fa-2x"></span></a>
+        <a href="http://www.linkedin.com/in/katherinecoxbuday"><span class="fa fa-linkedin-square fa-2x"></span></a>
+        <a href="https://twitter.com/katco_"><span class="fa fa-twitter-square fa-2x"></span></a>
+      </div>
+      <div class="col-sm-9 vertical-center">
+        Copyright &copy; <a href="mailto:cox &lt;dot&gt; katherine &lt;dot&gt; e &lt;at&gt; gmail &lt;dot&gt; com">Katherine Cox-Buday</a>,
+        Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.x (<a href="http://orgmode.org">Org mode</a> 8.x) & <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+      </div>
+    </div> <!-- ./row -->
+  </div> <!-- ./container -->
+</footer>
+
+  </body>
+</html>
