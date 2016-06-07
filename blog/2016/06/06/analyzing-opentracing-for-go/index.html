@@ -31,24 +31,7 @@
   <div class="col-sm-9">
     <div class="post">
       <h3>Analyzing Opentracing for Go</h3>
-      <div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#orgheadline1">Key Concepts</a></li>
-<li><a href="#orgheadline2">Sanity Check</a></li>
-<li><a href="#orgheadline3">Performance</a></li>
-<li><a href="#orgheadline7">Integration with Juju</a>
-<ul>
-<li><a href="#orgheadline4">Gating API Calls</a></li>
-<li><a href="#orgheadline5">Backwards compatibility</a></li>
-<li><a href="#orgheadline6">Writing Audit Events to Mongo</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<p>
+      <p>
 I'm in the middle of designing the architecture for an audit log for <a href="https://jujucharms.com/">Juju</a>, and some of my colleagues suggested <a href="http://opentracing.io/">OpenTracing</a>. I flipped through the site and it looks like it might meet our needs quite nicely, and so I've set out to do a deeper analysis to make sure it's something that is a good fit. I'm hoping this post will serve as a place I can point my coworkers for that analysis, as well as to help anyone else considering utilizing this project.
 </p>
 
