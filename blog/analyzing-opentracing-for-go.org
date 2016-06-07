@@ -40,17 +40,17 @@ First the obvious question. If I'm going to be embedding a lot of spans, this ne
 
 #+RESULTS:
 
-#+BEGIN_SRC sh :exports both
+#+BEGIN_SRC sh :exports both :cache yes
   go test /tmp/analyzing-opentrace/b_span_creation_test.go
 #+END_SRC
 
-#+RESULTS:
-| ok | command-line-arguments | 0.004s |
+#+RESULTS[c9e6913cbd4306212ab469c50b8390e6873281af]:
+| ok | command-line-arguments | 0.003s |
 
 Looks to be fast enough to be non-impactful. What about creating spans from other spans?
 
 #+HEADERS: :main no :package "opentrace" :imports '("fmt" "testing" "github.com/opentracing/opentracing-go")
-#+BEGIN_SRC go :exports code :tangle /tmp/analyzing-opentrace/b_span_child_creation_test.go
+#+BEGIN_SRC go :exports code :mkdirp yes :tangle /tmp/analyzing-opentrace/b_span_child_creation_test.go
   func BenchmarkChildSpanCreation(b *testing.B) {
       p := opentracing.StartSpan("parent-spam")
       defer p.Finish()
@@ -61,17 +61,17 @@ Looks to be fast enough to be non-impactful. What about creating spans from othe
   }
 #+END_SRC
 
-#+BEGIN_SRC sh
+#+BEGIN_SRC sh :exports both :cache yes
   go test /tmp/analyzing-opentrace/b_span_child_creation_test.go
 #+END_SRC
 
-#+RESULTS:
-| ok | command-line-arguments | 0.003s |
+#+RESULTS[2fefec69ea3c42565bd02dd078c82cb6a2c635f6]:
+| ok | command-line-arguments | 0.026s |
 
 Also reasonable. Our RPC system utilizes web sockets; if we were to inject span information, how much extra space could we expect it to take up?
 
 #+HEADER: :imports '("fmt" "net/http" "github.com/opentracing/basictracer-go" "github.com/opentracing/opentracing-go")
-#+BEGIN_SRC go :noweb yes
+#+BEGIN_SRC go :noweb yes :exports both :cache yes
   tracer := basictracer.New(nil)
 
   httpReq, _ := http.NewRequest("GET", "http://myservice/", nil)
@@ -86,14 +86,14 @@ Also reasonable. Our RPC system utilizes web sockets; if we were to inject span 
   fmt.Printf("Header (after): %v\n", httpReq.Header)
 #+END_SRC
 
-#+RESULTS:
+#+RESULTS[50af8516713d4cfb1dc3865c421bdbc447b9f381]:
 : Header (before): map[]
-: Header (after): map[Ot-Tracer-Traceid:[102153bca7a4622] Ot-Tracer-Spanid:[52b6ec24aa66ccd5] Ot-Tracer-Sampled:[false] Ot-Baggage-My-Baggage:[current+user]]
+: Header (after): map[Ot-Tracer-Traceid:[7ab6ba52e1e748c1] Ot-Tracer-Spanid:[1b4c98c3b3f048aa] Ot-Tracer-Sampled:[false] Ot-Baggage-My-Baggage:[current+user]]
 
 Looks pretty reasonable; just some information about the spans for the receiver to pick up the trace.
 
 #+NAME: trivial-recorder
-#+BEGIN_SRC go
+#+BEGIN_SRC go :exports none
   // TrivialRecorder implements the basictracer.Recorder interface.
   type TrivialRecorder struct {
       processName string
