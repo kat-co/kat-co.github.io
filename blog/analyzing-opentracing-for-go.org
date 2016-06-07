@@ -1,6 +1,7 @@
 #+TITLE: Analyzing Opentracing for Go
 #+DATE: 2016-06-06
 #+TAGS: tech
+#+OPTIONS: toc:nil
 
 I'm in the middle of designing the architecture for an audit log for [[https://jujucharms.com][Juju]], and some of my colleagues suggested [[http://opentracing.io/][OpenTracing]]. I flipped through the site and it looks like it might meet our needs quite nicely, and so I've set out to do a deeper analysis to make sure it's something that is a good fit. I'm hoping this post will serve as a place I can point my coworkers for that analysis, as well as to help anyone else considering utilizing this project.
 
