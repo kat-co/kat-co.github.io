@@ -1,0 +1,6 @@
+#+TITLE: Gophercon 2015 Simplicity and Go
+#+DATE: 2015-06-06
+#+TAGS: tech
+#+OPTIONS: toc:nil
+
+This is a test
