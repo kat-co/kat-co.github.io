@@ -3,6 +3,7 @@
 
 ((nil
   (eval . (progn
+			(require 'org-page)
 			(setq op/repository-directory "."
 				  op/site-domain "http://katherine.cox-buday.com"
 				  op/site-main-title "Katherine Cox-Buday"
@@ -12,5 +13,6 @@
 				  op/category-config-alist (cons '("public-works"
 												   :label "Public Works"
 												   :category-index t
+												   :uri-generator op/generate-uri
 												   :uri-template "/public-works/")
 												 op/category-config-alist))))))
