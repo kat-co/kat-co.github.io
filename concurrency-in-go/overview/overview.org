@@ -1,0 +1,13 @@
+#+TITLE:
+#+OPTIONS:		H:3 num:nil toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+
+#+ATTR_HTML: :class img-responsive pull-left :style margin-right:15px; width:250px
+file:./book-cover.jpg
+
+Concurrency can be notoriously difficult to get right, but fortunately, the Go programming language was designed with concurrency in mind. In this practical book, you’ll learn how Go was written to help introduce and master these concepts, as well as how to use basic concurrency patterns to form large systems that are reliable and remain simple and easy to understand.
+
+Author Katherine Cox-Buday takes you through the tools and techniques to develop and debug concurrent software. After finishing Concurrency in Go, you’ll be equipped with the skills you need to confidently and correctly write concurrent systems of any size.
+#+HTML: <div class="clearfix"></div>
+
+* Available for Pre-Purchase
+- [[http://shop.oreilly.com/product/0636920046189.do?sortby=bestSellers][O'Reilly]]

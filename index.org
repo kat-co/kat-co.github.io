@@ -6,6 +6,7 @@
 
 #+ATTR_HTML: :class img-responsive img-rounded pull-left :style margin-right:15px
 [[file:blog/static/me.png]]
+
 Hi, I'm Katherine Cox-Buday, and this is probably the best way to reach anything I do.
 
 I am a computer scientist currently working at [[http://www.canonical.com/][Canonical]] (of [[http://www.ubuntu.com/][Ubuntu]] fame) on [[https://jujucharms.com/][Juju]], a cloud orchestration system. My hobbies include software engineering, creative writing, Go (igo, baduk, weiquei), and guitar, all of which I pursue intermittently and with various levels of dedication.
