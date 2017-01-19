@@ -17,30 +17,9 @@ I am a practicing Buddhist, and I am currently exploring the [[http://secularbud
 
 Charity is important to me. Here are the charities I'm currently focusing on:
 
-- NAMI (National Alliance on Mental Illness)
-- HRC (The Human Rights Campaign)
-- WWF (World Wildlife Fund)
-- Wikimedia Foundation (Wikipedia)
-- Girls Who Code
-
-* Elsewhere                                                        :noexport:
-
-#+ATTR_HTML: :width 90 :class img-responsive pull-left :style margin:0 1em 1em 0;width:64px;height:64px
-[[https://jujucharms.com/][file:blog/static/juju_orange_hex.svg]]
-By day I work on Juju, an awesome open source cloud-orchestartion system. It's written in Go, and I spend my entire day around smart people. It's fantastic.
-#+HTML: <div class="clearfix"></div>
-
-#+ATTR_HTML: :width 90 :class img-responsive pull-left :style margin:0 1em 1em 0;width:64px;height:64px
-[[https://github.com/katco-][file:blog/static/mark-github-128.png]]
-Most (but not all) of my work is here. The work that isn't isn't worth seeing.
-#+HTML: <div class="clearfix"></div>
-
-#+ATTR_HTML: :rel publisher :target _top :alt Google+ :class img-responsive pull-left :style margin:0 1em 1em 0;width:64px;height:64px
-[[https://plus.google.com/u/0/100662126766165980060?prsrc%3D3][https://ssl.gstatic.com/images/icons/gplus-64.png]]
-I'm most active here.
-#+HTML: <div class="clearfix"></div>
-
-#+ATTR_HTML: :alt Twitter :class img-responsive pull-left :style margin:0 1em 1em 0;width:64px;height:64px
-[[https://twitter.com/katco_][file:blog/static/Twitter_bird_logo_2012.svg]]
-I don't usually post things here; it's mostly for following others.
-#+HTML: <div class="clearfix"></div>
+- [[https://www.nami.org][NAMI]] (National Alliance on Mental Illness)
+- [[https://www.hrc.org/][HRC]] (The Human Rights Campaign)
+- [[https://girlswhocode.com/][Girls Who Code]]
+- [[https://www.aclu.org/][ACLU]] (American Civil Liberties Union)
+- [[https://www.nrdc.org/][NRDC]] (Natural Resources Defense Council)
+- [[https://www.plannedparenthood.org/][Planned Parenthood]]
