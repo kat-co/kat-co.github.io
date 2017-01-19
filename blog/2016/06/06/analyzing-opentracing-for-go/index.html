@@ -32,7 +32,7 @@
     <div class="post">
       <h3>Analyzing Opentracing for Go</h3>
       <p>
-I'm in the middle of designing the architecture for an audit log for <a href="https://jujucharms.com/">Juju</a>, and some of my colleagues suggested <a href="http://opentracing.io/">OpenTracing</a>. I flipped through the site and it looks like it might meet our needs quite nicely, and so I've set out to do a deeper analysis to make sure it's something that is a good fit. I'm hoping this post will serve as a place I can point my coworkers for that analysis, as well as to help anyone else considering utilizing this project.
+I'm in the middle of designing the architecture for an audit log for <a href="https://jujucharms.com">Juju</a>, and some of my colleagues suggested <a href="http://opentracing.io/">OpenTracing</a>. I flipped through the site and it looks like it might meet our needs quite nicely, and so I've set out to do a deeper analysis to make sure it's something that is a good fit. I'm hoping this post will serve as a place I can point my coworkers for that analysis, as well as to help anyone else considering utilizing this project.
 </p>
 
 <p>
@@ -43,9 +43,9 @@ Juju is written in Go, and so I'll be taking a look at the <a href="https://gith
 With that said, on to the analysis!
 </p>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Key Concepts</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org4a51f23" class="outline-2">
+<h2 id="org4a51f23">Key Concepts</h2>
+<div class="outline-text-2" id="text-org4a51f23">
 <ul class="org-ul">
 <li><b>span</b>: A logical unit of work in the system.</li>
 <li><b>baggage</b>: Information intended to be carried on to subsequent spans.</li>
@@ -55,9 +55,9 @@ With that said, on to the analysis!
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Sanity Check</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-org7c2c2c5" class="outline-2">
+<h2 id="org7c2c2c5">Sanity Check</h2>
+<div class="outline-text-2" id="text-org7c2c2c5">
 <p>
 First of all, the <a href="https://github.com/opentracing/opentracing-go/blob/master/LICENSE">license</a> is MIT. No issues there.
 </p>
@@ -72,15 +72,14 @@ Juju also has Python bindings to its API, so ideally any tracing standard will b
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">Performance</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-orgf900190" class="outline-2">
+<h2 id="orgf900190">Performance</h2>
+<div class="outline-text-2" id="text-orgf900190">
 <p>
 First the obvious question. If I'm going to be embedding a lot of spans, this needs to be fast. How quick is it to create and tear down a new span?
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-go">func BenchmarkSpanCreation(b *testing.B) {
     for i := b.N; i &gt;= 0; i-- {
         s := opentracing.StartSpan(fmt.Sprintf("span %d", i))
@@ -91,7 +90,6 @@ First the obvious question. If I'm going to be embedding a lot of spans, this ne
 </div>
 
 <div class="org-src-container">
-
 <pre class="src src-sh">go test /tmp/analyzing-opentrace/b_span_creation_test.go
 </pre>
 </div>
@@ -120,7 +118,6 @@ Looks to be fast enough to be non-impactful. What about creating spans from othe
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-go">func BenchmarkChildSpanCreation(b *testing.B) {
     p := opentracing.StartSpan("parent-spam")
     defer p.Finish()
@@ -133,7 +130,6 @@ Looks to be fast enough to be non-impactful. What about creating spans from othe
 </div>
 
 <div class="org-src-container">
-
 <pre class="src src-sh">go test /tmp/analyzing-opentrace/b_span_child_creation_test.go
 </pre>
 </div>
@@ -162,7 +158,6 @@ Also reasonable. Our RPC system utilizes web sockets; if we were to inject span 
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-go">tracer := basictracer.New(nil)
 
 httpReq, _ := http.NewRequest("GET", "http://myservice/", nil)
@@ -189,12 +184,12 @@ Looks pretty reasonable; just some information about the spans for the receiver 
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7">Integration with Juju</h2>
-<div class="outline-text-2" id="text-orgheadline7">
-</div><div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">Gating API Calls</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-orgabc2706" class="outline-2">
+<h2 id="orgabc2706">Integration with Juju</h2>
+<div class="outline-text-2" id="text-orgabc2706">
+</div><div id="outline-container-org0a858e5" class="outline-3">
+<h3 id="org0a858e5">Gating API Calls</h3>
+<div class="outline-text-3" id="text-org0a858e5">
 <p>
 Juju's API server is the bottleneck gating access to and from a Juju daemon and is the natural place to ensure a trace either exists or is started. Ideally the things calling Juju's API server would have started a trace, but if not, we need to ensure that one exists. Let's first see how we can ensure that all API server connections know about OpenTracing and spans.
 </p>
@@ -216,8 +211,7 @@ In <a href="https://github.com/juju/juju/blob/master/apiserver/root.go#L119-L127
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name">github.com/juju/juju/apiserver/root.go</label>
-<pre class="src src-go">// Call takes the object Id and an instance of ParamsType to create an
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>github.com/juju/juju/apiserver/root.go</label><pre class="src src-go">// Call takes the object Id and an instance of ParamsType to create an
 // object and place a call on its method. It then returns an instance
 // of ResultType.
 func (s *srvCaller) Call(objId string, arg reflect.Value) (reflect.Value, error) {
@@ -235,8 +229,7 @@ The interesting bit is at &lt;1&gt; where we call an API's server endpoint and p
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name">github.com/rpc/rpcreflect/type.go</label>
-<pre class="src src-go">// Call calls the method with the given argument on the given receiver
+<label class="org-src-name"><span class="listing-number">Listing 2: </span>github.com/rpc/rpcreflect/type.go</label><pre class="src src-go">// Call calls the method with the given argument on the given receiver
 // value. If the method does not return a value, the returned value
 // will not be valid.
 Call func(rcvr, arg reflect.Value) (reflect.Value, error)
@@ -248,8 +241,7 @@ It's instantiated at the time the RPC call is made and by reflecting on the type
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name">github.com/juju/rpc/rpcreflect/type.go</label>
-<pre class="src src-go">func newMethod(m reflect.Method, receiverKind reflect.Kind) *ObjMethod {
+<label class="org-src-name"><span class="listing-number">Listing 3: </span>github.com/juju/rpc/rpcreflect/type.go</label><pre class="src src-go">func newMethod(m reflect.Method, receiverKind reflect.Kind) *ObjMethod {
     if m.PkgPath != "" {
         return nil
     }
@@ -336,7 +328,6 @@ If we want to also pass a <code>context.Context</code> into the API server metho
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-go">// Call takes the object Id and an instance of ParamsType to create an
 // object and place a call on its method. It then returns an instance
 // of ResultType.
@@ -356,8 +347,7 @@ The <code>ctx</code> would in turn be created further up the stack from our requ
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name">github.com/juju/juju/rpc/server.go</label>
-<pre class="src src-go">func (conn *Conn) handleRequest(hdr *Header) error {
+<label class="org-src-name"><span class="listing-number">Listing 4: </span>github.com/juju/juju/rpc/server.go</label><pre class="src src-go">func (conn *Conn) handleRequest(hdr *Header) error {
     serverSpan, err := opentracing.GlobalTracer().Join(
         "serverSpan",
         opentracing.TextMap,
@@ -431,18 +421,18 @@ The <code>ctx</code> would in turn be created further up the stack from our requ
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">Backwards compatibility</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-org688c91d" class="outline-3">
+<h3 id="org688c91d">Backwards compatibility</h3>
+<div class="outline-text-3" id="text-org688c91d">
 <p>
 Since The API server gate looks for an incoming span but does not expect it, all existing clients &#x2013; including those from prior versions of Juju &#x2013; should be able to utilize the new endpoints. Thus, we should remain backwards compatible, and no new upgrade steps need be written.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">Writing Audit Events to Mongo</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org974efb1" class="outline-3">
+<h3 id="org974efb1">Writing Audit Events to Mongo</h3>
+<div class="outline-text-3" id="text-org974efb1">
 <p>
 Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All audit events will be written to a Mongo collection. To do this, we'll write our own OpenTracing recorder which will do nothing but persist audit events to the collection. It will probably look very similar to the provided <a href="https://github.com/opentracing/basictracer-go">basic tracer</a>.
 </p>
@@ -471,6 +461,8 @@ Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All
   <h4>Categories</h4>
   <ol class="list-unstyled">
     <li><a href="/blog/">Blog</a></li>
+    <li><a href="/concurrency-in-go/">Concurrency in Go</a></li>
+    <li><a href="/talks/">Talks</a></li>
     <!-- <li><a href="https://github.com/kelvinh/org-page">GitHub</a></li> -->
   </ol>
 </div>
@@ -503,7 +495,7 @@ Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All
       </div>
       <div class="col-sm-9 vertical-center">
         Copyright &copy; <a href="mailto:cox &lt;dot&gt; katherine &lt;dot&gt; e &lt;at&gt; gmail &lt;dot&gt; com">Katherine Cox-Buday</a>,
-        Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.x (<a href="http://orgmode.org">Org mode</a> 8.x) & <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+        Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 9.x) & <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
       </div>
     </div> <!-- ./row -->
   </div> <!-- ./container -->

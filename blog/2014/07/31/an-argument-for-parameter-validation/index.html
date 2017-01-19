@@ -46,18 +46,17 @@ Many people hear parameter validation and immediately jump to this:
 </p>
 
 <div class="org-src-container">
+<pre class="src src-java">public void AnImportantMethod(report Report, author Author, repository Repository) {
+    if(report == null)
+      throw new NullPointerException("report");
+    if(author == null)
+      throw new NullPointerException("author");
+    if(repository == null)
+      throw new NullPointerException("repository");
 
-<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">AnImportantMethod</span>(<span style="color: #228b22;">report</span> <span style="color: #a0522d;">Report</span>, <span style="color: #228b22;">author</span> <span style="color: #a0522d;">Author</span>, <span style="color: #228b22;">repository</span> <span style="color: #a0522d;">Repository</span>) {
-    <span style="color: #a020f0;">if</span>(report == <span style="color: #008b8b;">null</span>)
-      <span style="color: #a020f0;">throw</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">NullPointerException</span>(<span style="color: #8b2252;">"report"</span>);
-    <span style="color: #a020f0;">if</span>(author == <span style="color: #008b8b;">null</span>)
-      <span style="color: #a020f0;">throw</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">NullPointerException</span>(<span style="color: #8b2252;">"author"</span>);
-    <span style="color: #a020f0;">if</span>(repository == <span style="color: #008b8b;">null</span>)
-      <span style="color: #a020f0;">throw</span> <span style="color: #a020f0;">new</span> <span style="color: #228b22;">NullPointerException</span>(<span style="color: #8b2252;">"repository"</span>);
 
-
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">Finally, our code!</span>
-    <span style="color: #b22222;">// </span><span style="color: #b22222;">...</span>
+    // Finally, our code!
+    // ...
 }
 </pre>
 </div>
@@ -75,12 +74,9 @@ When reasoning about the correctness of your data, you have a few options:
 </p>
 
 <ol class="org-ol">
-<li>Relying on the fact that the data was generated and transformed correctly everywhere else.
-</li>
-<li>Defining coarse boundaries and validating data there (think user-input coming in).
-</li>
-<li>Validating the data right before you use it.
-</li>
+<li>Relying on the fact that the data was generated and transformed correctly everywhere else.</li>
+<li>Defining coarse boundaries and validating data there (think user-input coming in).</li>
+<li>Validating the data right before you use it.</li>
 </ol>
 
 <p>
@@ -103,82 +99,87 @@ So perhaps it's because I'm paranoid, but I like to validate my inputs as close 
 There are advantages and disadvantages to this technique.
 </p>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Advantages</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-org15f6bb5" class="outline-2">
+<h2 id="org15f6bb5">Advantages</h2>
+<div class="outline-text-2" id="text-org15f6bb5">
 <ol class="org-ol">
-<li><b>Adherence to the <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail Fast principle</a>.</b>
+<li><p>
+<b>Adherence to the <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail Fast principle</a>.</b>
+</p>
 
 <p>
 Don't know why that's a good thing? Check out <a href="http://www.martinfowler.com/ieeeSoftware/failFast.pdf">this</a> great article.
-</p>
-</li>
+</p></li>
 
-<li><b>Complete Coverage</b>
+<li><p>
+<b>Complete Coverage</b>
+</p>
 
 <p>
 No matter how your code is called, it will be validated.
-</p>
-</li>
+</p></li>
 
-<li><b>Code Contracts</b>
+<li><p>
+<b>Code Contracts</b>
+</p>
 
 <p>
 If I'm calling this code, what can I pass in? Are nulls OK? If I'm reading the code, this gives me an indication. If I'm calling the code, I know right away.
-</p>
-</li>
+</p></li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Disadvantages</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgd89bb58" class="outline-2">
+<h2 id="orgd89bb58">Disadvantages</h2>
+<div class="outline-text-2" id="text-orgd89bb58">
 <ol class="org-ol">
-<li><b>Performance</b>
+<li><p>
+<b>Performance</b>
+</p>
 
 <p>
 If you call a guarded block of code repeatedly, validation can slow your program down demonstrably; however, this is an edge case and you shouldn't discard the entire concept of parameter validation at the altar of premature optimization.
-</p>
-</li>
+</p></li>
 
-<li><b>Verbosity</b>
+<li><p>
+<b>Verbosity</b>
+</p>
 
 <p>
 It's extra lines of code &#x2013; no way around it &#x2013; however, given the potential benefit, this disadvantage seems insignificant. Further, there's ways to even further minimize this downside discussed below.
-</p>
-</li>
+</p></li>
 
-<li><b>Duplication of Effort</b>
+<li><p>
+<b>Duplication of Effort</b>
+</p>
 
 <p>
 This is the one I struggle with most. How many times are you going to check that an instance of a string is not empty before you believe it? There's some truth to this, but only in the simple case. As mentioned above, what string you are passed could change in the future; so in a sense we are guarding against the domain of values, not specific instances.
-</p>
-</li>
+</p></li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Smart Parameter Validation</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org8fc34c8" class="outline-2">
+<h2 id="org8fc34c8">Smart Parameter Validation</h2>
+<div class="outline-text-2" id="text-org8fc34c8">
 <p>
 A long chain of if statements at the beginning of your code is cumbersome to write and maintain. It's prone to bugs, and it can actually hide incorrect parameters which are checked after other failing parameters. Do your parameter validation smarter:
 </p>
 
 <div class="org-src-container">
+<pre class="src src-go">func PersistCreeps(dataStore io.Writer, creeps []*game.Creep) error {
 
-<pre class="src src-go"><span style="color: #a020f0;">func</span> <span style="color: #0000ff;">PersistCreeps</span><span style="color: #707183;">(</span>dataStore <span style="color: #228b22;">io.Writer</span>, creeps <span style="color: #7388d6;">[]</span>*<span style="color: #228b22;">game.Creep</span><span style="color: #707183;">)</span> <span style="color: #228b22;">error</span> <span style="color: #707183;">*hideshowvis*{</span>
+    BeginValidation().Validate(
+        IsNotNil(dataStore, "dataStore"),
+        IsNotNil(creeps, "creeps"),
+    ).CheckAndPanic().Validate(
+        GreaterThan(len(creeps), 0, "creeps"),
+    ).CheckAndPanic()
 
-    <span style="color: #0000ff;">BeginValidation</span><span style="color: #7388d6;">()</span>.<span style="color: #0000ff;">Validate</span><span style="color: #7388d6;">*hideshowvis*(</span>
-        <span style="color: #0000ff;">IsNotNil</span><span style="color: #909183;">(</span>dataStore, <span style="color: #8b2252;">"dataStore"</span><span style="color: #909183;">)</span>,
-        <span style="color: #0000ff;">IsNotNil</span><span style="color: #909183;">(</span>creeps, <span style="color: #8b2252;">"creeps"</span><span style="color: #909183;">)</span>,
-    <span style="color: #7388d6;">)</span>.<span style="color: #0000ff;">CheckAndPanic</span><span style="color: #7388d6;">()</span>.<span style="color: #0000ff;">Validate</span><span style="color: #7388d6;">*hideshowvis*(</span>
-        <span style="color: #0000ff;">GreaterThan</span><span style="color: #909183;">(</span><span style="color: #483d8b;">len</span><span style="color: #709870;">(</span>creeps<span style="color: #709870;">)</span>, 0, <span style="color: #8b2252;">"creeps"</span><span style="color: #909183;">)</span>,
-    <span style="color: #7388d6;">)</span>.<span style="color: #0000ff;">CheckAndPanic</span><span style="color: #7388d6;">()</span>
-
-        <span style="color: #b22222;">// </span><span style="color: #b22222;">...</span>
-<span style="color: #707183;">}</span>
+        // ...
+}
 </pre>
 </div>
 
@@ -187,46 +188,45 @@ What the heck is that? It's a fluent style of parameter validation I picked up f
 </p>
 
 <div class="org-src-container">
+<pre class="src src-go">func ReportFitsRepository(report *Report, repository *Repository) Checker {
+    return func() (passes bool, err error) {
 
-<pre class="src src-go"><span style="color: #a020f0;">func</span> <span style="color: #0000ff;">ReportFitsRepository</span><span style="color: #707183;">(</span>report *<span style="color: #228b22;">Report</span>, repository *<span style="color: #228b22;">Repository</span><span style="color: #707183;">)</span> <span style="color: #228b22;">Checker</span> <span style="color: #707183;">*hideshowvis*{</span>
-    <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">func</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">(</span>passes <span style="color: #228b22;">bool</span>, err <span style="color: #228b22;">error</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">*hideshowvis*{</span>
+        err = fmt.Errorf("A %s report does not belong in a %s repository.", report.Type, repository.Type)
+        passes = (repository.Type == report.Type)
+        return passes, err
+    }
+}
 
-        err = fmt.<span style="color: #0000ff;">Errorf</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"A %s report does not belong in a %s repository."</span>, report.Type, repository.Type<span style="color: #909183;">)</span>
-        passes = <span style="color: #909183;">(</span>repository.Type == report.Type<span style="color: #909183;">)</span>
-        <span style="color: #a020f0;">return</span> passes, err
-    <span style="color: #7388d6;">}</span>
-<span style="color: #707183;">}</span>
+func AuthorCanUpload(authorName string, repository *Repository) Checker {
+    return func() (passes bool, err error) {
+        err = fmt.Errorf("%s does not have access to this repository.", authorName)
+        passes = !repository.AuthorCanUpload(authorName)
+        return passes, err
+    }
+}
 
-<span style="color: #a020f0;">func</span> <span style="color: #0000ff;">AuthorCanUpload</span><span style="color: #707183;">(</span>authorName <span style="color: #228b22;">string</span>, repository *<span style="color: #228b22;">Repository</span><span style="color: #707183;">)</span> <span style="color: #228b22;">Checker</span> <span style="color: #707183;">*hideshowvis*{</span>
-    <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">func</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">(</span>passes <span style="color: #228b22;">bool</span>, err <span style="color: #228b22;">error</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">*hideshowvis*{</span>
-        err = fmt.<span style="color: #0000ff;">Errorf</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"%s does not have access to this repository."</span>, authorName<span style="color: #909183;">)</span>
-        passes = !repository.<span style="color: #0000ff;">AuthorCanUpload</span><span style="color: #909183;">(</span>authorName<span style="color: #909183;">)</span>
-        <span style="color: #a020f0;">return</span> passes, err
-    <span style="color: #7388d6;">}</span>
-<span style="color: #707183;">}</span>
+func AuthorIsCollaborator(authorName string, report *Report) Checker {
+    return func() (passes bool, err error) {
 
-<span style="color: #a020f0;">func</span> <span style="color: #0000ff;">AuthorIsCollaborator</span><span style="color: #707183;">(</span>authorName <span style="color: #228b22;">string</span>, report *<span style="color: #228b22;">Report</span><span style="color: #707183;">)</span> <span style="color: #228b22;">Checker</span> <span style="color: #707183;">*hideshowvis*{</span>
-    <span style="color: #a020f0;">return</span> <span style="color: #a020f0;">func</span><span style="color: #7388d6;">()</span> <span style="color: #7388d6;">(</span>passes <span style="color: #228b22;">bool</span>, err <span style="color: #228b22;">error</span><span style="color: #7388d6;">)</span> <span style="color: #7388d6;">*hideshowvis*{</span>
+        err = fmt.Errorf("The given author was not one of the collaborators for this report.")
+        for _, collaboratorName := range report.Collaborators() {
+            if collaboratorName == authorName {
+                passes = true
+                break
+            }
+        }
+        return passes, err
+    }
+}
 
-        err = fmt.<span style="color: #0000ff;">Errorf</span><span style="color: #909183;">(</span><span style="color: #8b2252;">"The given author was not one of the collaborators for this report."</span><span style="color: #909183;">)</span>
-        <span style="color: #a020f0;">for</span> _, collaboratorName := <span style="color: #a020f0;">range</span> report.<span style="color: #0000ff;">Collaborators</span><span style="color: #909183;">()</span> <span style="color: #909183;">*hideshowvis*{</span>
-            <span style="color: #a020f0;">if</span> collaboratorName == authorName <span style="color: #709870;">*hideshowvis*{</span>
-                passes = <span style="color: #008b8b;">true</span>
-                <span style="color: #a020f0;">break</span>
-            <span style="color: #709870;">}</span>
-        <span style="color: #909183;">}</span>
-        <span style="color: #a020f0;">return</span> passes, err
-    <span style="color: #7388d6;">}</span>
-<span style="color: #707183;">}</span>
+func HandleReport(authorName string, report *Report, repository *Repository) {
 
-<span style="color: #a020f0;">func</span> <span style="color: #0000ff;">HandleReport</span><span style="color: #707183;">(</span>authorName <span style="color: #228b22;">string</span>, report *<span style="color: #228b22;">Report</span>, repository *<span style="color: #228b22;">Repository</span><span style="color: #707183;">)</span> <span style="color: #707183;">*hideshowvis*{</span>
-
-    <span style="color: #0000ff;">BeginValidation</span><span style="color: #7388d6;">()</span>.<span style="color: #0000ff;">Validate</span><span style="color: #7388d6;">*hideshowvis*(</span>
-        <span style="color: #0000ff;">AuthorIsCollaborator</span><span style="color: #909183;">(</span>authorName, report<span style="color: #909183;">)</span>,
-        <span style="color: #0000ff;">AuthorCanUpload</span><span style="color: #909183;">(</span>authorName, repository<span style="color: #909183;">)</span>,
-        <span style="color: #0000ff;">ReportFitsRepository</span><span style="color: #909183;">(</span>report, repository<span style="color: #909183;">)</span>,
-    <span style="color: #7388d6;">)</span>.<span style="color: #0000ff;">CheckAndPanic</span><span style="color: #7388d6;">()</span>
-<span style="color: #707183;">}</span>
+    BeginValidation().Validate(
+        AuthorIsCollaborator(authorName, report),
+        AuthorCanUpload(authorName, repository),
+        ReportFitsRepository(report, repository),
+    ).CheckAndPanic()
+}
 </pre>
 </div>
 
@@ -261,6 +261,8 @@ If you're interested in this style of parameter validation, and are working with
   <h4>Categories</h4>
   <ol class="list-unstyled">
     <li><a href="/blog/">Blog</a></li>
+    <li><a href="/concurrency-in-go/">Concurrency in Go</a></li>
+    <li><a href="/talks/">Talks</a></li>
     <!-- <li><a href="https://github.com/kelvinh/org-page">GitHub</a></li> -->
   </ol>
 </div>
@@ -293,7 +295,7 @@ If you're interested in this style of parameter validation, and are working with
       </div>
       <div class="col-sm-9 vertical-center">
         Copyright &copy; <a href="mailto:cox &lt;dot&gt; katherine &lt;dot&gt; e &lt;at&gt; gmail &lt;dot&gt; com">Katherine Cox-Buday</a>,
-        Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.x (<a href="http://orgmode.org">Org mode</a> 8.x) & <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+        Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 9.x) & <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
       </div>
     </div> <!-- ./row -->
   </div> <!-- ./container -->
