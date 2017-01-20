@@ -1,0 +1,9 @@
+#+TITLE: Gorkin: An Experiment with Cucumber & BDD
+#+DATE: 2015-07-09
+#+TAGS: tech
+
+#+BEGIN_EXPORT html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RuFrIq0f5Es" frameborder="0" allowfullscreen></iframe>
+#+END_EXPORT
+
+([[https://github.com/kat-co/gorkin][repository]])
