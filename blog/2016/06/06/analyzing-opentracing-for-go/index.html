@@ -43,9 +43,9 @@ Juju is written in Go, and so I'll be taking a look at the <a href="https://gith
 With that said, on to the analysis!
 </p>
 
-<div id="outline-container-org5c9d2bc" class="outline-2">
-<h2 id="org5c9d2bc">Key Concepts</h2>
-<div class="outline-text-2" id="text-org5c9d2bc">
+<div id="outline-container-org9f798f0" class="outline-2">
+<h2 id="org9f798f0">Key Concepts</h2>
+<div class="outline-text-2" id="text-org9f798f0">
 <ul class="org-ul">
 <li><b>span</b>: A logical unit of work in the system.</li>
 <li><b>baggage</b>: Information intended to be carried on to subsequent spans.</li>
@@ -55,9 +55,9 @@ With that said, on to the analysis!
 </div>
 </div>
 
-<div id="outline-container-org0a1b9f1" class="outline-2">
-<h2 id="org0a1b9f1">Sanity Check</h2>
-<div class="outline-text-2" id="text-org0a1b9f1">
+<div id="outline-container-orgabcc96b" class="outline-2">
+<h2 id="orgabcc96b">Sanity Check</h2>
+<div class="outline-text-2" id="text-orgabcc96b">
 <p>
 First of all, the <a href="https://github.com/opentracing/opentracing-go/blob/master/LICENSE">license</a> is MIT. No issues there.
 </p>
@@ -72,9 +72,9 @@ Juju also has Python bindings to its API, so ideally any tracing standard will b
 </div>
 </div>
 
-<div id="outline-container-org66047ce" class="outline-2">
-<h2 id="org66047ce">Performance</h2>
-<div class="outline-text-2" id="text-org66047ce">
+<div id="outline-container-org9f87a76" class="outline-2">
+<h2 id="org9f87a76">Performance</h2>
+<div class="outline-text-2" id="text-org9f87a76">
 <p>
 First the obvious question. If I'm going to be embedding a lot of spans, this needs to be fast. How quick is it to create and tear down a new span?
 </p>
@@ -184,12 +184,12 @@ Looks pretty reasonable; just some information about the spans for the receiver 
 </div>
 </div>
 
-<div id="outline-container-org49847f4" class="outline-2">
-<h2 id="org49847f4">Integration with Juju</h2>
-<div class="outline-text-2" id="text-org49847f4">
-</div><div id="outline-container-org0916b89" class="outline-3">
-<h3 id="org0916b89">Gating API Calls</h3>
-<div class="outline-text-3" id="text-org0916b89">
+<div id="outline-container-orgaf38d10" class="outline-2">
+<h2 id="orgaf38d10">Integration with Juju</h2>
+<div class="outline-text-2" id="text-orgaf38d10">
+</div><div id="outline-container-org2951384" class="outline-3">
+<h3 id="org2951384">Gating API Calls</h3>
+<div class="outline-text-3" id="text-org2951384">
 <p>
 Juju's API server is the bottleneck gating access to and from a Juju daemon and is the natural place to ensure a trace either exists or is started. Ideally the things calling Juju's API server would have started a trace, but if not, we need to ensure that one exists. Let's first see how we can ensure that all API server connections know about OpenTracing and spans.
 </p>
@@ -421,18 +421,18 @@ The <code>ctx</code> would in turn be created further up the stack from our requ
 </div>
 </div>
 
-<div id="outline-container-orge1922c9" class="outline-3">
-<h3 id="orge1922c9">Backwards compatibility</h3>
-<div class="outline-text-3" id="text-orge1922c9">
+<div id="outline-container-orga90dd20" class="outline-3">
+<h3 id="orga90dd20">Backwards compatibility</h3>
+<div class="outline-text-3" id="text-orga90dd20">
 <p>
 Since The API server gate looks for an incoming span but does not expect it, all existing clients &#x2013; including those from prior versions of Juju &#x2013; should be able to utilize the new endpoints. Thus, we should remain backwards compatible, and no new upgrade steps need be written.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org2668986" class="outline-3">
-<h3 id="org2668986">Writing Audit Events to Mongo</h3>
-<div class="outline-text-3" id="text-org2668986">
+<div id="outline-container-orgd872ca2" class="outline-3">
+<h3 id="orgd872ca2">Writing Audit Events to Mongo</h3>
+<div class="outline-text-3" id="text-orgd872ca2">
 <p>
 Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All audit events will be written to a Mongo collection. To do this, we'll write our own OpenTracing recorder which will do nothing but persist audit events to the collection. It will probably look very similar to the provided <a href="https://github.com/opentracing/basictracer-go">basic tracer</a>.
 </p>

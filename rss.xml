@@ -4,10 +4,74 @@
     <title>Katherine Cox-Buday</title>
     <link>http://katherine.cox-buday.com</link>
     <description>static site generator</description>
-    <pubDate>Fri, 20 Jan 2017 09:24:53 CST</pubDate>
-    <lastBuildDate>Fri, 20 Jan 2017 09:24:53 CST</lastBuildDate>
+    <pubDate>Mon, 23 Jan 2017 14:03:31 CST</pubDate>
+    <lastBuildDate>Mon, 23 Jan 2017 14:03:31 CST</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
+    <item>
+      <title>On Perfectionism</title>
+      <link>http://katherine.cox-buday.com/blog/2015/03/02/on-perfectionism/</link>
+      <description><![CDATA[<div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3>On Perfectionism</h3>
+      <p>
+I recently came across this Tweet:
+</p>
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="http://t.co/meyTVhEscW">http://t.co/meyTVhEscW</a> <a href="http://t.co/VyIujIx2dZ">pic.twitter.com/VyIujIx2dZ</a></p>&mdash; Paul Baumgart (@paulbaumgart) <a href="https://twitter.com/paulbaumgart/status/571788242174918656">February 28, 2015</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>
+I've spent most of my career in the financial industry. There, it was unacceptable to release code which didn't work, and acceptable for the time between releases to span months; because if you got something wrong, it could have led to significant financial losses. It was a different type of job, and discussion of the pros/cons of this type of environment is probably outside the scope of this post.
+</p>
+
+<p>
+I've changed jobs now, but I'm still trying to shake one of the detrimental habits the financial industry trained me into: perfectionism.
+</p>
+
+<p>
+Now admittedly, I can't rest <i>all</i> of the blame on my previous job. Perfectionism is something that's innate to my character as well. Perhaps working in that type of environment just helped further crystallize a way of working.
+</p>
+
+<p>
+And it's not all bad. It's partially what drives me: the desire to release pristine code leads to (what I consider) some nice patches and projects. It is sometimes the driving force behind <i>starting</i> some changes. It can be a really positive thing.
+</p>
+
+<p>
+But it can also be negative.
+</p>
+
+<p>
+The Open Source mantra is, "Release early; release often." I think the justification lies within the parable from this tweet. Humans are really good at modeling the future &#x2013; it's what makes us the dominant species on Earth. But when working with things as complex as software, this modeling has limits. The better way to work is to make mistakes as fast as possible, and iterate towards perfection.
+</p>
+
+<p>
+I have found myself trying to get everything perfect before pushing changes up to their respective repositories. And sometimes I even find this blocking me from getting started. <i>All</i> the different approaches, their pros and cons, possible edge cases: they're all floating around in my mind, and it's difficult to just get started and get something working. Usually once I do get a bit of code written, I'm off and away and things are fine, but sometimes it's hard to get past that first block.
+</p>
+
+<p>
+Those familiar with perfectionism are probably nodding their heads. It's a well understood problem, and there are some things you can do to try and get past it.
+</p>
+
+<p>
+In the context of software engineering, one thing I've found that helps is to write tests. Tests are usually much more plain, and are &#x2013; by design &#x2013; meant to test one thing at a time. If edge-cases appear, you should probably write a test for that anyway, and so you can get a fair amount of work by simply building out the scaffolding of the program by writing tests. This gets you to lay down some code, and possibly removes the mental block.
+</p>
+
+<p>
+I haven't found any other useful ways to resist the siren call of perfectionism (indeed I'm having trouble getting this post out!), but I at least thought this tweet would be a friendly reminder as to why it's better to fail as fast as you can.
+</p>
+
+    </div>
+  </div>
+</div> <!-- /.container -->
+]]></description>
+      <pubDate>2017-01-23</pubDate>
+      <guid>http://katherine.cox-buday.com/blog/2015/03/02/on-perfectionism/</guid>
+    </item>
     <item>
       <title>Gorkin: An Experiment with Cucumber &amp; BDD</title>
       <link>http://katherine.cox-buday.com/blog/2015/07/09/gorkin-an-experiment-with-cucumber-&amp;-bdd/</link>
@@ -109,9 +173,9 @@ So perhaps it's because I'm paranoid, but I like to validate my inputs as close 
 There are advantages and disadvantages to this technique.
 </p>
 
-<div id="outline-container-org32b83af" class="outline-2">
-<h2 id="org32b83af">Advantages</h2>
-<div class="outline-text-2" id="text-org32b83af">
+<div id="outline-container-orga0bc6eb" class="outline-2">
+<h2 id="orga0bc6eb">Advantages</h2>
+<div class="outline-text-2" id="text-orga0bc6eb">
 <ol class="org-ol">
 <li><p>
 <b>Adherence to the <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail Fast principle</a>.</b>
@@ -140,9 +204,9 @@ If I'm calling this code, what can I pass in? Are nulls OK? If I'm reading the c
 </div>
 </div>
 
-<div id="outline-container-orge4c10ab" class="outline-2">
-<h2 id="orge4c10ab">Disadvantages</h2>
-<div class="outline-text-2" id="text-orge4c10ab">
+<div id="outline-container-org95276c4" class="outline-2">
+<h2 id="org95276c4">Disadvantages</h2>
+<div class="outline-text-2" id="text-org95276c4">
 <ol class="org-ol">
 <li><p>
 <b>Performance</b>
@@ -171,9 +235,9 @@ This is the one I struggle with most. How many times are you going to check that
 </div>
 </div>
 
-<div id="outline-container-org77e39e1" class="outline-2">
-<h2 id="org77e39e1">Smart Parameter Validation</h2>
-<div class="outline-text-2" id="text-org77e39e1">
+<div id="outline-container-org966ffb7" class="outline-2">
+<h2 id="org966ffb7">Smart Parameter Validation</h2>
+<div class="outline-text-2" id="text-org966ffb7">
 <p>
 A long chain of if statements at the beginning of your code is cumbersome to write and maintain. It's prone to bugs, and it can actually hide incorrect parameters which are checked after other failing parameters. Do your parameter validation smarter:
 </p>
@@ -330,9 +394,9 @@ Author Katherine Cox-Buday takes you through the tools and techniques to develop
 </p>
 <div class="clearfix"></div>
 
-<div id="outline-container-org6b4c773" class="outline-2">
-<h2 id="org6b4c773">Available for Pre-Purchase</h2>
-<div class="outline-text-2" id="text-org6b4c773">
+<div id="outline-container-org58a384c" class="outline-2">
+<h2 id="org58a384c">Available for Pre-Purchase</h2>
+<div class="outline-text-2" id="text-org58a384c">
 <ul class="org-ul">
 <li><a href="http://shop.oreilly.com/product/0636920046189.do?sortby=bestSellers">O'Reilly</a></li>
 </ul>
@@ -391,9 +455,9 @@ Juju is written in Go, and so I'll be taking a look at the <a href="https://gith
 With that said, on to the analysis!
 </p>
 
-<div id="outline-container-org5c9d2bc" class="outline-2">
-<h2 id="org5c9d2bc">Key Concepts</h2>
-<div class="outline-text-2" id="text-org5c9d2bc">
+<div id="outline-container-org9f798f0" class="outline-2">
+<h2 id="org9f798f0">Key Concepts</h2>
+<div class="outline-text-2" id="text-org9f798f0">
 <ul class="org-ul">
 <li><b>span</b>: A logical unit of work in the system.</li>
 <li><b>baggage</b>: Information intended to be carried on to subsequent spans.</li>
@@ -403,9 +467,9 @@ With that said, on to the analysis!
 </div>
 </div>
 
-<div id="outline-container-org0a1b9f1" class="outline-2">
-<h2 id="org0a1b9f1">Sanity Check</h2>
-<div class="outline-text-2" id="text-org0a1b9f1">
+<div id="outline-container-orgabcc96b" class="outline-2">
+<h2 id="orgabcc96b">Sanity Check</h2>
+<div class="outline-text-2" id="text-orgabcc96b">
 <p>
 First of all, the <a href="https://github.com/opentracing/opentracing-go/blob/master/LICENSE">license</a> is MIT. No issues there.
 </p>
@@ -420,9 +484,9 @@ Juju also has Python bindings to its API, so ideally any tracing standard will b
 </div>
 </div>
 
-<div id="outline-container-org66047ce" class="outline-2">
-<h2 id="org66047ce">Performance</h2>
-<div class="outline-text-2" id="text-org66047ce">
+<div id="outline-container-org9f87a76" class="outline-2">
+<h2 id="org9f87a76">Performance</h2>
+<div class="outline-text-2" id="text-org9f87a76">
 <p>
 First the obvious question. If I'm going to be embedding a lot of spans, this needs to be fast. How quick is it to create and tear down a new span?
 </p>
@@ -532,12 +596,12 @@ Looks pretty reasonable; just some information about the spans for the receiver 
 </div>
 </div>
 
-<div id="outline-container-org49847f4" class="outline-2">
-<h2 id="org49847f4">Integration with Juju</h2>
-<div class="outline-text-2" id="text-org49847f4">
-</div><div id="outline-container-org0916b89" class="outline-3">
-<h3 id="org0916b89">Gating API Calls</h3>
-<div class="outline-text-3" id="text-org0916b89">
+<div id="outline-container-orgaf38d10" class="outline-2">
+<h2 id="orgaf38d10">Integration with Juju</h2>
+<div class="outline-text-2" id="text-orgaf38d10">
+</div><div id="outline-container-org2951384" class="outline-3">
+<h3 id="org2951384">Gating API Calls</h3>
+<div class="outline-text-3" id="text-org2951384">
 <p>
 Juju's API server is the bottleneck gating access to and from a Juju daemon and is the natural place to ensure a trace either exists or is started. Ideally the things calling Juju's API server would have started a trace, but if not, we need to ensure that one exists. Let's first see how we can ensure that all API server connections know about OpenTracing and spans.
 </p>
@@ -769,18 +833,18 @@ The <code>ctx</code> would in turn be created further up the stack from our requ
 </div>
 </div>
 
-<div id="outline-container-orge1922c9" class="outline-3">
-<h3 id="orge1922c9">Backwards compatibility</h3>
-<div class="outline-text-3" id="text-orge1922c9">
+<div id="outline-container-orga90dd20" class="outline-3">
+<h3 id="orga90dd20">Backwards compatibility</h3>
+<div class="outline-text-3" id="text-orga90dd20">
 <p>
 Since The API server gate looks for an incoming span but does not expect it, all existing clients &#x2013; including those from prior versions of Juju &#x2013; should be able to utilize the new endpoints. Thus, we should remain backwards compatible, and no new upgrade steps need be written.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org2668986" class="outline-3">
-<h3 id="org2668986">Writing Audit Events to Mongo</h3>
-<div class="outline-text-3" id="text-org2668986">
+<div id="outline-container-orgd872ca2" class="outline-3">
+<h3 id="orgd872ca2">Writing Audit Events to Mongo</h3>
+<div class="outline-text-3" id="text-orgd872ca2">
 <p>
 Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All audit events will be written to a Mongo collection. To do this, we'll write our own OpenTracing recorder which will do nothing but persist audit events to the collection. It will probably look very similar to the provided <a href="https://github.com/opentracing/basictracer-go">basic tracer</a>.
 </p>
@@ -809,9 +873,9 @@ Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All
 A lot of people have commented on the specifications I produce for the products I have worked on. I can't think of a humble way to say this, and I must make the point, so here it is: it is not uncommon for them to say that they are easy to read, clear, and more useful than most specifications they've read. Very often the next thing is a question: how'd you do that?
 </p>
 
-<div id="outline-container-org4f61905" class="outline-2">
-<h2 id="org4f61905">Core Ideas</h2>
-<div class="outline-text-2" id="text-org4f61905">
+<div id="outline-container-org61b5f82" class="outline-2">
+<h2 id="org61b5f82">Core Ideas</h2>
+<div class="outline-text-2" id="text-org61b5f82">
 <p>
 Right off the bat, let's get one thing clear: content is paramount. You can spend a lot of time producing a beautiful document that is useless. Don't do that. The style should support the content, and help bring out the information. Having said that, after a little bit of setup, you can produce beautiful <i>and</i> useful documents in about as long as it takes you to form the ideas. I've tested this.
 </p>
@@ -836,9 +900,9 @@ Number 3 is quite handy as the details form. You can be sure that the code alway
 </div>
 </div>
 
-<div id="outline-container-orga3078c0" class="outline-2">
-<h2 id="orga3078c0">Drawbacks</h2>
-<div class="outline-text-2" id="text-orga3078c0">
+<div id="outline-container-org92c509c" class="outline-2">
+<h2 id="org92c509c">Drawbacks</h2>
+<div class="outline-text-2" id="text-org92c509c">
 <p>
 Like anything, there are a few drawbacks.
 </p>
@@ -867,9 +931,9 @@ This is only an issue in some environments, but because the specifications you'l
 </div>
 </div>
 
-<div id="outline-container-org592fd80" class="outline-2">
-<h2 id="org592fd80">The Tools</h2>
-<div class="outline-text-2" id="text-org592fd80">
+<div id="outline-container-org2a2bc58" class="outline-2">
+<h2 id="org2a2bc58">The Tools</h2>
+<div class="outline-text-2" id="text-org2a2bc58">
 <ul class="org-ul">
 <li><p>
 Emacs
@@ -910,20 +974,20 @@ This is only part of the stack because this is what we'll tell Org-mode to expor
 </div>
 </div>
 
-<div id="outline-container-org9731e08" class="outline-2">
-<h2 id="org9731e08">The Work flow</h2>
-<div class="outline-text-2" id="text-org9731e08">
-</div><div id="outline-container-orgf5030a0" class="outline-3">
-<h3 id="orgf5030a0">One-time Setup</h3>
-<div class="outline-text-3" id="text-orgf5030a0">
+<div id="outline-container-org5132136" class="outline-2">
+<h2 id="org5132136">The Work flow</h2>
+<div class="outline-text-2" id="text-org5132136">
+</div><div id="outline-container-orgaa22f7a" class="outline-3">
+<h3 id="orgaa22f7a">One-time Setup</h3>
+<div class="outline-text-3" id="text-orgaa22f7a">
 <p>
 When you start, you'll have to set up a few things, namely the specification editor and optionally a LaTeX style-sheet to stylize your documents. However, after this is done, you'll only have to revisit it if you wish to change the style. After the initial setup, your documents just fall out as you type.
 </p>
 </div>
 
-<div id="outline-container-org040dab5" class="outline-4">
-<h4 id="org040dab5">Installing the Tools</h4>
-<div class="outline-text-4" id="text-org040dab5">
+<div id="outline-container-orga7fbca2" class="outline-4">
+<h4 id="orga7fbca2">Installing the Tools</h4>
+<div class="outline-text-4" id="text-orga7fbca2">
 <ol class="org-ol">
 <li>Install Emacs</li>
 <li>Install LaTeX</li>
@@ -1011,9 +1075,9 @@ Those already utilizing Emacs should strip out the requisite pieces and place th
 </div>
 </div>
 
-<div id="outline-container-org3f6bd4a" class="outline-4">
-<h4 id="org3f6bd4a">Create Your Style</h4>
-<div class="outline-text-4" id="text-org3f6bd4a">
+<div id="outline-container-orgd909e4b" class="outline-4">
+<h4 id="orgd909e4b">Create Your Style</h4>
+<div class="outline-text-4" id="text-orgd909e4b">
 <p>
 If you wanted to, you could skip the section and just utilize LaTeX's very sensible default style. Your document won't look quite as pretty, but all of your documents will be well-formed, readable, and consistent.
 </p>
@@ -1029,9 +1093,9 @@ For the sake of brevity I'm going to skip any walkthrough on creating a LaTeX st
 </div>
 </div>
 
-<div id="outline-container-org9c5567a" class="outline-3">
-<h3 id="org9c5567a">Creating Documents</h3>
-<div class="outline-text-3" id="text-org9c5567a">
+<div id="outline-container-orgd6f417d" class="outline-3">
+<h3 id="orgd6f417d">Creating Documents</h3>
+<div class="outline-text-3" id="text-orgd6f417d">
 <p>
 Once you have everything set up, things become very easy. The only thing you truly need is a few headers:
 </p>
@@ -1070,9 +1134,9 @@ That's it. After this, it's all content &#x2013; and it's all in plain text. So 
 </div>
 </div>
 
-<div id="outline-container-org51b5939" class="outline-4">
-<h4 id="org51b5939">PlantUML</h4>
-<div class="outline-text-4" id="text-org51b5939">
+<div id="outline-container-org6f91c62" class="outline-4">
+<h4 id="org6f91c62">PlantUML</h4>
+<div class="outline-text-4" id="text-org6f91c62">
 <p>
 As stated above, PlantUML isn't necessary if you don't plan on including any UML diagrams. If you would like to include some diagrams, you will be taking advantage of Org-Mode's source-code block features.
 </p>
@@ -1099,9 +1163,9 @@ This will open a new buffer in emacs where you can type in PlantUML code &#x2013
 </div>
 </div>
 
-<div id="outline-container-org5063e56" class="outline-3">
-<h3 id="org5063e56">Exporting</h3>
-<div class="outline-text-3" id="text-org5063e56">
+<div id="outline-container-orgdcf4518" class="outline-3">
+<h3 id="orgdcf4518">Exporting</h3>
+<div class="outline-text-3" id="text-orgdcf4518">
 <p>
 To further expand our example above, the document might look like this:
 </p>
@@ -1156,9 +1220,9 @@ Not bad for a few lines of plain text, right? In the second example, we can see 
 </div>
 </div>
 
-<div id="outline-container-orga938161" class="outline-3">
-<h3 id="orga938161">Exporting Artifacts</h3>
-<div class="outline-text-3" id="text-orga938161">
+<div id="outline-container-org35c07ae" class="outline-3">
+<h3 id="org35c07ae">Exporting Artifacts</h3>
+<div class="outline-text-3" id="text-org35c07ae">
 <p>
 I'm only going to touch on this since it's slightly more advanced, but since it's a feature I use in my documents, I thought I'd at least mention it.
 </p>
@@ -1196,9 +1260,9 @@ Your code should now be sitting in the directory you specified!
 </div>
 </div>
 
-<div id="outline-container-org6476c8f" class="outline-2">
-<h2 id="org6476c8f">Conclusion</h2>
-<div class="outline-text-2" id="text-org6476c8f">
+<div id="outline-container-org96fc755" class="outline-2">
+<h2 id="org96fc755">Conclusion</h2>
+<div class="outline-text-2" id="text-org96fc755">
 <p>
 I've often found that specifications in the IT industry have received a negative reputation in our industry. People say things such as, "Code is worth a thousand specifications," or complain that writing specifications is just a waste of time.
 </p>
@@ -1237,75 +1301,6 @@ Happy hacking!
 ]]></description>
       <pubDate>2015-03-14</pubDate>
       <guid>http://katherine.cox-buday.com/blog/2015/03/14/writing-specs-with-org-mode/</guid>
-    </item>
-    <item>
-      <title>On Perfectionism</title>
-      <link>http://katherine.cox-buday.com/blog/2015/03/02/on-perfectionism/</link>
-      <description><![CDATA[<div class="post">
-  <div class="col-sm-3 right-align post-meta">
-    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
-  </div>
-  <div class="col-sm-9">
-    <div class="post">
-      <h3>On Perfectionism</h3>
-      <p>
-I recently came across this Tweet:
-</p>
-
-<div class="HTML">
-<p>
-&lt;blockquote class="twitter-tweet" lang="en"&gt;&lt;p&gt;&lt;a href="<a href="http://t.co/meyTVhEscW">http://t.co/meyTVhEscW</a>"&gt;<a href="http://t.co/meyTVhEscW">http://t.co/meyTVhEscW</a>&lt;/a&gt; &lt;a href="<a href="http://t.co/VyIujIx2dZ">http://t.co/VyIujIx2dZ</a>"&gt;pic.twitter.com/VyIujIx2dZ&lt;/a&gt;&lt;/p&gt;&amp;mdash; Paul Baumgart (@paulbaumgart) &lt;a href="<a href="https://twitter.com/paulbaumgart/status/571788242174918656">https://twitter.com/paulbaumgart/status/571788242174918656</a>"&gt;February 28, 2015&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-</p>
-
-</div>
-
-<p>
-I've spent most of my career in the financial industry. There, it was unacceptable to release code which didn't work, and acceptable for the time between releases to span months; because if you got something wrong, it could have led to significant financial losses. It was a different type of job, and discussion of the pros/cons of this type of environment is probably outside the scope of this post.
-</p>
-
-<p>
-I've changed jobs now, but I'm still trying to shake one of the detrimental habits the financial industry trained me into: perfectionism.
-</p>
-
-<p>
-Now admittedly, I can't rest <i>all</i> of the blame on my previous job. Perfectionism is something that's innate to my character as well. Perhaps working in that type of environment just helped further crystallize a way of working.
-</p>
-
-<p>
-And it's not all bad. It's partially what drives me: the desire to release pristine code leads to (what I consider) some nice patches and projects. It is sometimes the driving force behind <i>starting</i> some changes. It can be a really positive thing.
-</p>
-
-<p>
-But it can also be negative.
-</p>
-
-<p>
-The Open Source mantra is, "Release early; release often." I think the justification lies within the parable from this tweet. Humans are really good at modeling the future &#x2013; it's what makes us the dominant species on Earth. But when working with things as complex as software, this modeling has limits. The better way to work is to make mistakes as fast as possible, and iterate towards perfection.
-</p>
-
-<p>
-I have found myself trying to get everything perfect before pushing changes up to their respective repositories. And sometimes I even find this blocking me from getting started. <i>All</i> the different approaches, their pros and cons, possible edge cases: they're all floating around in my mind, and it's difficult to just get started and get something working. Usually once I do get a bit of code written, I'm off and away and things are fine, but sometimes it's hard to get past that first block.
-</p>
-
-<p>
-Those familiar with perfectionism are probably nodding their heads. It's a well understood problem, and there are some things you can do to try and get past it.
-</p>
-
-<p>
-In the context of software engineering, one thing I've found that helps is to write tests. Tests are usually much more plain, and are &#x2013; by design &#x2013; meant to test one thing at a time. If edge-cases appear, you should probably write a test for that anyway, and so you can get a fair amount of work by simply building out the scaffolding of the program by writing tests. This gets you to lay down some code, and possibly removes the mental block.
-</p>
-
-<p>
-I haven't found any other useful ways to resist the siren call of perfectionism (indeed I'm having trouble getting this post out!), but I at least thought this tweet would be a friendly reminder as to why it's better to fail as fast as you can.
-</p>
-
-    </div>
-  </div>
-</div> <!-- /.container -->
-]]></description>
-      <pubDate>2015-03-02</pubDate>
-      <guid>http://katherine.cox-buday.com/blog/2015/03/02/on-perfectionism/</guid>
     </item>
     <item>
       <title>Migrating to a Statically Generated Blog</title>
