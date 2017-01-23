@@ -4,10 +4,10 @@
 
 I recently came across this Tweet:
 
-#+BEGIN_HTML
-  <blockquote class="twitter-tweet" lang="en"><p><a href="http://t.co/meyTVhEscW">http://t.co/meyTVhEscW</a> <a href="http://t.co/VyIujIx2dZ">pic.twitter.com/VyIujIx2dZ</a></p>&mdash; Paul Baumgart (@paulbaumgart) <a href="https://twitter.com/paulbaumgart/status/571788242174918656">February 28, 2015</a></blockquote>
-  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-#+END_HTML
+#+BEGIN_EXPORT html
+<blockquote class="twitter-tweet" lang="en"><p><a href="http://t.co/meyTVhEscW">http://t.co/meyTVhEscW</a> <a href="http://t.co/VyIujIx2dZ">pic.twitter.com/VyIujIx2dZ</a></p>&mdash; Paul Baumgart (@paulbaumgart) <a href="https://twitter.com/paulbaumgart/status/571788242174918656">February 28, 2015</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+#+END_EXPORT
 
 I've spent most of my career in the financial industry. There, it was unacceptable to release code which didn't work, and acceptable for the time between releases to span months; because if you got something wrong, it could have led to significant financial losses. It was a different type of job, and discussion of the pros/cons of this type of environment is probably outside the scope of this post.
 
