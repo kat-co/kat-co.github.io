@@ -9,7 +9,7 @@
 
 Hi, I'm Katherine Cox-Buday, and this is probably the best way to reach anything I do.
 
-I am the author of the book, "[[http://katherine.cox-buday.com/concurrency-in-go][Concurrency in Go]]", and a computer scientist currently working at [[http://www.canonical.com/][Canonical]] (of [[http://www.ubuntu.com/][Ubuntu]] fame) on [[https://jujucharms.com/][Juju]], a cloud orchestration system. My hobbies include software engineering, creative writing, Go (igo, baduk, weiquei), and guitar, all of which I pursue intermittently and with various levels of dedication.
+I am the author of the book, "[[http://katherine.cox-buday.com/concurrency-in-go][Concurrency in Go]]", and a computer scientist currently working at [[https://www.simple.com/][Simple]]. My hobbies include software engineering, creative writing, Go (igo, baduk, weiquei), and music, all of which I pursue intermittently and with various levels of dedication.
 
 I am a practicing Buddhist, and I am currently exploring the [[http://secularbuddhism.org/][secular]] school of thought. Above all, I wish peace and happiness to all people, and -- by extension -- to you :)
 #+HTML: <div class="clearfix"></div>

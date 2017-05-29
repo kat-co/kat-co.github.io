@@ -7,7 +7,12 @@ file:./book-cover.jpg
 Concurrency can be notoriously difficult to get right, but fortunately, the Go programming language was designed with concurrency in mind. In this practical book, you’ll learn how Go was written to help introduce and master these concepts, as well as how to use basic concurrency patterns to form large systems that are reliable and remain simple and easy to understand.
 
 Author Katherine Cox-Buday takes you through the tools and techniques to develop and debug concurrent software. After finishing Concurrency in Go, you’ll be equipped with the skills you need to confidently and correctly write concurrent systems of any size.
+
+[[https://github.com/kat-co/concurrency-in-go-src][Source Code]]
 #+HTML: <div class="clearfix"></div>
 
 * Available for Pre-Purchase
 - [[http://shop.oreilly.com/product/0636920046189.do?sortby=bestSellers][O'Reilly]]
+- [[https://www.amazon.com/gp/product/1491941197/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=katherinecoxb-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=1491941197&linkId=50618894344eaf64dbf967755272d941][Amazon]]
+- [[http://www.barnesandnoble.com/w/concurrency-in-go-katherine-cox-buday/1123863796][Barnes & Noble]]
+- A local independent bookstore near you!
