@@ -40,6 +40,7 @@ First, let's define what I mean when I say validation.
 </p>
 <pre class="example">
 Parameter validation is ensuring the things you utilize are in a state in which you can use them.
+
 </pre>
 <p>
 Many people hear parameter validation and immediately jump to this:
@@ -99,9 +100,9 @@ So perhaps it's because I'm paranoid, but I like to validate my inputs as close 
 There are advantages and disadvantages to this technique.
 </p>
 
-<div id="outline-container-orga0bc6eb" class="outline-2">
-<h2 id="orga0bc6eb">Advantages</h2>
-<div class="outline-text-2" id="text-orga0bc6eb">
+<div id="outline-container-orgdbbbe1c" class="outline-2">
+<h2 id="orgdbbbe1c">Advantages</h2>
+<div class="outline-text-2" id="text-orgdbbbe1c">
 <ol class="org-ol">
 <li><p>
 <b>Adherence to the <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail Fast principle</a>.</b>
@@ -130,9 +131,9 @@ If I'm calling this code, what can I pass in? Are nulls OK? If I'm reading the c
 </div>
 </div>
 
-<div id="outline-container-org95276c4" class="outline-2">
-<h2 id="org95276c4">Disadvantages</h2>
-<div class="outline-text-2" id="text-org95276c4">
+<div id="outline-container-org78171c7" class="outline-2">
+<h2 id="org78171c7">Disadvantages</h2>
+<div class="outline-text-2" id="text-org78171c7">
 <ol class="org-ol">
 <li><p>
 <b>Performance</b>
@@ -161,9 +162,9 @@ This is the one I struggle with most. How many times are you going to check that
 </div>
 </div>
 
-<div id="outline-container-org966ffb7" class="outline-2">
-<h2 id="org966ffb7">Smart Parameter Validation</h2>
-<div class="outline-text-2" id="text-org966ffb7">
+<div id="outline-container-org8fc1021" class="outline-2">
+<h2 id="org8fc1021">Smart Parameter Validation</h2>
+<div class="outline-text-2" id="text-org8fc1021">
 <p>
 A long chain of if statements at the beginning of your code is cumbersome to write and maintain. It's prone to bugs, and it can actually hide incorrect parameters which are checked after other failing parameters. Do your parameter validation smarter:
 </p>

@@ -4,10 +4,58 @@
     <title>Katherine Cox-Buday</title>
     <link>http://katherine.cox-buday.com</link>
     <description>static site generator</description>
-    <pubDate>Mon, 23 Jan 2017 14:03:31 CST</pubDate>
-    <lastBuildDate>Mon, 23 Jan 2017 14:03:31 CST</lastBuildDate>
+    <pubDate>Mon, 29 May 2017 16:49:30 CDT</pubDate>
+    <lastBuildDate>Mon, 29 May 2017 16:49:30 CDT</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
+    <item>
+      <title></title>
+      <link>http://katherine.cox-buday.com/concurrency-in-go/</link>
+      <description><![CDATA[<div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3></h3>
+      
+<div class="figure">
+<p><img src="/assets/concurrency-in-go/book-cover.jpg" alt="book-cover.jpg" class="img-responsive pull-left" style="margin-right:15px; width:250px" />
+</p>
+</div>
+
+<p>
+Concurrency can be notoriously difficult to get right, but fortunately, the Go programming language was designed with concurrency in mind. In this practical book, you’ll learn how Go was written to help introduce and master these concepts, as well as how to use basic concurrency patterns to form large systems that are reliable and remain simple and easy to understand.
+</p>
+
+<p>
+Author Katherine Cox-Buday takes you through the tools and techniques to develop and debug concurrent software. After finishing Concurrency in Go, you’ll be equipped with the skills you need to confidently and correctly write concurrent systems of any size.
+</p>
+
+<p>
+<a href="https://github.com/kat-co/concurrency-in-go-src">Source Code</a>
+</p>
+<div class="clearfix"></div>
+
+<div id="outline-container-org4acdfe8" class="outline-2">
+<h2 id="org4acdfe8">Available for Pre-Purchase</h2>
+<div class="outline-text-2" id="text-org4acdfe8">
+<ul class="org-ul">
+<li><a href="http://shop.oreilly.com/product/0636920046189.do?sortby=bestSellers">O'Reilly</a></li>
+<li><a href="https://www.amazon.com/gp/product/1491941197/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;tag=katherinecoxb-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=1491941197&amp;linkId=50618894344eaf64dbf967755272d941">Amazon</a></li>
+<li><a href="http://www.barnesandnoble.com/w/concurrency-in-go-katherine-cox-buday/1123863796">Barnes &amp; Noble</a></li>
+<li>A local independent bookstore near you!</li>
+</ul>
+</div>
+</div>
+
+    </div>
+  </div>
+</div> <!-- /.container -->
+]]></description>
+      <pubDate>2017-05-29</pubDate>
+      <guid>http://katherine.cox-buday.com/concurrency-in-go/</guid>
+    </item>
     <item>
       <title>On Perfectionism</title>
       <link>http://katherine.cox-buday.com/blog/2015/03/02/on-perfectionism/</link>
@@ -114,6 +162,7 @@ First, let's define what I mean when I say validation.
 </p>
 <pre class="example">
 Parameter validation is ensuring the things you utilize are in a state in which you can use them.
+
 </pre>
 <p>
 Many people hear parameter validation and immediately jump to this:
@@ -173,9 +222,9 @@ So perhaps it's because I'm paranoid, but I like to validate my inputs as close 
 There are advantages and disadvantages to this technique.
 </p>
 
-<div id="outline-container-orga0bc6eb" class="outline-2">
-<h2 id="orga0bc6eb">Advantages</h2>
-<div class="outline-text-2" id="text-orga0bc6eb">
+<div id="outline-container-orgdbbbe1c" class="outline-2">
+<h2 id="orgdbbbe1c">Advantages</h2>
+<div class="outline-text-2" id="text-orgdbbbe1c">
 <ol class="org-ol">
 <li><p>
 <b>Adherence to the <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail Fast principle</a>.</b>
@@ -204,9 +253,9 @@ If I'm calling this code, what can I pass in? Are nulls OK? If I'm reading the c
 </div>
 </div>
 
-<div id="outline-container-org95276c4" class="outline-2">
-<h2 id="org95276c4">Disadvantages</h2>
-<div class="outline-text-2" id="text-org95276c4">
+<div id="outline-container-org78171c7" class="outline-2">
+<h2 id="org78171c7">Disadvantages</h2>
+<div class="outline-text-2" id="text-org78171c7">
 <ol class="org-ol">
 <li><p>
 <b>Performance</b>
@@ -235,9 +284,9 @@ This is the one I struggle with most. How many times are you going to check that
 </div>
 </div>
 
-<div id="outline-container-org966ffb7" class="outline-2">
-<h2 id="org966ffb7">Smart Parameter Validation</h2>
-<div class="outline-text-2" id="text-org966ffb7">
+<div id="outline-container-org8fc1021" class="outline-2">
+<h2 id="org8fc1021">Smart Parameter Validation</h2>
+<div class="outline-text-2" id="text-org8fc1021">
 <p>
 A long chain of if statements at the beginning of your code is cumbersome to write and maintain. It's prone to bugs, and it can actually hide incorrect parameters which are checked after other failing parameters. Do your parameter validation smarter:
 </p>
@@ -323,7 +372,7 @@ If you're interested in this style of parameter validation, and are working with
     </item>
     <item>
       <title>Why this Year I&#39;m Focusing on Charity.</title>
-      <link>http://katherine.cox-buday.com/blog/2014/12/03/why-this-year-i&#39;m-focusing-on-charity./</link>
+      <link>http://katherine.cox-buday.com/blog/2014/12/03/why-this-year-im-focusing-on-charity/</link>
       <description><![CDATA[<div class="post">
   <div class="col-sm-3 right-align post-meta">
     <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
@@ -367,48 +416,7 @@ Katherine
 </div> <!-- /.container -->
 ]]></description>
       <pubDate>2017-01-19</pubDate>
-      <guid>http://katherine.cox-buday.com/blog/2014/12/03/why-this-year-i&#39;m-focusing-on-charity./</guid>
-    </item>
-    <item>
-      <title></title>
-      <link>http://katherine.cox-buday.com/concurrency-in-go/</link>
-      <description><![CDATA[<div class="post">
-  <div class="col-sm-3 right-align post-meta">
-    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
-  </div>
-  <div class="col-sm-9">
-    <div class="post">
-      <h3></h3>
-      
-<div class="figure">
-<p><img src="/assets/concurrency-in-go/book-cover.jpg" alt="book-cover.jpg" class="img-responsive pull-left" style="margin-right:15px; width:250px" />
-</p>
-</div>
-
-<p>
-Concurrency can be notoriously difficult to get right, but fortunately, the Go programming language was designed with concurrency in mind. In this practical book, you’ll learn how Go was written to help introduce and master these concepts, as well as how to use basic concurrency patterns to form large systems that are reliable and remain simple and easy to understand.
-</p>
-
-<p>
-Author Katherine Cox-Buday takes you through the tools and techniques to develop and debug concurrent software. After finishing Concurrency in Go, you’ll be equipped with the skills you need to confidently and correctly write concurrent systems of any size.
-</p>
-<div class="clearfix"></div>
-
-<div id="outline-container-org58a384c" class="outline-2">
-<h2 id="org58a384c">Available for Pre-Purchase</h2>
-<div class="outline-text-2" id="text-org58a384c">
-<ul class="org-ul">
-<li><a href="http://shop.oreilly.com/product/0636920046189.do?sortby=bestSellers">O'Reilly</a></li>
-</ul>
-</div>
-</div>
-
-    </div>
-  </div>
-</div> <!-- /.container -->
-]]></description>
-      <pubDate>2017-01-19</pubDate>
-      <guid>http://katherine.cox-buday.com/concurrency-in-go/</guid>
+      <guid>http://katherine.cox-buday.com/blog/2014/12/03/why-this-year-im-focusing-on-charity/</guid>
     </item>
     <item>
       <title>Simplicity and Go</title>
@@ -455,9 +463,9 @@ Juju is written in Go, and so I'll be taking a look at the <a href="https://gith
 With that said, on to the analysis!
 </p>
 
-<div id="outline-container-org9f798f0" class="outline-2">
-<h2 id="org9f798f0">Key Concepts</h2>
-<div class="outline-text-2" id="text-org9f798f0">
+<div id="outline-container-org290dac4" class="outline-2">
+<h2 id="org290dac4">Key Concepts</h2>
+<div class="outline-text-2" id="text-org290dac4">
 <ul class="org-ul">
 <li><b>span</b>: A logical unit of work in the system.</li>
 <li><b>baggage</b>: Information intended to be carried on to subsequent spans.</li>
@@ -467,9 +475,9 @@ With that said, on to the analysis!
 </div>
 </div>
 
-<div id="outline-container-orgabcc96b" class="outline-2">
-<h2 id="orgabcc96b">Sanity Check</h2>
-<div class="outline-text-2" id="text-orgabcc96b">
+<div id="outline-container-org21f9ed3" class="outline-2">
+<h2 id="org21f9ed3">Sanity Check</h2>
+<div class="outline-text-2" id="text-org21f9ed3">
 <p>
 First of all, the <a href="https://github.com/opentracing/opentracing-go/blob/master/LICENSE">license</a> is MIT. No issues there.
 </p>
@@ -484,9 +492,9 @@ Juju also has Python bindings to its API, so ideally any tracing standard will b
 </div>
 </div>
 
-<div id="outline-container-org9f87a76" class="outline-2">
-<h2 id="org9f87a76">Performance</h2>
-<div class="outline-text-2" id="text-org9f87a76">
+<div id="outline-container-org057906c" class="outline-2">
+<h2 id="org057906c">Performance</h2>
+<div class="outline-text-2" id="text-org057906c">
 <p>
 First the obvious question. If I'm going to be embedding a lot of spans, this needs to be fast. How quick is it to create and tear down a new span?
 </p>
@@ -585,23 +593,18 @@ fmt.Printf("Header (after): %v\n", httpReq.Header)
 </pre>
 </div>
 
-<pre class="example">
-Header (before): map[]
-Header (after): map[Ot-Tracer-Traceid:[7ab6ba52e1e748c1] Ot-Tracer-Spanid:[1b4c98c3b3f048aa] Ot-Tracer-Sampled:[false] Ot-Baggage-My-Baggage:[current+user]]
-</pre>
-
 <p>
 Looks pretty reasonable; just some information about the spans for the receiver to pick up the trace.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgaf38d10" class="outline-2">
-<h2 id="orgaf38d10">Integration with Juju</h2>
-<div class="outline-text-2" id="text-orgaf38d10">
-</div><div id="outline-container-org2951384" class="outline-3">
-<h3 id="org2951384">Gating API Calls</h3>
-<div class="outline-text-3" id="text-org2951384">
+<div id="outline-container-org2a17ac1" class="outline-2">
+<h2 id="org2a17ac1">Integration with Juju</h2>
+<div class="outline-text-2" id="text-org2a17ac1">
+</div><div id="outline-container-orgf2b79dc" class="outline-3">
+<h3 id="orgf2b79dc">Gating API Calls</h3>
+<div class="outline-text-3" id="text-orgf2b79dc">
 <p>
 Juju's API server is the bottleneck gating access to and from a Juju daemon and is the natural place to ensure a trace either exists or is started. Ideally the things calling Juju's API server would have started a trace, but if not, we need to ensure that one exists. Let's first see how we can ensure that all API server connections know about OpenTracing and spans.
 </p>
@@ -833,18 +836,18 @@ The <code>ctx</code> would in turn be created further up the stack from our requ
 </div>
 </div>
 
-<div id="outline-container-orga90dd20" class="outline-3">
-<h3 id="orga90dd20">Backwards compatibility</h3>
-<div class="outline-text-3" id="text-orga90dd20">
+<div id="outline-container-org002aa94" class="outline-3">
+<h3 id="org002aa94">Backwards compatibility</h3>
+<div class="outline-text-3" id="text-org002aa94">
 <p>
 Since The API server gate looks for an incoming span but does not expect it, all existing clients &#x2013; including those from prior versions of Juju &#x2013; should be able to utilize the new endpoints. Thus, we should remain backwards compatible, and no new upgrade steps need be written.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd872ca2" class="outline-3">
-<h3 id="orgd872ca2">Writing Audit Events to Mongo</h3>
-<div class="outline-text-3" id="text-orgd872ca2">
+<div id="outline-container-org8c626d6" class="outline-3">
+<h3 id="org8c626d6">Writing Audit Events to Mongo</h3>
+<div class="outline-text-3" id="text-org8c626d6">
 <p>
 Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All audit events will be written to a Mongo collection. To do this, we'll write our own OpenTracing recorder which will do nothing but persist audit events to the collection. It will probably look very similar to the provided <a href="https://github.com/opentracing/basictracer-go">basic tracer</a>.
 </p>
@@ -873,9 +876,9 @@ Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All
 A lot of people have commented on the specifications I produce for the products I have worked on. I can't think of a humble way to say this, and I must make the point, so here it is: it is not uncommon for them to say that they are easy to read, clear, and more useful than most specifications they've read. Very often the next thing is a question: how'd you do that?
 </p>
 
-<div id="outline-container-org61b5f82" class="outline-2">
-<h2 id="org61b5f82">Core Ideas</h2>
-<div class="outline-text-2" id="text-org61b5f82">
+<div id="outline-container-org08a977f" class="outline-2">
+<h2 id="org08a977f">Core Ideas</h2>
+<div class="outline-text-2" id="text-org08a977f">
 <p>
 Right off the bat, let's get one thing clear: content is paramount. You can spend a lot of time producing a beautiful document that is useless. Don't do that. The style should support the content, and help bring out the information. Having said that, after a little bit of setup, you can produce beautiful <i>and</i> useful documents in about as long as it takes you to form the ideas. I've tested this.
 </p>
@@ -900,9 +903,9 @@ Number 3 is quite handy as the details form. You can be sure that the code alway
 </div>
 </div>
 
-<div id="outline-container-org92c509c" class="outline-2">
-<h2 id="org92c509c">Drawbacks</h2>
-<div class="outline-text-2" id="text-org92c509c">
+<div id="outline-container-orgb0ad9e1" class="outline-2">
+<h2 id="orgb0ad9e1">Drawbacks</h2>
+<div class="outline-text-2" id="text-orgb0ad9e1">
 <p>
 Like anything, there are a few drawbacks.
 </p>
@@ -931,9 +934,9 @@ This is only an issue in some environments, but because the specifications you'l
 </div>
 </div>
 
-<div id="outline-container-org2a2bc58" class="outline-2">
-<h2 id="org2a2bc58">The Tools</h2>
-<div class="outline-text-2" id="text-org2a2bc58">
+<div id="outline-container-org38261a6" class="outline-2">
+<h2 id="org38261a6">The Tools</h2>
+<div class="outline-text-2" id="text-org38261a6">
 <ul class="org-ul">
 <li><p>
 Emacs
@@ -974,20 +977,20 @@ This is only part of the stack because this is what we'll tell Org-mode to expor
 </div>
 </div>
 
-<div id="outline-container-org5132136" class="outline-2">
-<h2 id="org5132136">The Work flow</h2>
-<div class="outline-text-2" id="text-org5132136">
-</div><div id="outline-container-orgaa22f7a" class="outline-3">
-<h3 id="orgaa22f7a">One-time Setup</h3>
-<div class="outline-text-3" id="text-orgaa22f7a">
+<div id="outline-container-org1fa9c22" class="outline-2">
+<h2 id="org1fa9c22">The Work flow</h2>
+<div class="outline-text-2" id="text-org1fa9c22">
+</div><div id="outline-container-org6d6a0d3" class="outline-3">
+<h3 id="org6d6a0d3">One-time Setup</h3>
+<div class="outline-text-3" id="text-org6d6a0d3">
 <p>
 When you start, you'll have to set up a few things, namely the specification editor and optionally a LaTeX style-sheet to stylize your documents. However, after this is done, you'll only have to revisit it if you wish to change the style. After the initial setup, your documents just fall out as you type.
 </p>
 </div>
 
-<div id="outline-container-orga7fbca2" class="outline-4">
-<h4 id="orga7fbca2">Installing the Tools</h4>
-<div class="outline-text-4" id="text-orga7fbca2">
+<div id="outline-container-org00e687c" class="outline-4">
+<h4 id="org00e687c">Installing the Tools</h4>
+<div class="outline-text-4" id="text-org00e687c">
 <ol class="org-ol">
 <li>Install Emacs</li>
 <li>Install LaTeX</li>
@@ -1009,6 +1012,7 @@ You can either place it in ~/.emacs, or alternatively run emacs as such:
 
 <pre class="example">
 emacs --no-init-file --load ./spec-cfg.el
+
 </pre>
 
 <p>
@@ -1075,15 +1079,15 @@ Those already utilizing Emacs should strip out the requisite pieces and place th
 </div>
 </div>
 
-<div id="outline-container-orgd909e4b" class="outline-4">
-<h4 id="orgd909e4b">Create Your Style</h4>
-<div class="outline-text-4" id="text-orgd909e4b">
+<div id="outline-container-orge0df9c4" class="outline-4">
+<h4 id="orge0df9c4">Create Your Style</h4>
+<div class="outline-text-4" id="text-orge0df9c4">
 <p>
 If you wanted to, you could skip the section and just utilize LaTeX's very sensible default style. Your document won't look quite as pretty, but all of your documents will be well-formed, readable, and consistent.
 </p>
 
 <p>
-In the config-file, we let Org-mode know about the <a href="#coderef-stylesheet-name"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-stylesheet-name');" onmouseout="CodeHighlightOff(this, 'coderef-stylesheet-name');">my-style</a> style located in the <a href="#coderef-stylesheet-loc"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-stylesheet-loc');" onmouseout="CodeHighlightOff(this, 'coderef-stylesheet-loc');">local-directory</a>. If you wanted to add additional styles, you would just repeat lines 33-43 for each additional style.
+In the config-file, we let Org-mode know about the <a href="#coderef-stylesheet-name" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-stylesheet-name');" onmouseout="CodeHighlightOff(this, 'coderef-stylesheet-name');">my-style</a> style located in the <a href="#coderef-stylesheet-loc" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-stylesheet-loc');" onmouseout="CodeHighlightOff(this, 'coderef-stylesheet-loc');">local-directory</a>. If you wanted to add additional styles, you would just repeat lines 33-43 for each additional style.
 </p>
 
 <p>
@@ -1093,9 +1097,9 @@ For the sake of brevity I'm going to skip any walkthrough on creating a LaTeX st
 </div>
 </div>
 
-<div id="outline-container-orgd6f417d" class="outline-3">
-<h3 id="orgd6f417d">Creating Documents</h3>
-<div class="outline-text-3" id="text-orgd6f417d">
+<div id="outline-container-org1257328" class="outline-3">
+<h3 id="org1257328">Creating Documents</h3>
+<div class="outline-text-3" id="text-org1257328">
 <p>
 Once you have everything set up, things become very easy. The only thing you truly need is a few headers:
 </p>
@@ -1134,9 +1138,9 @@ That's it. After this, it's all content &#x2013; and it's all in plain text. So 
 </div>
 </div>
 
-<div id="outline-container-org6f91c62" class="outline-4">
-<h4 id="org6f91c62">PlantUML</h4>
-<div class="outline-text-4" id="text-org6f91c62">
+<div id="outline-container-org405ca1c" class="outline-4">
+<h4 id="org405ca1c">PlantUML</h4>
+<div class="outline-text-4" id="text-org405ca1c">
 <p>
 As stated above, PlantUML isn't necessary if you don't plan on including any UML diagrams. If you would like to include some diagrams, you will be taking advantage of Org-Mode's source-code block features.
 </p>
@@ -1163,9 +1167,9 @@ This will open a new buffer in emacs where you can type in PlantUML code &#x2013
 </div>
 </div>
 
-<div id="outline-container-orgdcf4518" class="outline-3">
-<h3 id="orgdcf4518">Exporting</h3>
-<div class="outline-text-3" id="text-orgdcf4518">
+<div id="outline-container-orgce74b7b" class="outline-3">
+<h3 id="orgce74b7b">Exporting</h3>
+<div class="outline-text-3" id="text-orgce74b7b">
 <p>
 To further expand our example above, the document might look like this:
 </p>
@@ -1220,9 +1224,9 @@ Not bad for a few lines of plain text, right? In the second example, we can see 
 </div>
 </div>
 
-<div id="outline-container-org35c07ae" class="outline-3">
-<h3 id="org35c07ae">Exporting Artifacts</h3>
-<div class="outline-text-3" id="text-org35c07ae">
+<div id="outline-container-orgd51a9ce" class="outline-3">
+<h3 id="orgd51a9ce">Exporting Artifacts</h3>
+<div class="outline-text-3" id="text-orgd51a9ce">
 <p>
 I'm only going to touch on this since it's slightly more advanced, but since it's a feature I use in my documents, I thought I'd at least mention it.
 </p>
@@ -1251,6 +1255,7 @@ Now type:
 </p>
 <pre class="example">
 M-x org-babel-tangle
+
 </pre>
 
 <p>
@@ -1260,9 +1265,9 @@ Your code should now be sitting in the directory you specified!
 </div>
 </div>
 
-<div id="outline-container-org96fc755" class="outline-2">
-<h2 id="org96fc755">Conclusion</h2>
-<div class="outline-text-2" id="text-org96fc755">
+<div id="outline-container-orgbd5d06f" class="outline-2">
+<h2 id="orgbd5d06f">Conclusion</h2>
+<div class="outline-text-2" id="text-orgbd5d06f">
 <p>
 I've often found that specifications in the IT industry have received a negative reputation in our industry. People say things such as, "Code is worth a thousand specifications," or complain that writing specifications is just a waste of time.
 </p>
