@@ -4,8 +4,8 @@
     <title>Katherine Cox-Buday</title>
     <link>http://katherine.cox-buday.com</link>
     <description>static site generator</description>
-    <pubDate>Thu, 29 Jun 2017 07:34:03 CDT</pubDate>
-    <lastBuildDate>Thu, 29 Jun 2017 07:34:03 CDT</lastBuildDate>
+    <pubDate>Thu, 29 Jun 2017 07:35:30 CDT</pubDate>
+    <lastBuildDate>Thu, 29 Jun 2017 07:35:30 CDT</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
     <item>
@@ -37,9 +37,9 @@ Author Katherine Cox-Buday takes you through the tools and techniques to develop
 </p>
 <div class="clearfix"></div>
 
-<div id="outline-container-org928233b" class="outline-2">
-<h2 id="org928233b">Available for Pre-Purchase</h2>
-<div class="outline-text-2" id="text-org928233b">
+<div id="outline-container-org7486fad" class="outline-2">
+<h2 id="org7486fad">Available for Pre-Purchase</h2>
+<div class="outline-text-2" id="text-org7486fad">
 <ul class="org-ul">
 <li><a href="https://www.amazon.com/gp/product/1491941197/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;tag=katherinecoxb-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=1491941197&amp;linkId=50618894344eaf64dbf967755272d941">Amazon</a></li>
 <li><a href="http://www.barnesandnoble.com/w/concurrency-in-go-katherine-cox-buday/1123863796">Barnes &amp; Noble</a></li>
@@ -221,9 +221,9 @@ So perhaps it's because I'm paranoid, but I like to validate my inputs as close 
 There are advantages and disadvantages to this technique.
 </p>
 
-<div id="outline-container-org3c43dc7" class="outline-2">
-<h2 id="org3c43dc7">Advantages</h2>
-<div class="outline-text-2" id="text-org3c43dc7">
+<div id="outline-container-org2e8c9a4" class="outline-2">
+<h2 id="org2e8c9a4">Advantages</h2>
+<div class="outline-text-2" id="text-org2e8c9a4">
 <ol class="org-ol">
 <li><p>
 <b>Adherence to the <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail Fast principle</a>.</b>
@@ -252,9 +252,9 @@ If I'm calling this code, what can I pass in? Are nulls OK? If I'm reading the c
 </div>
 </div>
 
-<div id="outline-container-orgee2300c" class="outline-2">
-<h2 id="orgee2300c">Disadvantages</h2>
-<div class="outline-text-2" id="text-orgee2300c">
+<div id="outline-container-orgf72bc6c" class="outline-2">
+<h2 id="orgf72bc6c">Disadvantages</h2>
+<div class="outline-text-2" id="text-orgf72bc6c">
 <ol class="org-ol">
 <li><p>
 <b>Performance</b>
@@ -283,9 +283,9 @@ This is the one I struggle with most. How many times are you going to check that
 </div>
 </div>
 
-<div id="outline-container-org6214198" class="outline-2">
-<h2 id="org6214198">Smart Parameter Validation</h2>
-<div class="outline-text-2" id="text-org6214198">
+<div id="outline-container-orgd2f723f" class="outline-2">
+<h2 id="orgd2f723f">Smart Parameter Validation</h2>
+<div class="outline-text-2" id="text-orgd2f723f">
 <p>
 A long chain of if statements at the beginning of your code is cumbersome to write and maintain. It's prone to bugs, and it can actually hide incorrect parameters which are checked after other failing parameters. Do your parameter validation smarter:
 </p>
@@ -462,9 +462,9 @@ Juju is written in Go, and so I'll be taking a look at the <a href="https://gith
 With that said, on to the analysis!
 </p>
 
-<div id="outline-container-orgb34945a" class="outline-2">
-<h2 id="orgb34945a">Key Concepts</h2>
-<div class="outline-text-2" id="text-orgb34945a">
+<div id="outline-container-org7ff9bcd" class="outline-2">
+<h2 id="org7ff9bcd">Key Concepts</h2>
+<div class="outline-text-2" id="text-org7ff9bcd">
 <ul class="org-ul">
 <li><b>span</b>: A logical unit of work in the system.</li>
 <li><b>baggage</b>: Information intended to be carried on to subsequent spans.</li>
@@ -474,9 +474,9 @@ With that said, on to the analysis!
 </div>
 </div>
 
-<div id="outline-container-org10c7527" class="outline-2">
-<h2 id="org10c7527">Sanity Check</h2>
-<div class="outline-text-2" id="text-org10c7527">
+<div id="outline-container-orgac62d85" class="outline-2">
+<h2 id="orgac62d85">Sanity Check</h2>
+<div class="outline-text-2" id="text-orgac62d85">
 <p>
 First of all, the <a href="https://github.com/opentracing/opentracing-go/blob/master/LICENSE">license</a> is MIT. No issues there.
 </p>
@@ -491,9 +491,9 @@ Juju also has Python bindings to its API, so ideally any tracing standard will b
 </div>
 </div>
 
-<div id="outline-container-orge8f646b" class="outline-2">
-<h2 id="orge8f646b">Performance</h2>
-<div class="outline-text-2" id="text-orge8f646b">
+<div id="outline-container-orgf2be510" class="outline-2">
+<h2 id="orgf2be510">Performance</h2>
+<div class="outline-text-2" id="text-orgf2be510">
 <p>
 First the obvious question. If I'm going to be embedding a lot of spans, this needs to be fast. How quick is it to create and tear down a new span?
 </p>
@@ -598,12 +598,12 @@ Looks pretty reasonable; just some information about the spans for the receiver 
 </div>
 </div>
 
-<div id="outline-container-org1ebb93b" class="outline-2">
-<h2 id="org1ebb93b">Integration with Juju</h2>
-<div class="outline-text-2" id="text-org1ebb93b">
-</div><div id="outline-container-orgb5e65b4" class="outline-3">
-<h3 id="orgb5e65b4">Gating API Calls</h3>
-<div class="outline-text-3" id="text-orgb5e65b4">
+<div id="outline-container-org293eda0" class="outline-2">
+<h2 id="org293eda0">Integration with Juju</h2>
+<div class="outline-text-2" id="text-org293eda0">
+</div><div id="outline-container-org6645d94" class="outline-3">
+<h3 id="org6645d94">Gating API Calls</h3>
+<div class="outline-text-3" id="text-org6645d94">
 <p>
 Juju's API server is the bottleneck gating access to and from a Juju daemon and is the natural place to ensure a trace either exists or is started. Ideally the things calling Juju's API server would have started a trace, but if not, we need to ensure that one exists. Let's first see how we can ensure that all API server connections know about OpenTracing and spans.
 </p>
@@ -835,18 +835,18 @@ The <code>ctx</code> would in turn be created further up the stack from our requ
 </div>
 </div>
 
-<div id="outline-container-org84e15d3" class="outline-3">
-<h3 id="org84e15d3">Backwards compatibility</h3>
-<div class="outline-text-3" id="text-org84e15d3">
+<div id="outline-container-org4faf97c" class="outline-3">
+<h3 id="org4faf97c">Backwards compatibility</h3>
+<div class="outline-text-3" id="text-org4faf97c">
 <p>
 Since The API server gate looks for an incoming span but does not expect it, all existing clients &#x2013; including those from prior versions of Juju &#x2013; should be able to utilize the new endpoints. Thus, we should remain backwards compatible, and no new upgrade steps need be written.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf7c473b" class="outline-3">
-<h3 id="orgf7c473b">Writing Audit Events to Mongo</h3>
-<div class="outline-text-3" id="text-orgf7c473b">
+<div id="outline-container-org9b7b5f3" class="outline-3">
+<h3 id="org9b7b5f3">Writing Audit Events to Mongo</h3>
+<div class="outline-text-3" id="text-org9b7b5f3">
 <p>
 Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All audit events will be written to a Mongo collection. To do this, we'll write our own OpenTracing recorder which will do nothing but persist audit events to the collection. It will probably look very similar to the provided <a href="https://github.com/opentracing/basictracer-go">basic tracer</a>.
 </p>
@@ -875,9 +875,9 @@ Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All
 A lot of people have commented on the specifications I produce for the products I have worked on. I can't think of a humble way to say this, and I must make the point, so here it is: it is not uncommon for them to say that they are easy to read, clear, and more useful than most specifications they've read. Very often the next thing is a question: how'd you do that?
 </p>
 
-<div id="outline-container-org532d7a1" class="outline-2">
-<h2 id="org532d7a1">Core Ideas</h2>
-<div class="outline-text-2" id="text-org532d7a1">
+<div id="outline-container-org71dae62" class="outline-2">
+<h2 id="org71dae62">Core Ideas</h2>
+<div class="outline-text-2" id="text-org71dae62">
 <p>
 Right off the bat, let's get one thing clear: content is paramount. You can spend a lot of time producing a beautiful document that is useless. Don't do that. The style should support the content, and help bring out the information. Having said that, after a little bit of setup, you can produce beautiful <i>and</i> useful documents in about as long as it takes you to form the ideas. I've tested this.
 </p>
@@ -902,9 +902,9 @@ Number 3 is quite handy as the details form. You can be sure that the code alway
 </div>
 </div>
 
-<div id="outline-container-org82ec8bd" class="outline-2">
-<h2 id="org82ec8bd">Drawbacks</h2>
-<div class="outline-text-2" id="text-org82ec8bd">
+<div id="outline-container-org2ae70a9" class="outline-2">
+<h2 id="org2ae70a9">Drawbacks</h2>
+<div class="outline-text-2" id="text-org2ae70a9">
 <p>
 Like anything, there are a few drawbacks.
 </p>
@@ -933,9 +933,9 @@ This is only an issue in some environments, but because the specifications you'l
 </div>
 </div>
 
-<div id="outline-container-org3bdd58f" class="outline-2">
-<h2 id="org3bdd58f">The Tools</h2>
-<div class="outline-text-2" id="text-org3bdd58f">
+<div id="outline-container-org22b7500" class="outline-2">
+<h2 id="org22b7500">The Tools</h2>
+<div class="outline-text-2" id="text-org22b7500">
 <ul class="org-ul">
 <li><p>
 Emacs
@@ -976,20 +976,20 @@ This is only part of the stack because this is what we'll tell Org-mode to expor
 </div>
 </div>
 
-<div id="outline-container-org9feb125" class="outline-2">
-<h2 id="org9feb125">The Work flow</h2>
-<div class="outline-text-2" id="text-org9feb125">
-</div><div id="outline-container-org887e2ac" class="outline-3">
-<h3 id="org887e2ac">One-time Setup</h3>
-<div class="outline-text-3" id="text-org887e2ac">
+<div id="outline-container-org7ccfa9c" class="outline-2">
+<h2 id="org7ccfa9c">The Work flow</h2>
+<div class="outline-text-2" id="text-org7ccfa9c">
+</div><div id="outline-container-orgbbc50d9" class="outline-3">
+<h3 id="orgbbc50d9">One-time Setup</h3>
+<div class="outline-text-3" id="text-orgbbc50d9">
 <p>
 When you start, you'll have to set up a few things, namely the specification editor and optionally a LaTeX style-sheet to stylize your documents. However, after this is done, you'll only have to revisit it if you wish to change the style. After the initial setup, your documents just fall out as you type.
 </p>
 </div>
 
-<div id="outline-container-org6c8c1e9" class="outline-4">
-<h4 id="org6c8c1e9">Installing the Tools</h4>
-<div class="outline-text-4" id="text-org6c8c1e9">
+<div id="outline-container-org46d6fc7" class="outline-4">
+<h4 id="org46d6fc7">Installing the Tools</h4>
+<div class="outline-text-4" id="text-org46d6fc7">
 <ol class="org-ol">
 <li>Install Emacs</li>
 <li>Install LaTeX</li>
@@ -1078,9 +1078,9 @@ Those already utilizing Emacs should strip out the requisite pieces and place th
 </div>
 </div>
 
-<div id="outline-container-org54133dd" class="outline-4">
-<h4 id="org54133dd">Create Your Style</h4>
-<div class="outline-text-4" id="text-org54133dd">
+<div id="outline-container-org4628e01" class="outline-4">
+<h4 id="org4628e01">Create Your Style</h4>
+<div class="outline-text-4" id="text-org4628e01">
 <p>
 If you wanted to, you could skip the section and just utilize LaTeX's very sensible default style. Your document won't look quite as pretty, but all of your documents will be well-formed, readable, and consistent.
 </p>
@@ -1096,9 +1096,9 @@ For the sake of brevity I'm going to skip any walkthrough on creating a LaTeX st
 </div>
 </div>
 
-<div id="outline-container-orgedc81ec" class="outline-3">
-<h3 id="orgedc81ec">Creating Documents</h3>
-<div class="outline-text-3" id="text-orgedc81ec">
+<div id="outline-container-orgdf35f4e" class="outline-3">
+<h3 id="orgdf35f4e">Creating Documents</h3>
+<div class="outline-text-3" id="text-orgdf35f4e">
 <p>
 Once you have everything set up, things become very easy. The only thing you truly need is a few headers:
 </p>
@@ -1137,9 +1137,9 @@ That's it. After this, it's all content &#x2013; and it's all in plain text. So 
 </div>
 </div>
 
-<div id="outline-container-orge4d749b" class="outline-4">
-<h4 id="orge4d749b">PlantUML</h4>
-<div class="outline-text-4" id="text-orge4d749b">
+<div id="outline-container-org066508d" class="outline-4">
+<h4 id="org066508d">PlantUML</h4>
+<div class="outline-text-4" id="text-org066508d">
 <p>
 As stated above, PlantUML isn't necessary if you don't plan on including any UML diagrams. If you would like to include some diagrams, you will be taking advantage of Org-Mode's source-code block features.
 </p>
@@ -1166,9 +1166,9 @@ This will open a new buffer in emacs where you can type in PlantUML code &#x2013
 </div>
 </div>
 
-<div id="outline-container-org2fa9dda" class="outline-3">
-<h3 id="org2fa9dda">Exporting</h3>
-<div class="outline-text-3" id="text-org2fa9dda">
+<div id="outline-container-orgcf3e881" class="outline-3">
+<h3 id="orgcf3e881">Exporting</h3>
+<div class="outline-text-3" id="text-orgcf3e881">
 <p>
 To further expand our example above, the document might look like this:
 </p>
@@ -1223,9 +1223,9 @@ Not bad for a few lines of plain text, right? In the second example, we can see 
 </div>
 </div>
 
-<div id="outline-container-org8d9d6b8" class="outline-3">
-<h3 id="org8d9d6b8">Exporting Artifacts</h3>
-<div class="outline-text-3" id="text-org8d9d6b8">
+<div id="outline-container-org0268cfe" class="outline-3">
+<h3 id="org0268cfe">Exporting Artifacts</h3>
+<div class="outline-text-3" id="text-org0268cfe">
 <p>
 I'm only going to touch on this since it's slightly more advanced, but since it's a feature I use in my documents, I thought I'd at least mention it.
 </p>
@@ -1264,9 +1264,9 @@ Your code should now be sitting in the directory you specified!
 </div>
 </div>
 
-<div id="outline-container-org0f4d1db" class="outline-2">
-<h2 id="org0f4d1db">Conclusion</h2>
-<div class="outline-text-2" id="text-org0f4d1db">
+<div id="outline-container-org87f73da" class="outline-2">
+<h2 id="org87f73da">Conclusion</h2>
+<div class="outline-text-2" id="text-org87f73da">
 <p>
 I've often found that specifications in the IT industry have received a negative reputation in our industry. People say things such as, "Code is worth a thousand specifications," or complain that writing specifications is just a waste of time.
 </p>
