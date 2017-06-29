@@ -8,7 +8,7 @@ Concurrency can be notoriously difficult to get right, but fortunately, the Go p
 
 Author Katherine Cox-Buday takes you through the tools and techniques to develop and debug concurrent software. After finishing Concurrency in Go, you’ll be equipped with the skills you need to confidently and correctly write concurrent systems of any size.
 
-[[https://github.com/kat-co/concurrency-in-go-src][Source Code]]
+[[[https://github.com/kat-co/concurrency-in-go-src][Source Code]]] [[[http://www.oreilly.com/catalog/errata.csp?isbn=0636920046189][Errata]]]
 #+HTML: <div class="clearfix"></div>
 
 * Available for Pre-Purchase
