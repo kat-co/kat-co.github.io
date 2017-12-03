@@ -11,7 +11,7 @@ Author Katherine Cox-Buday takes you through the tools and techniques to develop
 [[[https://github.com/kat-co/concurrency-in-go-src][Source Code]]] [[[http://www.oreilly.com/catalog/errata.csp?isbn=0636920046189][Errata]]]
 #+HTML: <div class="clearfix"></div>
 
-* Available for Pre-Purchase
+* Available for Purchase
 - [[http://www.ebooks.com/95820962/concurrency-in-go/cox-buday-katherine/][ebooks.com]] (DRM free!)
 - [[https://www.amazon.com/gp/product/1491941197/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&tag=katherinecoxb-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=1491941197&linkId=50618894344eaf64dbf967755272d941][Amazon]]
 - [[http://www.barnesandnoble.com/w/concurrency-in-go-katherine-cox-buday/1123863796][Barnes & Noble]]
