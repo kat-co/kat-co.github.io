@@ -1,0 +1,83 @@
+#+TITLE: The Utility of a Cup
+#+DATE: 2018-07-18
+#+TAGS: tech
+#+KEYWORDS: burnout, concurrency in go, writing
+#  LocalWords:  qubits Ching O'Reilly Canonical's Laozi
+
+For awhile now, I've wanted to write about my experiences writing [[https://katherine.cox-buday.com/concurrency-in-go][Concurrency in Go]]. I want to write about what it was like to write a technical book, how I did it, and how I felt about it afterwards. This piece of writing will be about that last bit: how I feel having successfully written the book.
+
+When my part was finished, and I was informed that the book was going to print, the first thing I remember feeling is enormous relief. To understand why, I need to reveal a bit about what kind of frame of mind I was in.
+
+In 2015, I pitched the idea to O'Reilly, and eventually came to an agreement to write the book. At the time, my daughter was barely walking, and we were living in a house in which I had an office. I was managing a team at [[https://canonical.com][Canonical]] where we were writing a lot of Go, and generally enjoying life.
+
+After I had decided to write the book, a number of things happened from early 2016 into mid 2017 that made writing the book significantly more challenging:
+
+- My daughter got older and began needing much more supervision than I realized she'd need.
+- For three unrelated and equally serious reasons, the location our house was in became unsafe to live in, and we had to sell it.
+- We moved into a small apartment on the first floor of an old home. I lost an office space, and interruptions outside of working hours increased dramatically. A year into living there, we were also surprised with new neighbors upstairs, three young women. They were very loud, and regularly prevented us from sleeping. At night, we'd hear gunshots -- something I was unaccustomed to. Our garage was broken into. During the summer of 2016, a crime spree broke out in our neighborhood. People were being carjacked, forced to drive to withdraw money from ATMs, and sometimes assaulted or killed. We stopped going out after dark, and this effectively eliminated my exercise routine.
+- A presidential election happened. Fear crept into my psyche, and set up shop.
+- We couldn't find a house we liked and so decided to try and build one. We bought some land.
+- There were massive reorganizations at Canonical, and my team was dissolved. I became a software engineer once more (this part was cool!), and was placed on a new team.
+- Eventually Canonical's 2017 round of layoffs happened. My entire team and I were unexpectedly let go.
+- A job search ensued, and I found [[https://simple.com][Simple]] (this part was also good!).
+- For various reasons, we abandoned the idea of building a house, and sold the land.
+
+I am always very reticent to claim hardship in life -- there are people who have much different and much more serious problems than I do -- but this sequence of events ground me down like a pestle working a bit of spice. There were no nights off, there were no weekends off, and writing in the apartment was rarely an option[fn:2]. I sacrificed a lot of time with my family, and much of the time I was afraid. It is only in retrospect that I realize I was severely burnt out. Fear is the mind killer.
+
+Although I didn't realize why, I began withdrawing from different spaces, and limiting my activities. I now know that I was trying to simplify; to give myself time and space to claw some sense of normalcy back. I quit Twitter, I stopped updating my website. Personal projects were put on hold. I withdrew.
+
+#+HTML: <hr>
+
+Occasionally I flip through the Tao Te Ching. I first learned of its existence in high school when we were covering eastern philosophy, and I remember immediately agreeing with a core truth in the philosophy of Taoism: that everything comes in pairs[fn:1]. Light and dark, dry and wet, and so on. Laozi, author of the Tao Te Ching, has a way of distilling problems down into their most base components, and offering equally simple advice.
+
+And so, one night, a couple of months after the book had been published, I was searching through the Tao Te Ching for a bit of wisdom on the matter. I wanted insight into how I was feeling, and maybe some advice on how to fix it. That's when I came across this passage:
+
+#+CAPTION: Tao Te Ching, Chapter 11, as translated by Stephen Mitchell
+#+BEGIN_QUOTE
+We join spokes together in a wheel,
+but it is the center hole
+that makes the wagon move.
+We shape clay into a pot,
+but it is the emptiness inside
+that holds whatever we want.
+We hammer wood for a house,
+but it is the inner space
+that makes it livable.
+We work with being,
+but non-being is what we use.
+#+END_QUOTE
+
+This reminded me of [[http://www.ashidakim.com/zenkoans/1acupoftea.html][a Zen Koan]] I had once read:
+
+#+BEGIN_QUOTE
+Nan-in, a Japanese master during the Meiji era (1868-1912), received a university professor who came to inquire about Zen.
+
+Nan-in served tea. He poured his visitor's cup full, and then kept on pouring.
+
+The professor watched the overflow until he no longer could restrain himself. "It is overfull. No more will go in!"
+
+"Like this cup," Nan-in said, "you are full of your own opinions and speculations. How can I show you Zen unless you first empty your cup?"
+#+END_QUOTE
+
+And finally, a wonderful quote from Bruce Lee:
+#+BEGIN_QUOTE
+The usefulness of a cup is in its emptiness.
+#+END_QUOTE
+
+If I were to draw inspiration from Laozi, and distill how I felt after completing the book into the simplest expression, it would be this: my cup was full. It was so full, I had no room for curiosity, for wonder, or for learning. This is why I had withdrawn: to empty my cup.
+
+At the time of this writing it's been almost a year since "Concurrency in Go" has been published. I'm very happy to say that I have begun to feel like I have a little more room in my cup. We're now living in a safe and quiet house. I've completed quite a few projects to establish a fun home computing lab, with more private and public projects in the pipeline (this post was one of them!). I have an office again. And this space is giving me the strength to face some of the fear I've had since the election, and to develop ideas for helping others. I'm doing good.
+
+And with this space, I am finally able to reflect on how I feel having written the book. At the end of the day, am I happy I decided to write this book? Yes; I am very happy to have written Concurrency in Go. In its preface I say:
+
+#+BEGIN_QUOTE
+I wanted the community to have access to high-quality and comprehensive information about concurrency in Go...
+#+END_QUOTE
+
+That altruistic justification still rings true, and since the book was published, I've had several people tell me how much it has helped them. It may have been a difficult journey, but the destination has been worth it.
+
+* Footnotes
+
+[fn:2] It's for this reason that in my acknowledgments I thank the wonderful St. Louis library system! Support your libraries!
+
+[fn:1] I have often wondered how qubits might be regarded under Taoism.
