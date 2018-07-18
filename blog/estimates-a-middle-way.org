@@ -1,0 +1,111 @@
+#+TITLE:       Estimates: A middle way.
+#+DATE:        2015-03-15
+#+TAGS:        tech
+#+OPTIONS: tex:dvipng
+#+LATEX_HEADER: \usepackage{smartdiagram}
+
+This document will probably be one that evolves over time.
+
+I am not a project manager, nor do I want to be. I don't have my PMP, or any other such certification. What I do have is a number of years of experience with leading people, and being responsible for delivering things on some sort of schedule. In that time, I formed an opinion on a good way to establish a contract and a dialogue between your team and your client without micromanaging your team. This article is an attempt to elucidate that that opinion.
+
+I derived the title for this article from a concept in Buddhism. The middle way teaches to always find the middle ground between two extremes. Lately, I've been vaguely aware of a backlash against estimating within the IT community.
+
+#+BEGIN_HTML
+<blockquote class="twitter-tweet" lang="en"><p>please estimate: what % of worldwide programming effort is burned in dysfunctional behavior driven by &quot;deadlines&quot; that are just guesses?</p>&mdash; Kent Beck (@KentBeck) <a href="https://twitter.com/KentBeck/status/575075249496129536">March 9, 2015</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+#+END_HTML
+
+People are not wrong to be upset. I've been part of cultures where the estimation process was horribly broken. In regards to Kent's tweet, /of course/ something is amiss in your organization if you do the wrong thing for the sake of the schedule. The schedule is just a drum beat everyone can march to; it should /not/ be the singular thing driving the important decisions that need to made in your organization.
+
+So the idea here is to create this roadmap in a sustainable way that allows your team to actually do the work, and gives everyone involved something to point at when talking about progress. There is no silver-bullet; these are only tools to be wielded.
+
+: The singular idea underpinning this entire article is: Effort != Duration. And you should have someone responsible for translating between the two.
+
+Humans are pretty good at estimating relative effort, but we're pretty bad at estimating how long that effort will take to complete. So use data and a dedicated person to translate between the two. This allows your team to make reliable, /quick/, estimates, and allows you to provide reliable estimates for when the work will be completed.
+
+: The unit for these estimates are "points" -- so-called because they intentionally have no unit: their meaning is derived and changes from iteration to iteration.
+
+The power comes from relativity: how long it took your team to complete work of a certain effort has a strong relationship with how long it will take them to complete work of the same effort in the future. You can use this relation -- commonly called "Velocity" -- to translate between effort, and duration.
+
+: Velocity = (# points completed) / (# days in iteration)
+
+This translation takes the burden off of your team, because they no longer have to guess at how long something will take, or track how long the work actually took: the former is handled by the velocity conversion, and the latter is handled by the fact that you have a fixed interval iteration.
+
+They only have to give their gut feeling on how difficult something will be to complete.
+
+So if the power of this technique comes from the relative estimates between iterations, it follows that the first and most important thing you must do is bring consistency to your estimates. If your iterations aren't consistent, either in days worked, number of people working on the team, or how you estimate, that relativity between iterations will be weaker, and the translation between effort and duration will be skewed. *Consistency is important.*
+
+Different developers will have different ideas on how difficult things will be to implement, so how can you bring consistency to bear here? There are a few strategies:
+
+- Estimate as a team.
+
+  Count to three and have the entire team estimate at the same time. This prevents bias from skewing your estimate. Doing this helps the team to converge on a number. There will be outliers, both low and high, and its the job of the team to determine why these team members are voting differently. Commonly, the team member knows something the rest of the team doesn't or the team member is making an assumption that needs clarification.
+
+- Use an exponential scale, or the Fibonacci sequence.
+
+  This creates a built-in buffer. The larger the estimate, the more likely it is that the team is making assumptions. Thus, the farther out they want to go, the larger the buffer is.
+
+- Only take credit for items which contribute to the goal committed to.
+
+  The goal of the plan is to give people an estimate for how long it will take to accomplish a goal. If your team is performing work that doesn't contribute to this goal, then don't track it on the goal's plan. You can track it somewhere else, but don't track it on the goal's plan. If you do, you can no longer tell people how long something will take; instead, you'll only be able to state how much "stuff" your team can accomplish in a time period.
+
+  Similarily, if you have to fix bugs related to work you've already claimed as complete, don't double count this work by claiming it for your team twice. This skews your estimates for how long it will take to complete what you've promised.
+
+* Old                                                              :noexport:
+** Step 1: Establish a Fixed-interval Iteration.
+
+Why fixed-interval? Because later we'll show how this takes the majority of the burden of estimating off the people executing. This leads to shorter meetings, better estimates, and happier teammates.
+
+This is easy to set up because you don't need buy-in from anyone outside your organization. You can operate in a fixed-interval iteration within whatever construct the larger organization has decided upon. If you have quarterly releases, iterations can tell you how much work you can fit in a quarter. Fixed release dates? Iterations can tell you with increasing certainty how likely you are to deliver on time. The iteration is there to help /your/ team deliver.
+
+The hardest part of setting up a fixed-interval iteration is deciding on the interval. You want something that's small enough to allow you to make course-corrections and give status-updates, but not so small that it seems like you're doing more planning than actual work. A good starting point is 2 weeks.
+
+** Step 2: Establish a Work Intake Pipeline
+
+This is so critical. If your team is constantly distracted by bugs and new feature requests, there will be lots of context-switching, and the amount of work you can accomplish within your iteration will go down. Establishing a work intake pipeline sets an expectation with your stakeholders, and gives your team a sense of familiarity to rest on when the unexpected arises -- and this /will/ happen! It's not a bad thing; remember the schedule is just there to guide you, not to be an unbreachable contract.
+
+If the work you're undertaking is large enough to span several iterations, you only have to worry about slotting in the unexpected work. If you're responsible for a steady flow of one-off enhancements, you'll have to have a more regular prioritization meeting with your stakeholders. In that case, I suggest you begin working with your stakeholders on new requests and prioritizing this list during the current iteration, so that when planning for the next iteration, you already have your list in-hand.
+
+** Step 3a: Plan Your Iteration
+
+*** Starting from scratch: Planning a large body of work.
+
+Break the work down into iteration-sized chunks.
+
+*** Planning a single Iteration.
+
+Begin breaking down work from your prioritized queue into chunks that can be completed in a reasonable amount of time. What constitutes "reasonable" is up to the team, but keep in mind this granularity is your reporting mechanism: you don't want to reach the end of your iteration and find out that a large work item still isn't done.
+
+** Step 3b: Estimating
+
+This gets its own section because the rest of this document is just here to support this one point.
+
+: Effort != Duration. And you should have someone responsible for translating between the two.
+
+
+
+** Study Case: Project Foobar.
+
+*** The Request Comes in
+
+: We want a website that does Foo.
+
+*** Breaking the Request Down
+
+*** Planning your first iteration
+
+** Foo
+
+#+name: test_plot_png
+#+header: :exports results :file test.png
+#+header: :imagemagick yes :iminoptions -density 600 :imoutoptions -geometry 400
+#+header: :fit yes :noweb yes :headers '("\\usepackage{tikz}")
+#+begin_src latex :exports results :file test.png
+  \LaTeX
+#+end_src
+
+** Noble Truths
+1. Estimates are just that.
+2. You still need to make a promise to your client. Only deviate from this if you were off by a factor of 2.
+3. Estimates should be done quickly.
+4. Velocity should be tracked.
