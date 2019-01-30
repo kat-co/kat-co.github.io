@@ -1,15 +1,15 @@
 #+TITLE:
-#+KEYWORDS:		Lisp, Emacs, Linux, Programming, Blog, Katherine Cox-Buday
+#+KEYWORDS:		Go, Golang, Lisp, Emacs, Linux, Programming, Blog, Katherine Cox-Buday
 #+LANGUAGE:		en
 #+OPTIONS:		H:3 num:nil toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
-#+DESCRIPTION:	Katherine Cox-Buday
+#+DESCRIPTION:          Katherine Cox-Buday
 
 #+ATTR_HTML: :class img-responsive img-rounded pull-left :style margin-right:15px
 [[file:blog/static/me.png]]
 
 Hi, I'm Katherine Cox-Buday, and this is probably the best way to reach anything I do.
 
-I am the author of the book, "[[http://katherine.cox-buday.com/concurrency-in-go][Concurrency in Go]]", and a computer scientist currently working at [[https://www.simple.com/][Simple]]. My hobbies include software engineering, creative writing, Go (igo, baduk, weiquei), and music, all of which I pursue intermittently and with various levels of dedication.
+I am the author of the book, "[[http://katherine.cox-buday.com/concurrency-in-go][Concurrency in Go]]", and a computer scientist currently working at [[https://digitalocean.com/][DigitalOcean]]. My hobbies include software engineering, creative writing, Go (igo, baduk, weiquei), and music, all of which I pursue intermittently and with various levels of dedication.
 
 I am a practicing Buddhist, and I am currently exploring the [[http://secularbuddhism.org/][secular]] school of thought. Above all, I wish peace and happiness to all people, and -- by extension -- to you :)
 #+HTML: <div class="clearfix"></div>
