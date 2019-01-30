@@ -4,8 +4,8 @@
     <title>Katherine Cox-Buday</title>
     <link>http://katherine.cox-buday.com</link>
     <description>static site generator</description>
-    <pubDate>Wed, 18 Jul 2018 14:29:53 CDT</pubDate>
-    <lastBuildDate>Wed, 18 Jul 2018 14:29:53 CDT</lastBuildDate>
+    <pubDate>Wed, 30 Jan 2019 07:50:47 CST</pubDate>
+    <lastBuildDate>Wed, 30 Jan 2019 07:50:47 CST</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
     <item>
@@ -157,63 +157,1342 @@ I have often wondered how qubits might be regarded under Taoism.
     <item>
       <title></title>
       <link>http://katherine.cox-buday.com/concurrency-in-go/</link>
-      <description><![CDATA[]]></description>
+      <description><![CDATA[<div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3></h3>
+      
+<div class="figure">
+<p><img src="/assets/concurrency-in-go/book-cover.jpg" alt="book-cover.jpg" class="img-responsive pull-left" style="margin-right:15px; width:250px" />
+</p>
+</div>
+
+<p>
+Concurrency can be notoriously difficult to get right, but fortunately, the Go programming language was designed with concurrency in mind. In this practical book, you’ll learn how Go was written to help introduce and master these concepts, as well as how to use basic concurrency patterns to form large systems that are reliable and remain simple and easy to understand.
+</p>
+
+<p>
+Author Katherine Cox-Buday takes you through the tools and techniques to develop and debug concurrent software. After finishing Concurrency in Go, you’ll be equipped with the skills you need to confidently and correctly write concurrent systems of any size.
+</p>
+
+<p>
+[<a href="https://github.com/kat-co/concurrency-in-go-src">Source Code</a>] [<a href="http://www.oreilly.com/catalog/errata.csp?isbn=0636920046189">Errata</a>]
+</p>
+<div class="clearfix"></div>
+
+<div id="outline-container-org6e3aac2" class="outline-2">
+<h2 id="org6e3aac2">Available for Purchase</h2>
+<div class="outline-text-2" id="text-org6e3aac2">
+<ul class="org-ul">
+<li><a href="http://www.ebooks.com/95820962/concurrency-in-go/cox-buday-katherine/">ebooks.com</a> (DRM free!)</li>
+<li><a href="https://www.amazon.com/gp/product/1491941197/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;tag=katherinecoxb-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=1491941197&amp;linkId=50618894344eaf64dbf967755272d941">Amazon</a></li>
+<li><a href="http://www.barnesandnoble.com/w/concurrency-in-go-katherine-cox-buday/1123863796">Barnes &amp; Noble</a></li>
+<li>A local independent bookstore near you!</li>
+</ul>
+</div>
+</div>
+
+    </div>
+  </div>
+</div> <!-- /.container -->
+]]></description>
       <pubDate>2017-12-03</pubDate>
       <guid>http://katherine.cox-buday.com/concurrency-in-go/</guid>
     </item>
     <item>
       <title>On Perfectionism</title>
       <link>http://katherine.cox-buday.com/blog/2015/03/02/on-perfectionism/</link>
-      <description><![CDATA[]]></description>
+      <description><![CDATA[<div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3>On Perfectionism</h3>
+      <p>
+I recently came across this Tweet:
+</p>
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="http://t.co/meyTVhEscW">http://t.co/meyTVhEscW</a> <a href="http://t.co/VyIujIx2dZ">pic.twitter.com/VyIujIx2dZ</a></p>&mdash; Paul Baumgart (@paulbaumgart) <a href="https://twitter.com/paulbaumgart/status/571788242174918656">February 28, 2015</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>
+I've spent most of my career in the financial industry. There, it was unacceptable to release code which didn't work, and acceptable for the time between releases to span months; because if you got something wrong, it could have led to significant financial losses. It was a different type of job, and discussion of the pros/cons of this type of environment is probably outside the scope of this post.
+</p>
+
+<p>
+I've changed jobs now, but I'm still trying to shake one of the detrimental habits the financial industry trained me into: perfectionism.
+</p>
+
+<p>
+Now admittedly, I can't rest <i>all</i> of the blame on my previous job. Perfectionism is something that's innate to my character as well. Perhaps working in that type of environment just helped further crystallize a way of working.
+</p>
+
+<p>
+And it's not all bad. It's partially what drives me: the desire to release pristine code leads to (what I consider) some nice patches and projects. It is sometimes the driving force behind <i>starting</i> some changes. It can be a really positive thing.
+</p>
+
+<p>
+But it can also be negative.
+</p>
+
+<p>
+The Open Source mantra is, "Release early; release often." I think the justification lies within the parable from this tweet. Humans are really good at modeling the future &#x2013; it's what makes us the dominant species on Earth. But when working with things as complex as software, this modeling has limits. The better way to work is to make mistakes as fast as possible, and iterate towards perfection.
+</p>
+
+<p>
+I have found myself trying to get everything perfect before pushing changes up to their respective repositories. And sometimes I even find this blocking me from getting started. <i>All</i> the different approaches, their pros and cons, possible edge cases: they're all floating around in my mind, and it's difficult to just get started and get something working. Usually once I do get a bit of code written, I'm off and away and things are fine, but sometimes it's hard to get past that first block.
+</p>
+
+<p>
+Those familiar with perfectionism are probably nodding their heads. It's a well understood problem, and there are some things you can do to try and get past it.
+</p>
+
+<p>
+In the context of software engineering, one thing I've found that helps is to write tests. Tests are usually much more plain, and are &#x2013; by design &#x2013; meant to test one thing at a time. If edge-cases appear, you should probably write a test for that anyway, and so you can get a fair amount of work by simply building out the scaffolding of the program by writing tests. This gets you to lay down some code, and possibly removes the mental block.
+</p>
+
+<p>
+I haven't found any other useful ways to resist the siren call of perfectionism (indeed I'm having trouble getting this post out!), but I at least thought this tweet would be a friendly reminder as to why it's better to fail as fast as you can.
+</p>
+
+    </div>
+  </div>
+</div> <!-- /.container -->
+]]></description>
       <pubDate>2017-01-23</pubDate>
       <guid>http://katherine.cox-buday.com/blog/2015/03/02/on-perfectionism/</guid>
     </item>
     <item>
       <title>Gorkin: An Experiment with Cucumber &amp; BDD</title>
       <link>http://katherine.cox-buday.com/blog/2015/07/09/gorkin-an-experiment-with-cucumber-&amp;-bdd/</link>
-      <description><![CDATA[]]></description>
+      <description><![CDATA[<div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3>Gorkin: An Experiment with Cucumber &amp; BDD</h3>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/RuFrIq0f5Es" frameborder="0" allowfullscreen></iframe>
+
+<p>
+(<a href="https://github.com/kat-co/gorkin">repository</a>)
+</p>
+
+    </div>
+  </div>
+</div> <!-- /.container -->
+]]></description>
       <pubDate>2017-01-20</pubDate>
       <guid>http://katherine.cox-buday.com/blog/2015/07/09/gorkin-an-experiment-with-cucumber-&amp;-bdd/</guid>
     </item>
     <item>
       <title>An Argument for Parameter Validation</title>
       <link>http://katherine.cox-buday.com/blog/2014/07/31/an-argument-for-parameter-validation/</link>
-      <description><![CDATA[]]></description>
+      <description><![CDATA[<div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3>An Argument for Parameter Validation</h3>
+      <p>
+I'm a fan of validating parameters in languages which do not have preconditions.
+</p>
+
+<p>
+First, let's define what I mean when I say validation.
+</p>
+<pre class="example">
+Parameter validation is ensuring the things you utilize are in a state in which you can use them.
+</pre>
+
+<p>
+Many people hear parameter validation and immediately jump to this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java">public void AnImportantMethod(report Report, author Author, repository Repository) {
+    if(report == null)
+      throw new NullPointerException("report");
+    if(author == null)
+      throw new NullPointerException("author");
+    if(repository == null)
+      throw new NullPointerException("repository");
+
+
+    // Finally, our code!
+    // ...
+}
+</pre>
+</div>
+
+<p>
+Although checking for null values is a large responsibility of validating parameters, parameter validation isn't constrained to this. If you accept an integer, but want to make sure it falls within a range, that's parameter validation. If you want to ensure the object you're passed is in a known/correct state, that's parameter validation. If you want to make sure your business-object adheres to business rules that pertain to what you're going to do, that's parameter validation.
+</p>
+
+<p>
+A code-base of any decent side will have disparate subsystems in various states of coupling. The way these systems interact can be subtle, and the data they share can have an infinite domain (strings, numbers), or at least be very complex (classes which break the law of demeter &#x2013; admit it, you have a few). Rather than try and reason about your entire code-base as a whole, I find it much easier to worry about the one thing my component is doing, and make sure it has everything it needs before getting started. So how do you go about this?
+</p>
+
+<p>
+When reasoning about the correctness of your data, you have a few options:
+</p>
+
+<ol class="org-ol">
+<li>Relying on the fact that the data was generated and transformed correctly everywhere else.</li>
+<li>Defining coarse boundaries and validating data there (think user-input coming in).</li>
+<li>Validating the data right before you use it.</li>
+</ol>
+
+<p>
+Which should you choose?
+</p>
+
+<p>
+Let's get a little philosophical. The ways in which the code boundary you are guarding are interacted with are discrete and finite at this moment in time. Let's call that number A. If you're lucky, perhaps A is some small number &#x2013; perhaps even 1 &#x2013; and you can reason about what data makes it across your code boundary.
+</p>
+
+<p>
+But over time, A will change in ways you cannot predict (if you can, talk to me, and we'll make lots of money together). Architecture will change, the scope of your boundary might expand, the permutations that create your arguments might blow your data's domain out to some large number, code that didn't even exist might begin lobbing bytes across: you just don't know.
+</p>
+
+<p>
+So perhaps it's because I'm paranoid, but I like to validate my inputs as close to their use as possible. The boundary I usually choose is methods. At the beginning of every method I do any validation I need to do to ensure that I at least started in a known state.
+</p>
+
+<p>
+There are advantages and disadvantages to this technique.
+</p>
+
+<div id="outline-container-orgfb9c915" class="outline-2">
+<h2 id="orgfb9c915">Advantages</h2>
+<div class="outline-text-2" id="text-orgfb9c915">
+<ol class="org-ol">
+<li><p>
+<b>Adherence to the <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail Fast principle</a>.</b>
+</p>
+
+<p>
+Don't know why that's a good thing? Check out <a href="http://www.martinfowler.com/ieeeSoftware/failFast.pdf">this</a> great article.
+</p></li>
+
+<li><p>
+<b>Complete Coverage</b>
+</p>
+
+<p>
+No matter how your code is called, it will be validated.
+</p></li>
+
+<li><p>
+<b>Code Contracts</b>
+</p>
+
+<p>
+If I'm calling this code, what can I pass in? Are nulls OK? If I'm reading the code, this gives me an indication. If I'm calling the code, I know right away.
+</p></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org3c0781c" class="outline-2">
+<h2 id="org3c0781c">Disadvantages</h2>
+<div class="outline-text-2" id="text-org3c0781c">
+<ol class="org-ol">
+<li><p>
+<b>Performance</b>
+</p>
+
+<p>
+If you call a guarded block of code repeatedly, validation can slow your program down demonstrably; however, this is an edge case and you shouldn't discard the entire concept of parameter validation at the altar of premature optimization.
+</p></li>
+
+<li><p>
+<b>Verbosity</b>
+</p>
+
+<p>
+It's extra lines of code &#x2013; no way around it &#x2013; however, given the potential benefit, this disadvantage seems insignificant. Further, there's ways to even further minimize this downside discussed below.
+</p></li>
+
+<li><p>
+<b>Duplication of Effort</b>
+</p>
+
+<p>
+This is the one I struggle with most. How many times are you going to check that an instance of a string is not empty before you believe it? There's some truth to this, but only in the simple case. As mentioned above, what string you are passed could change in the future; so in a sense we are guarding against the domain of values, not specific instances.
+</p></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org29b21c6" class="outline-2">
+<h2 id="org29b21c6">Smart Parameter Validation</h2>
+<div class="outline-text-2" id="text-org29b21c6">
+<p>
+A long chain of if statements at the beginning of your code is cumbersome to write and maintain. It's prone to bugs, and it can actually hide incorrect parameters which are checked after other failing parameters. Do your parameter validation smarter:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go">func PersistCreeps(dataStore io.Writer, creeps []*game.Creep) error {
+
+    BeginValidation().Validate(
+        IsNotNil(dataStore, "dataStore"),
+        IsNotNil(creeps, "creeps"),
+    ).CheckAndPanic().Validate(
+        GreaterThan(len(creeps), 0, "creeps"),
+    ).CheckAndPanic()
+
+        // ...
+}
+</pre>
+</div>
+
+<p>
+What the heck is that? It's a fluent style of parameter validation I picked up from the author of Paint.Net, Rick Brewster, in an <a href="http://blog.getpaint.net/2008/12/06/a-fluent-approach-to-c-parameter-validation/">article</a> he wrote. It chains together validation, and returns a single error containing all failures. You can also extend it to contain arbitrarily complex validators:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go">func ReportFitsRepository(report *Report, repository *Repository) Checker {
+    return func() (passes bool, err error) {
+
+        err = fmt.Errorf("A %s report does not belong in a %s repository.", report.Type, repository.Type)
+        passes = (repository.Type == report.Type)
+        return passes, err
+    }
+}
+
+func AuthorCanUpload(authorName string, repository *Repository) Checker {
+    return func() (passes bool, err error) {
+        err = fmt.Errorf("%s does not have access to this repository.", authorName)
+        passes = !repository.AuthorCanUpload(authorName)
+        return passes, err
+    }
+}
+
+func AuthorIsCollaborator(authorName string, report *Report) Checker {
+    return func() (passes bool, err error) {
+
+        err = fmt.Errorf("The given author was not one of the collaborators for this report.")
+        for _, collaboratorName := range report.Collaborators() {
+            if collaboratorName == authorName {
+                passes = true
+                break
+            }
+        }
+        return passes, err
+    }
+}
+
+func HandleReport(authorName string, report *Report, repository *Repository) {
+
+    BeginValidation().Validate(
+        AuthorIsCollaborator(authorName, report),
+        AuthorCanUpload(authorName, repository),
+        ReportFitsRepository(report, repository),
+    ).CheckAndPanic()
+}
+</pre>
+</div>
+
+<p>
+Here we can see that parameter validation doesn't have to be verbose, or even hard to write. In fact, if done properly, parameter validation can bring a lot of clarity to your code, and give developers a sense of what you expect data to look like when passing your code boundary.
+</p>
+
+<p>
+If you're interested in this style of parameter validation, and are working with Go, check out my validation library, <a href="https://github.com/kat-co/vala">Vala</a>.
+</p>
+</div>
+</div>
+
+    </div>
+  </div>
+</div> <!-- /.container -->
+]]></description>
       <pubDate>2017-01-19</pubDate>
       <guid>http://katherine.cox-buday.com/blog/2014/07/31/an-argument-for-parameter-validation/</guid>
     </item>
     <item>
       <title>Why this Year I&#39;m Focusing on Charity.</title>
       <link>http://katherine.cox-buday.com/blog/2014/12/03/why-this-year-im-focusing-on-charity/</link>
-      <description><![CDATA[]]></description>
+      <description><![CDATA[<div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3>Why this Year I&#39;m Focusing on Charity.</h3>
+      <p>
+I am fortunate in my life that I have nurtured a career that not only helps to sustain my family but allows me enough money to enjoy some recreational things. It is for this reason that I'm not sure whether my growing distaste for consumerism has just come with age, or if it's because I can afford things I would like. Either way, I have come to loathe this time of year in The United States.
+</p>
+
+<p>
+I feel inundated by commercials telling me to buy now, that I should get what I really want this year. Here's a BMW that I deserve. Here's a diamond necklace he had better get me. Here's me suppressing a gag reflex.
+</p>
+
+<p>
+I'm not out and out against people wanting things -- or gifts. That's all fine (I even have a few items on my list). It's the exuberance of what the last fourth of the year has come to represent. We have an entire season of procurement and societal greed. I've reached a tipping point in my life where the very idea of me sitting down and putting thought into a list of more things I want to acquire leaves a bad taste in my mouth. I don't need more stuff -- no matter how hard the advertising industry tries to sell it. What I would like to do this year is cultivate compassion, and establish a pattern my newborn daughter can look up to. When I think of this time of year, I don't want to think of the exuberance of excess, I want to think of others, and how I can possibly contribute in some small way to the betterment of the world.
+</p>
+
+<p>
+So last night I sat down and I did make a list. I made a list of charities I'd like to support this year, and going forward. If you're in a position where you don't really need anything, I encourage you to at least stop and think about what this time of year means to you, and whether more things will really enhance your life.
+</p>
+
+<p>
+Happy holidays, everyone.
+</p>
+
+<p>
+Katherine
+</p>
+
+<ul class="org-ul">
+<li>NAMI (<a href="http://www.charitynavigator.org/index.cfm?bay=search.summary&amp;orgid=4827">National Alliance on Mental Illness</a>)</li>
+<li>HRC (<a href="http://www.charitynavigator.org/index.cfm?bay=search.summary&amp;orgid=6229">The Human Rights Campaign</a>)</li>
+<li>WWF (<a href="http://www.charitynavigator.org/index.cfm?bay=search.summary&amp;orgid=4770">World Wildlife Fund</a>)</li>
+<li>Wikimedia Foundation (<a href="http://www.charitynavigator.org/index.cfm?bay=search.summary&amp;orgid=11212">Wikipedia</a>)</li>
+</ul>
+
+    </div>
+  </div>
+</div> <!-- /.container -->
+]]></description>
       <pubDate>2017-01-19</pubDate>
       <guid>http://katherine.cox-buday.com/blog/2014/12/03/why-this-year-im-focusing-on-charity/</guid>
     </item>
     <item>
       <title>Simplicity and Go</title>
       <link>http://katherine.cox-buday.com/blog/2015/07/08/simplicity-and-go/</link>
-      <description><![CDATA[]]></description>
+      <description><![CDATA[<div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3>Simplicity and Go</h3>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/S6mEo_FHZ5Y" frameborder="0" allowfullscreen></iframe>
+
+<p>
+(<a href="/assets/blog/2015/07/08/simplicity-and-go/simplicity-and-go.pdf">slides</a>)
+</p>
+
+    </div>
+  </div>
+</div> <!-- /.container -->
+]]></description>
       <pubDate>2017-01-19</pubDate>
       <guid>http://katherine.cox-buday.com/blog/2015/07/08/simplicity-and-go/</guid>
     </item>
     <item>
       <title>Analyzing Opentracing for Go</title>
       <link>http://katherine.cox-buday.com/blog/2016/06/06/analyzing-opentracing-for-go/</link>
-      <description><![CDATA[]]></description>
+      <description><![CDATA[<div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3>Analyzing Opentracing for Go</h3>
+      <p>
+I'm in the middle of designing the architecture for an audit log for <a href="https://jujucharms.com">Juju</a>, and some of my colleagues suggested <a href="http://opentracing.io/">OpenTracing</a>. I flipped through the site and it looks like it might meet our needs quite nicely, and so I've set out to do a deeper analysis to make sure it's something that is a good fit. I'm hoping this post will serve as a place I can point my coworkers for that analysis, as well as to help anyone else considering utilizing this project.
+</p>
+
+<p>
+Juju is written in Go, and so I'll be taking a look at the <a href="https://github.com/opentracing/opentracing-go">Go implementation</a> of the project. I'm going to ignore any kind of general overview as the project's web page does a pretty good job of that. Instead this post will focus on the things that aren't immediately apparent: ease of use, and performance.
+</p>
+
+<p>
+With that said, on to the analysis!
+</p>
+
+<div id="outline-container-org7cf98fe" class="outline-2">
+<h2 id="org7cf98fe">Key Concepts</h2>
+<div class="outline-text-2" id="text-org7cf98fe">
+<ul class="org-ul">
+<li><b>span</b>: A logical unit of work in the system.</li>
+<li><b>baggage</b>: Information intended to be carried on to subsequent spans.</li>
+<li><b>tracer</b>: Manages spans. A <b>trace</b> is a tree of spans.</li>
+<li><b>recorder</b>: Records span information to the system's backing-store.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge71c9d1" class="outline-2">
+<h2 id="orge71c9d1">Sanity Check</h2>
+<div class="outline-text-2" id="text-orge71c9d1">
+<p>
+First of all, the <a href="https://github.com/opentracing/opentracing-go/blob/master/LICENSE">license</a> is MIT. No issues there.
+</p>
+
+<p>
+At the time of this post, the project has 110 stars on GitHub, the last merge was 14 days ago, and there are 5 open issues, 15 closed. As far as project activity goes, looks OK.
+</p>
+
+<p>
+Juju also has Python bindings to its API, so ideally any tracing standard will be polyglot implementation. It looks like Opentrace does have Python binding, and it also looks like Java, JavaScript, Objective C, C++, PHP, and Ruby are in <a href="http://opentracing.io/integration/">various stages</a> of support. We should be good to go.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org86fe60c" class="outline-2">
+<h2 id="org86fe60c">Performance</h2>
+<div class="outline-text-2" id="text-org86fe60c">
+<p>
+First the obvious question. If I'm going to be embedding a lot of spans, this needs to be fast. How quick is it to create and tear down a new span?
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go">func BenchmarkSpanCreation(b *testing.B) {
+    for i := b.N; i &gt;= 0; i-- {
+        s := opentracing.StartSpan(fmt.Sprintf("span %d", i))
+        s.Finish()
+    }
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh">go test /tmp/analyzing-opentrace/b_span_creation_test.go
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">ok</td>
+<td class="org-left">command-line-arguments</td>
+<td class="org-left">0.003s</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Looks to be fast enough to be non-impactful. What about creating spans from other spans?
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go">func BenchmarkChildSpanCreation(b *testing.B) {
+    p := opentracing.StartSpan("parent-spam")
+    defer p.Finish()
+    for i := b.N; i &gt;= 0; i-- {
+        s := opentracing.StartChildSpan(p, fmt.Sprintf("child-span-%d", i))
+        s.Finish()
+    }
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh">go test /tmp/analyzing-opentrace/b_span_child_creation_test.go
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">ok</td>
+<td class="org-left">command-line-arguments</td>
+<td class="org-left">0.026s</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Also reasonable. Our RPC system utilizes web sockets; if we were to inject span information, how much extra space could we expect it to take up?
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go">tracer := basictracer.New(nil)
+
+httpReq, _ := http.NewRequest("GET", "http://myservice/", nil)
+fmt.Printf("Header (before): %v\n", httpReq.Header)
+
+s := tracer.StartSpan("my-span")
+// defer s.Finish() &lt;-- Normally we would call this to trigger writes by the recorder
+s.LogEvent("test event")
+s.SetBaggageItem("my-baggage", "current user")
+
+tracer.Inject(s, opentracing.TextMap, opentracing.HTTPHeaderTextMapCarrier(httpReq.Header))
+fmt.Printf("Header (after): %v\n", httpReq.Header)
+</pre>
+</div>
+
+<p>
+Looks pretty reasonable; just some information about the spans for the receiver to pick up the trace.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc249e1a" class="outline-2">
+<h2 id="orgc249e1a">Integration with Juju</h2>
+<div class="outline-text-2" id="text-orgc249e1a">
+</div>
+<div id="outline-container-org851d6db" class="outline-3">
+<h3 id="org851d6db">Gating API Calls</h3>
+<div class="outline-text-3" id="text-org851d6db">
+<p>
+Juju's API server is the bottleneck gating access to and from a Juju daemon and is the natural place to ensure a trace either exists or is started. Ideally the things calling Juju's API server would have started a trace, but if not, we need to ensure that one exists. Let's first see how we can ensure that all API server connections know about OpenTracing and spans.
+</p>
+
+<p>
+Ideally I wish I could decorate our API server endpoints so that the cross-cutting concern of injecting tracing could be encapsulated elsewhere, but Go doesn't make this easy. The next best thing is to inject the tracing information into all API requests.
+</p>
+
+<p>
+Go's <code>context.Context</code> type has become the standard way at providing context to long-running processes, and so it makes sense to create a type that conforms to that interface and also has OpenTracing information embedded so that functions and methods down the call-tree can either perform traces or do the things <code>context.Context</code> advertises it can do.
+</p>
+
+<p>
+It is a little strange to utilize <code>context.Context</code> along-side Juju's RPC implementation because timeouts are already baked in, but as this has become the standard way of managing things like this in Go, I think we should move this way. So how would we go about injecting a <code>context.Context</code> into all API calls?
+</p>
+
+<p>
+In <a href="https://github.com/juju/juju/blob/master/apiserver/root.go#L119-L127">apiserver/root.go</a> there is a method which utilizes reflection to perform a call on API server methods. It looks like this:
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>github.com/juju/juju/apiserver/root.go</label><pre class="src src-go">// Call takes the object Id and an instance of ParamsType to create an
+// object and place a call on its method. It then returns an instance
+// of ResultType.
+func (s *srvCaller) Call(objId string, arg reflect.Value) (reflect.Value, error) {
+    objVal, err := s.creator(objId)
+    if err != nil {
+        return reflect.Value{}, err
+    }
+    return s.objMethod.Call(objVal, arg) // &lt;1&gt;
+}
+</pre>
+</div>
+
+<p>
+The interesting bit is at &lt;1&gt; where we call an API's server endpoint and pass in the method receiver and a struct which is depersisted from the client. The <code>Call</code> method is something specific to Juju's RPC mechanism and has the following function signature:
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 2: </span>github.com/rpc/rpcreflect/type.go</label><pre class="src src-go">// Call calls the method with the given argument on the given receiver
+// value. If the method does not return a value, the returned value
+// will not be valid.
+Call func(rcvr, arg reflect.Value) (reflect.Value, error)
+</pre>
+</div>
+
+<p>
+It's instantiated at the time the RPC call is made and by reflecting on the type of facade registered on the server. Here's the interesting bit:
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 3: </span>github.com/juju/rpc/rpcreflect/type.go</label><pre class="src src-go">func newMethod(m reflect.Method, receiverKind reflect.Kind) *ObjMethod {
+    if m.PkgPath != "" {
+        return nil
+    }
+    var p ObjMethod
+    var assemble func(arg reflect.Value) []reflect.Value
+    // N.B. The method type has the receiver as its first argument
+    // unless the receiver is an interface.
+    receiverArgCount := 1
+    if receiverKind == reflect.Interface {
+        receiverArgCount = 0
+    }
+    t := m.Type
+    switch {                    // &lt;1&gt;
+    case t.NumIn() == 0+receiverArgCount:
+        // Method() ...
+        assemble = func(arg reflect.Value) []reflect.Value {
+            return nil
+        }
+    case t.NumIn() == 1+receiverArgCount:
+        // Method(T) ...
+        p.Params = t.In(receiverArgCount)
+        assemble = func(arg reflect.Value) []reflect.Value {
+            return []reflect.Value{arg}
+        }
+    default:
+        return nil
+    }
+
+    switch {
+    case t.NumOut() == 0:
+        // Method(...)
+        p.Call = func(rcvr, arg reflect.Value) (r reflect.Value, err error) {
+            rcvr.Method(m.Index).Call(assemble(arg))
+            return
+        }
+    case t.NumOut() == 1 &amp;&amp; t.Out(0) == errorType:
+        // Method(...) error
+        p.Call = func(rcvr, arg reflect.Value) (r reflect.Value, err error) {
+            out := rcvr.Method(m.Index).Call(assemble(arg))
+            if !out[0].IsNil() {
+                err = out[0].Interface().(error)
+            }
+            return
+        }
+    case t.NumOut() == 1:
+        // Method(...) R
+        p.Result = t.Out(0)
+        p.Call = func(rcvr, arg reflect.Value) (reflect.Value, error) {
+            out := rcvr.Method(m.Index).Call(assemble(arg))
+            return out[0], nil
+        }
+    case t.NumOut() == 2 &amp;&amp; t.Out(1) == errorType:
+        // Method(...) (R, error)
+        p.Result = t.Out(0)
+        p.Call = func(rcvr, arg reflect.Value) (r reflect.Value, err error) {
+            out := rcvr.Method(m.Index).Call(assemble(arg))
+            r = out[0]
+            if !out[1].IsNil() {
+                err = out[1].Interface().(error)
+            }
+            return
+        }
+    default:
+        return nil
+    }
+    // The parameters and return value must be of struct type.
+    if p.Params != nil &amp;&amp; p.Params.Kind() != reflect.Struct { // &lt;2&gt;
+        return nil
+    }
+    if p.Result != nil &amp;&amp; p.Result.Kind() != reflect.Struct {
+        return nil
+    }
+    return &amp;p
+}
+</pre>
+</div>
+
+<p>
+You can see at &lt;1&gt; that we're specifying that the there can be at most 1 argument, and at &lt;2&gt; that this argument must be a struct.
+</p>
+
+<p>
+If we want to also pass a <code>context.Context</code> into the API server method, we'll have to modify both the signature, <i>and</i> all the existing API methods. Then, in the generic API server connection handling logic back in <a href="https://github.com/juju/juju/blob/master/apiserver/root.go#L119-L127">apiserver/root.go</a>, we would join to the incoming span, or &#x2013; if the caller doesn't know about spans &#x2013; create our own, and then pass the span into the <code>context.Context</code>. It would probably look something like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go">// Call takes the object Id and an instance of ParamsType to create an
+// object and place a call on its method. It then returns an instance
+// of ResultType.
+func (s *srvCaller) Call(ctx context.Context, objId string, arg reflect.Value) (reflect.Value, error) {
+    objVal, err := s.creator(objId)
+    if err != nil {
+        return reflect.Value{}, err
+    }
+
+    return s.objMethod.Call(objVal, ctx, arg)
+}
+</pre>
+</div>
+
+<p>
+The <code>ctx</code> would in turn be created further up the stack from our request headers:
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 4: </span>github.com/juju/juju/rpc/server.go</label><pre class="src src-go">func (conn *Conn) handleRequest(hdr *Header) error {
+    serverSpan, err := opentracing.GlobalTracer().Join(
+        "serverSpan",
+        opentracing.TextMap,
+        opentracing.HTTPHeaderTextMapCarrier(hdr),
+    )
+    if err != nil {
+        // Create a root span if necessary
+        serverSpan = opentracing.StartTrace("serverSpan")
+    }
+
+    var ctx context.Context
+    ctx, _ = opentracing.ContextWithSpan(ctx, serverSpan)
+    defer serverSpan.Finish()
+
+    // TODO(perrito666) 2016-05-02 lp:1558657
+    startTime := time.Now()
+    req, err := conn.bindRequest(hdr)
+    if err != nil {
+        conn.notifier.ServerRequest(hdr, nil)
+        if err := conn.readBody(nil, true); err != nil {
+            return err
+        }
+        // We don't transform the error here. bindRequest will have
+        // already transformed it and returned a zero req.
+        return conn.writeErrorResponse(hdr, err, startTime)
+    }
+    var argp interface{}
+    var arg reflect.Value
+    if req.ParamsType() != nil {
+        v := reflect.New(req.ParamsType())
+        arg = v.Elem()
+        argp = v.Interface()
+    }
+    if err := conn.readBody(argp, true); err != nil {
+        conn.notifier.ServerRequest(hdr, nil)
+        // If we get EOF, we know the connection is a
+        // goner, so don't try to respond.
+        if err == io.EOF || err == io.ErrUnexpectedEOF {
+            return err
+        }
+        // An error reading the body often indicates bad
+        // request parameters rather than an issue with
+        // the connection itself, so we reply with an
+        // error rather than tearing down the connection
+        // unless it's obviously a connection issue.  If
+        // the error is actually a framing or syntax
+        // problem, then the next ReadHeader should pick
+        // up the problem and abort.
+        return conn.writeErrorResponse(hdr, req.transformErrors(err), startTime)
+    }
+    if req.ParamsType() != nil {
+        conn.notifier.ServerRequest(hdr, arg.Interface())
+    } else {
+        conn.notifier.ServerRequest(hdr, struct{}{})
+    }
+    conn.mutex.Lock()
+    closing := conn.closing
+    if !closing {
+        conn.srvPending.Add(1)
+        go conn.runRequest(req, ctx, arg, startTime)
+    }
+    conn.mutex.Unlock()
+    if closing {
+        // We're closing down - no new requests may be initiated.
+        return conn.writeErrorResponse(hdr, req.transformErrors(ErrShutdown), startTime)
+    }
+    return nil
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org50b7731" class="outline-3">
+<h3 id="org50b7731">Backwards compatibility</h3>
+<div class="outline-text-3" id="text-org50b7731">
+<p>
+Since The API server gate looks for an incoming span but does not expect it, all existing clients &#x2013; including those from prior versions of Juju &#x2013; should be able to utilize the new endpoints. Thus, we should remain backwards compatible, and no new upgrade steps need be written.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge2c8f4c" class="outline-3">
+<h3 id="orge2c8f4c">Writing Audit Events to Mongo</h3>
+<div class="outline-text-3" id="text-orge2c8f4c">
+<p>
+Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All audit events will be written to a Mongo collection. To do this, we'll write our own OpenTracing recorder which will do nothing but persist audit events to the collection. It will probably look very similar to the provided <a href="https://github.com/opentracing/basictracer-go">basic tracer</a>.
+</p>
+</div>
+</div>
+</div>
+
+    </div>
+  </div>
+</div> <!-- /.container -->
+]]></description>
       <pubDate>2016-06-06</pubDate>
       <guid>http://katherine.cox-buday.com/blog/2016/06/06/analyzing-opentracing-for-go/</guid>
     </item>
     <item>
       <title>Writing Specs with Org-mode</title>
       <link>http://katherine.cox-buday.com/blog/2015/03/14/writing-specs-with-org-mode/</link>
-      <description><![CDATA[]]></description>
+      <description><![CDATA[<div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3>Writing Specs with Org-mode</h3>
+      <p>
+A lot of people have commented on the specifications I produce for the products I have worked on. I can't think of a humble way to say this, and I must make the point, so here it is: it is not uncommon for them to say that they are easy to read, clear, and more useful than most specifications they've read. Very often the next thing is a question: how'd you do that?
+</p>
+
+<div id="outline-container-org2ad1679" class="outline-2">
+<h2 id="org2ad1679">Core Ideas</h2>
+<div class="outline-text-2" id="text-org2ad1679">
+<p>
+Right off the bat, let's get one thing clear: content is paramount. You can spend a lot of time producing a beautiful document that is useless. Don't do that. The style should support the content, and help bring out the information. Having said that, after a little bit of setup, you can produce beautiful <i>and</i> useful documents in about as long as it takes you to form the ideas. I've tested this.
+</p>
+
+<p>
+The key is that the entire spec will be written in plain-text with a bit of markup supported by the spec-editor. This allows you to stay agile, and stay focused on the content, not how your document looks.
+</p>
+
+<p>
+After setting things up, you can have a nice specification that:
+</p>
+
+<ol class="org-ol">
+<li>Looks great, and includes example diagrams.</li>
+<li>Is easy to update.</li>
+<li>Automatically generates code for developers to fill-out.</li>
+</ol>
+
+<p>
+Number 3 is quite handy as the details form. You can be sure that the code always reflects the latest iteration of the specifications and vice-versa. This also saves lots of time since the code doesn't have to be written twice.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga842b7e" class="outline-2">
+<h2 id="orga842b7e">Drawbacks</h2>
+<div class="outline-text-2" id="text-orga842b7e">
+<p>
+Like anything, there are a few drawbacks.
+</p>
+
+<ol class="org-ol">
+<li><p>
+Collaboration.
+</p>
+
+<p>
+If you expect others to edit this document, and they're not using an editor that understands Org-mode syntax, it can very quickly become too cumbersome to manually merge their changes into the "master" document. The alternative: to allow them to use any editor and conform to Org syntax isn't horrible by any stretch of the imagination &#x2013; Org's syntax is incredibly sparse &#x2013; but people who don't already know Org will probably be resistant. If collaboration for your team means multiple people editing the document &#x2013; not just making comments &#x2013; then this method might not be worth it.
+</p>
+
+<p>
+A cursory search turns up Org syntax support for <a href="https://github.com/jceb/vim-orgmode">VIM</a> and <a href="https://github.com/danielmagnussons/orgmode">Sublime</a>, two other popular editors, although since I don't use them I can't comment on their usefulness.
+</p></li>
+
+<li><p>
+Perception
+</p>
+
+<p>
+This is only an issue in some environments, but because the specifications you'll be producing are such high-quality, a perception can sneak in that the team is spending much too long creating them. This is a valid concern; some teams spend entirely too much time on their specs only to find out that the thing they've been designing needs to go in a different direction. This is why the speed of this technique is so crucial. Usually this concern can be addressed with a bit of education (send them here!)
+</p></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org76a2bdc" class="outline-2">
+<h2 id="org76a2bdc">The Tools</h2>
+<div class="outline-text-2" id="text-org76a2bdc">
+<ul class="org-ul">
+<li><p>
+Emacs
+</p>
+
+<p>
+Editor choice can be a contentious topic, but because Emacs provides the best support for Org-mode, it's what I would use. For this article's purposes, you could replace the word Emacs with "Specification Creator". I will be providing a config file that will make Emacs operate like a notepad-clone with a few cool Org-mode tricks. Basically, you can pretend this is just a specification editor, not a general-purpose editor choice. Open it, work on your spec, and then go back to your editor of choice for the rest of your work.
+</p>
+
+<p>
+I should note that if you use Emacs as your editor for programming as well, things will move even faster, but this is by no means a requisite for this system.
+</p></li>
+
+<li><p>
+Org-mode
+</p>
+
+<p>
+Plug-in for Emacs. Although Org-mode can do many things, for this article, we're only interested in it's document creation and export functionality. The most important property of Org-mode is that it's plain-text.
+</p></li>
+
+<li><p>
+Plant UML
+</p>
+
+<p>
+If you don't plan on making UML diagrams, you don't need this. Plain-text based UML diagraming tool used to produce most diagrams. Sparse syntax.
+</p></li>
+
+<li><p>
+LaTeX
+</p>
+
+<p>
+This is only part of the stack because this is what we'll tell Org-mode to export in order to receive PDF's. If you don't want to, you won't have to deal with LaTeX at all. In fact, I'm going to omit any custom styling in this tutorial for the sake of simplicity.
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb95fd4f" class="outline-2">
+<h2 id="orgb95fd4f">The Work flow</h2>
+<div class="outline-text-2" id="text-orgb95fd4f">
+</div>
+<div id="outline-container-org605282a" class="outline-3">
+<h3 id="org605282a">One-time Setup</h3>
+<div class="outline-text-3" id="text-org605282a">
+<p>
+When you start, you'll have to set up a few things, namely the specification editor and optionally a LaTeX style-sheet to stylize your documents. However, after this is done, you'll only have to revisit it if you wish to change the style. After the initial setup, your documents just fall out as you type.
+</p>
+</div>
+
+<div id="outline-container-orgdf40790" class="outline-4">
+<h4 id="orgdf40790">Installing the Tools</h4>
+<div class="outline-text-4" id="text-orgdf40790">
+<ol class="org-ol">
+<li>Install Emacs</li>
+<li>Install LaTeX</li>
+<li><p>
+Install Plant UML
+</p>
+
+<p>
+You must have Java installed to use Plant UML. Grab the latest version of the <a href="http://sourceforge.net/projects/plantuml/files/plantuml.jar/download">.jar file</a> and put it in your path.
+</p></li>
+
+<li><p>
+Copy this Emacs <a href="/assets/blog/2015/03/14/writing-specs-with-org-mode/spec-cfg.el">config-file</a>
+</p>
+
+<p>
+You can either place it in ~/.emacs, or alternatively run emacs as such:
+</p>
+
+<pre class="example">
+emacs --no-init-file --load ./spec-cfg.el
+</pre>
+
+
+<p>
+This is a simple config-file aimed at people who are unfamiliar with Emacs and don't care to be. It will automatically install all required packages, and place the user in an editor with <a href="http://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts#General_shortcuts">CUA key-bindings</a>.
+</p>
+
+<p>
+Those already utilizing Emacs should strip out the requisite pieces and place them into their own config file.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span class="linenr"> 1: </span>(require 'package)
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span>;; Install requisite packages
+<span class="linenr"> 4: </span>;;
+<span class="linenr"> 5: </span>;;
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span>(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+<span class="linenr"> 8: </span>(package-initialize)
+<span class="linenr"> 9: </span>(when (not package-archive-contents)
+<span class="linenr">10: </span>  (package-refresh-contents))
+<span class="linenr">11: </span>
+<span class="linenr">12: </span>(mapcar #'(lambda (package) (unless (package-installed-p package) (package-install package)))
+<span class="linenr">13: </span>        '(org-plus-contrib plantuml-mode))
+<span class="linenr">14: </span>
+<span class="linenr">15: </span>;; Set up plantuml.
+<span class="linenr">16: </span>;;
+<span class="linenr">17: </span>;;
+<span class="linenr">18: </span>
+<span class="linenr">19: </span>(org-babel-do-load-languages
+<span class="linenr">20: </span> 'org-babel-load-languages
+<span class="linenr">21: </span> '((plantuml . t)))
+<span class="linenr">22: </span>
+<span class="linenr">23: </span>(setq org-plantuml-jar-path
+<span class="linenr">24: </span>      (setq plantuml-jar-path (expand-file-name "./plantuml.jar")))
+<span class="linenr">25: </span>
+<span class="linenr">26: </span>;; Setup latex exporting
+<span class="linenr">27: </span>;;
+<span class="linenr">28: </span>;;
+<span class="linenr">29: </span>
+<span class="linenr">30: </span>(unless (boundp 'org-latex-classes)
+<span class="linenr">31: </span>  (setq org-latex-classes nil))
+<span class="linenr">32: </span>
+<span class="linenr">33: </span>(add-to-list 'org-latex-classes
+<span id="coderef-stylesheet-name" class="coderef-off"><span class="linenr">34: </span>             '("my-style"</span>
+<span id="coderef-stylesheet-loc" class="coderef-off"><span class="linenr">35: </span>               "\\documentclass{./my-style}</span>
+<span class="linenr">36: </span>                 [DEFAULT-PACKAGES]
+<span class="linenr">37: </span>                 [PACKAGES]
+<span class="linenr">38: </span>                 [EXTRA]"
+<span class="linenr">39: </span>               ("\\section{%s}" . "\\section{%s}")
+<span class="linenr">40: </span>               ("\\subsection{%s}" . "\\subsection{%s}")
+<span class="linenr">41: </span>               ("\\subsubsection{%s}" . "\\subsubsection{%s}")
+<span class="linenr">42: </span>               ("\\paragraph{%s}" . "\\paragraph{%s}")
+<span class="linenr">43: </span>               ("\\subparagraph{%s}" . "\\subparagraph{%s}")))
+<span class="linenr">44: </span>
+<span class="linenr">45: </span>;; Switch into CUA mode for those not familar with emacs keybindings.
+<span class="linenr">46: </span>;;
+<span class="linenr">47: </span>;;
+<span class="linenr">48: </span>
+<span class="linenr">49: </span>(cua-mode)
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgc8d83cd" class="outline-4">
+<h4 id="orgc8d83cd">Create Your Style</h4>
+<div class="outline-text-4" id="text-orgc8d83cd">
+<p>
+If you wanted to, you could skip the section and just utilize LaTeX's very sensible default style. Your document won't look quite as pretty, but all of your documents will be well-formed, readable, and consistent.
+</p>
+
+<p>
+In the config-file, we let Org-mode know about the <a href="#coderef-stylesheet-name" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-stylesheet-name');" onmouseout="CodeHighlightOff(this, 'coderef-stylesheet-name');">my-style</a> style located in the <a href="#coderef-stylesheet-loc" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-stylesheet-loc');" onmouseout="CodeHighlightOff(this, 'coderef-stylesheet-loc');">local-directory</a>. If you wanted to add additional styles, you would just repeat lines 33-43 for each additional style.
+</p>
+
+<p>
+For the sake of brevity I'm going to skip any walkthrough on creating a LaTeX stylesheet. There are pleanty of resources for this elsewhere.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4d80a4c" class="outline-3">
+<h3 id="org4d80a4c">Creating Documents</h3>
+<div class="outline-text-3" id="text-org4d80a4c">
+<p>
+Once you have everything set up, things become very easy. The only thing you truly need is a few headers:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org">#+TITLE: My Software Specification
+#+AUTHOR: Katherine Cox-Buday
+#+LaTeX_CLASS: my-style
+</pre>
+</div>
+
+<p>
+That's it. After this, it's all content &#x2013; and it's all in plain text. So here's what a small document might look like:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org">#+TITLE: My Software Specification
+#+AUTHOR: Katherine Cox-Buday
+#+LaTeX_CLASS: my-style
+
+* Heading One
+
+** Sub Heading A
+- List Item 1
+- List Item 2
+
+* Heading Two
+
+| Column 1 | Column 2 |
+|----------+----------|
+| A        |        1 |
+| B        |        2 |
+| C        |        3 |
+|----------+----------|
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org16c9321" class="outline-4">
+<h4 id="org16c9321">PlantUML</h4>
+<div class="outline-text-4" id="text-org16c9321">
+<p>
+As stated above, PlantUML isn't necessary if you don't plan on including any UML diagrams. If you would like to include some diagrams, you will be taking advantage of Org-Mode's source-code block features.
+</p>
+
+<p>
+To open a source-code block, enter the following:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org">#+BEGIN_SRC plantuml
+
+#+END_SRC
+</pre>
+</div>
+
+<p>
+Then place the cursor in between the opening and closing blocks and navigate to the menu bar. Click on "Org &gt; Editing &gt; Edit Source Example."
+</p>
+
+<p>
+This will open a new buffer in emacs where you can type in PlantUML code &#x2013; and because you told Org that this was going to be PlantUML code &#x2013; you have all the features you'd expect from emacs when editing a PlantUML file. In fact, this works with almost any language.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7962b63" class="outline-3">
+<h3 id="org7962b63">Exporting</h3>
+<div class="outline-text-3" id="text-org7962b63">
+<p>
+To further expand our example above, the document might look like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org">#+TITLE: My Software Specification
+#+AUTHOR: Katherine Cox-Buday
+#+LaTeX_CLASS: my-style
+
+* Heading One
+
+** Sub Heading A
+- List Item 1
+- List Item 2
+
+* Heading Two
+
+| Column 1 | Column 2 |
+|----------+----------|
+| A        |        1 |
+| B        |        2 |
+| C        |        3 |
+|----------+----------|
+
+#+BEGIN_SRC plantuml
+Bob-&gt;Alice : hello
+#+END_SRC
+</pre>
+</div>
+
+<p>
+To export this, navigate to the menu-bar and click on the "Org &gt; Export/Publish" menu. You'll see a menu come up with a lot of options, and the hot-keys in square brackets. Since we're producing PDFs, you would strike "l" for "Export to LaTeX" and then "o" for "As PDF file and open". The final result would look like this:
+</p>
+
+
+<div class="figure">
+<p><img src="/assets/blog/2015/03/14/writing-specs-with-org-mode/finished-spec-pdf.png" alt="finished-spec-pdf.png" width="300px" class="img-thumbnail" />
+</p>
+<p><span class="figure-number">Figure 1: </span>An Unstyled Document</p>
+</div>
+
+
+<div class="figure">
+<p><img src="/assets/blog/2015/03/14/writing-specs-with-org-mode/finished-styled-spec-pdf.png" alt="finished-styled-spec-pdf.png" width="300px" class="img-thumbnail" />
+</p>
+<p><span class="figure-number">Figure 2: </span>A Styled Document</p>
+</div>
+
+<p>
+Not bad for a few lines of plain text, right? In the second example, we can see a nice title page, an auto-generated table-of-contents, page numbers, and descriptive footers. Here, LaTeX is doing the heavy lifting, and all we've done is write some plaint text. This is the essence of how we can turn out beautiful, useful documents so quickly: we spend all of our time focusing on the ideas and not the layout or style.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org47fb9d2" class="outline-3">
+<h3 id="org47fb9d2">Exporting Artifacts</h3>
+<div class="outline-text-3" id="text-org47fb9d2">
+<p>
+I'm only going to touch on this since it's slightly more advanced, but since it's a feature I use in my documents, I thought I'd at least mention it.
+</p>
+
+<p>
+The source blocks we mentioned earlier are very powerful. Not only can Org mode export the results of running the code they contain, Org mode can save &#x2013; or "tangle" &#x2013; this code to files. In this manner, we can perhaps write code interfaces we expect the code we're describing to conform to, and then "tangle" these interfaces to the actual code-base and begin coding off of them. If the interfaces need to change, we change the specification and regenerate the files. In this way, the specification and codebase are never out of sync &#x2013; something that is frequently a problem with these types of documents.
+</p>
+
+<p>
+To take advantage of this, all you have to do is specify a code block as such:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org">#+BEGIN_SRC java :noweb tangle :tangle ~/code/interfaces.java
+
+#+END_SRC
+</pre>
+</div>
+
+<p>
+The "noweb" option tells Org mode to tangle the file, and the "tangle" option tells it where to place the file.
+</p>
+
+<p>
+Now type:
+</p>
+<pre class="example">
+M-x org-babel-tangle
+</pre>
+
+
+<p>
+Your code should now be sitting in the directory you specified!
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0820e74" class="outline-2">
+<h2 id="org0820e74">Conclusion</h2>
+<div class="outline-text-2" id="text-org0820e74">
+<p>
+I've often found that specifications in the IT industry have received a negative reputation in our industry. People say things such as, "Code is worth a thousand specifications," or complain that writing specifications is just a waste of time.
+</p>
+
+<p>
+I concede that when doing exploratory programming, or maybe working on a very small team, specifications may not be necessary; however, on large projects they are absolutely <i>critical</i>.
+</p>
+
+<p>
+Without a blueprint, or top-level view of the architecture of a system, it can be difficult to understand how things are supposed to be laid out. Worse, it's near impossible to accurately and repeatably dissiminate the architecture of a system without a specification to point at. One-on-one conversations are not a scalable model.
+</p>
+
+<p>
+I think the reason specification documents receive such a bad reputation stem from the following 3 reasons:
+</p>
+
+<ol class="org-ol">
+<li>They're not coding. And coders wanna code.</li>
+<li>Generally speaking, they're <i>hard</i> to do well, and they take too long to create. Hopefully I've shown that they don't have to be difficult to write, and that as quickly as you can jot down ideas, you can create a usable specification.</li>
+<li>They're seen as wasted effort &#x2013; something you discard. Hopefully, I've also show how the specification can grow with the code and become a living artifact.</li>
+</ol>
+
+<p>
+So love your specs, and give your team the documentation they deserve. There do exist methodologies that are a joy to use, and this &#x2013; I feel &#x2013; is one of them.
+</p>
+
+<p>
+Happy hacking!
+</p>
+</div>
+</div>
+
+    </div>
+  </div>
+</div> <!-- /.container -->
+]]></description>
       <pubDate>2015-03-14</pubDate>
       <guid>http://katherine.cox-buday.com/blog/2015/03/14/writing-specs-with-org-mode/</guid>
     </item>
     <item>
       <title>Migrating to a Statically Generated Blog</title>
       <link>http://katherine.cox-buday.com/blog/2015/01/02/migrating-to-a-statically-generated-blog/</link>
-      <description><![CDATA[]]></description>
+      <description><![CDATA[<div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3>Migrating to a Statically Generated Blog</h3>
+      <p>
+Up until now, I have been utilizing Google's <a href="https://blogger.com">Blogger</a> service. It made sense: I use a lot of Google's services, and Blogger is well integrated with a lot of them; free hosting, decent flexibility.
+</p>
+
+<p>
+However, I am slowly migrating towards the idea of my entire online presence being managed by me and not by hosted services (more on the motivation for this in a later post), and also to the idea that my website is the hub for all of this. A statically generated site meets these goals while being both cheap and simple.
+</p>
+
+<p>
+It's also easier to use general web-development techniques now that I'm not hamstrung by a service's blogging engine. As you can see I've kept the look and feel very simple, but there are interesting things you can do with web technologies that I may take advantage of in the future.
+</p>
+
+<p>
+The software I'm utilizing is <a href="https://github.com/kelvinh/org-page">Org-page</a>, an <a href="http://www.gnu.org/software/emacs/">Emacs</a> plug-in which allows you to do you writing in <a href="http://orgmode.org/">Org mode</a>, which is where I spend a lot of my time. Org-page in itself is a nice tool, however over time I may eventually fork it or write one of my own.
+</p>
+
+<p>
+Currently I'm using <a href="https://pages.github.com/">GitHub Pages</a> for hosting although this is probably largely unimportant and may change in the future.
+</p>
+
+<p>
+I will back-fill entries made from Blogger in the near future. Until then, things will look a little sparse.
+</p>
+
+    </div>
+  </div>
+</div> <!-- /.container -->
+]]></description>
       <pubDate>2015-01-02</pubDate>
       <guid>http://katherine.cox-buday.com/blog/2015/01/02/migrating-to-a-statically-generated-blog/</guid>
     </item>
