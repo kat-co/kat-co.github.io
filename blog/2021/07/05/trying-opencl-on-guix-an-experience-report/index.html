@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <title>Trying OpenCL on Guix: An Experience Report - Katherine Cox-Buday</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="author" content="Katherine Cox-Buday" />
+
+  <!-- Mobile support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+  <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 blog-main">
+          <div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3>Trying OpenCL on Guix: An Experience Report</h3>
+      <p>
+Recently, I wanted to run <a href="https://github.com/leela-zero/leela-zero">Leela Zero</a> with <a href="https://github.com/bernds/q5Go">q5go</a> to help me get better at playing Go. I run <a href="https://guix.gnu.org/">GNU Guix</a> on my machine, and so I did the following: <code>guix package -i leela-zero gnugo q5go</code>. This got <code>q5go</code> going and I was able to point it at Leela Zero (<code>~/.guix-profile/bin/leelaz</code>) as an analysis engine; however, it does not work. Here is my experience determining why.
+</p>
+
+<p>
+Like many machine learning programs, Leela Zero can optionally use your GPU utilizing OpenCL to drastically speed up its operations per second. Unfortunately, invoking <code>leelaz</code> with <code>leelaz --gtp</code> wasn't working for me. If I invoked Leela Zero like this: <code>leelaz --cpu-only</code> it worked, but took a long time to analyze moves. This suggested to me that it was an issue with my OpenCL setup. We can use the <code>clinfo</code> program to troubleshoot this.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">guix environment --ad-hoc clinfo -- clinfo
+</pre>
+</div>
+
+<pre class="example">
+Number of platforms                               0
+</pre>
+
+
+<p>
+This strongly suggests there is something wrong with Guix's OpenCL setup. We can use <code>strace</code> to learn more.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">guix environment --ad-hoc strace clinfo -- strace -o/dev/stdout -eopenat clinfo
+</pre>
+</div>
+
+<pre class="example" id="org8853b8b">
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/etc/OpenCL/vendors", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = -1 ENOENT (No such file or directory)
+Number of platforms                               0
++++ exited with 0 +++
+</pre>
+
+<p>
+Despite <code>mesa-opencl</code> being installed in the system profile, Guix had not populated <code>/etc/OpenCL</code> from the package. It is, however present:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">find -L /run/current-system/profile -name OpenCL
+</pre>
+</div>
+
+<pre class="example">
+/run/current-system/profile/etc/OpenCL
+</pre>
+
+
+<p>
+This is mystery number one: why isn't this being populated into Guix's root <code>/etc</code>?
+</p>
+
+<p>
+Pointing <code>clinfo</code> at the vendors directory can be achieved with the <code>OPENCL_VENDOR_PATH</code> environmental variable. The contents of this file are:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">cat /run/current-system/profile/etc/OpenCL/vendors/mesa.icd
+</pre>
+</div>
+
+<pre class="example">
+libMesaOpenCL.so.1
+</pre>
+
+
+<p>
+By running <code>strace</code>, we can see that despite <code>mesa-opencl-icd</code> being installed in the system's profile, it cannot find the location of the library:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">OPENCL_VENDOR_PATH=/run/current-system/profile/etc/OpenCL/vendors guix environment --ad-hoc strace clinfo -- strace -o/dev/stdout -eopenat clinfo
+</pre>
+</div>
+
+<pre class="example" id="org3f2b5ce">
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/run/current-system/profile/etc/OpenCL/vendors", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 3
+openat(AT_FDCWD, "/run/current-system/profile/etc/OpenCL/vendors/mesa.icd", O_RDONLY) = 4
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/x86_64/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../x86_64/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+Number of platforms                               0
++++ exited with 0 +++
+</pre>
+
+<p>
+It is, however, present:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">find -L /run/current-system/profile -name libMesaOpenCL.so.1
+</pre>
+</div>
+
+<pre class="example">
+/run/current-system/profile/lib/libMesaOpenCL.so.1
+</pre>
+
+
+<p>
+This is mystery number two: why can't Guix locate the library?
+</p>
+
+<p>
+If we create our own vendors file, populate it with the location of the <code>libMesaOpenCL.so</code> file, and point <code>clinfo</code> at this, things begin to look better.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">cat ${HOME}/.local/etc/OpenCL/vendors/mesa.icd
+</pre>
+</div>
+
+<pre class="example">
+/run/current-system/profile/lib/libMesaOpenCL.so.1
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-shell">OPENCL_VENDOR_PATH=${HOME}/.local/etc/OpenCL/vendors clinfo
+</pre>
+</div>
+
+<pre class="example" id="org0aef679">
+Number of platforms                               1
+  Platform Name                                   Clover
+  Platform Vendor                                 Mesa
+  Platform Version                                OpenCL 1.1 Mesa 20.2.4
+  Platform Profile                                FULL_PROFILE
+  Platform Extensions                             cl_khr_icd
+  Platform Extensions function suffix             MESA
+
+  Platform Name                                   Clover
+Number of devices                                 1
+  Device Name                                     AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+  Device Vendor                                   AMD
+  Device Vendor ID                                0x1002
+  Device Version                                  OpenCL 1.1 Mesa 20.2.4
+  Driver Version                                  20.2.4
+  Device OpenCL C Version                         OpenCL C 1.1 
+  Device Type                                     GPU
+  Device Profile                                  FULL_PROFILE
+  Device Available                                Yes
+  Compiler Available                              Yes
+  Max compute units                               40
+  Max clock frequency                             2200MHz
+  Max work item dimensions                        3
+  Max work item sizes                             256x256x256
+  Max work group size                             256
+  Preferred work group size multiple              &lt;getWGsizes:1200: create kernel : error -46&gt;
+  Preferred / native vector sizes                 
+    char                                                16 / 16      
+    short                                                8 / 8       
+    int                                                  4 / 4       
+    long                                                 2 / 2       
+    half                                                 0 / 0        (n/a)
+    float                                                4 / 4       
+    double                                               2 / 2        (cl_khr_fp64)
+  Half-precision Floating-point support           (n/a)
+  Single-precision Floating-point support         (core)
+    Denormals                                     No
+    Infinity and NANs                             Yes
+    Round to nearest                              Yes
+    Round to zero                                 No
+    Round to infinity                             No
+    IEEE754-2008 fused multiply-add               No
+    Support is emulated in software               No
+    Correctly-rounded divide and sqrt operations  No
+  Double-precision Floating-point support         (cl_khr_fp64)
+    Denormals                                     Yes
+    Infinity and NANs                             Yes
+    Round to nearest                              Yes
+    Round to zero                                 Yes
+    Round to infinity                             Yes
+    IEEE754-2008 fused multiply-add               Yes
+    Support is emulated in software               No
+  Address bits                                    64, Little-Endian
+  Global memory size                              8589934592 (8GiB)
+  Error Correction support                        No
+  Max memory allocation                           6871947673 (6.4GiB)
+  Unified memory for Host and Device              No
+  Minimum alignment for any data type             128 bytes
+  Alignment of base address                       32768 bits (4096 bytes)
+  Global Memory cache type                        None
+  Image support                                   No
+  Local memory type                               Local
+  Local memory size                               32768 (32KiB)
+  Max number of constant args                     16
+  Max constant buffer size                        2147483392 (2GiB)
+  Max size of kernel argument                     1024
+  Queue properties                                
+    Out-of-order execution                        No
+    Profiling                                     Yes
+  Profiling timer resolution                      0ns
+  Execution capabilities                          
+    Run OpenCL kernels                            Yes
+    Run native kernels                            No
+  Device Extensions                               cl_khr_byte_addressable_store cl_khr_global_int32_base_atomics cl_khr_global_int32_extended_atomics cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics cl_khr_int64_base_atomics cl_khr_int64_extended_atomics cl_khr_fp64
+
+NULL platform behavior
+  clGetPlatformInfo(NULL, CL_PLATFORM_NAME, ...)  Clover
+  clGetDeviceIDs(NULL, CL_DEVICE_TYPE_ALL, ...)   Success [MESA]
+  clCreateContext(NULL, ...) [default]            Success [MESA]
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_DEFAULT)  Success (1)
+    Platform Name                                 Clover
+    Device Name                                   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_CPU)  No devices found in platform
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_GPU)  Success (1)
+    Platform Name                                 Clover
+    Device Name                                   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_ACCELERATOR)  No devices found in platform
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_CUSTOM)  No devices found in platform
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_ALL)  Success (1)
+    Platform Name                                 Clover
+    Device Name                                   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+
+ICD loader properties
+  ICD loader Name                                 OpenCL ICD Loader
+  ICD loader Vendor                               OCL Icd free software
+  ICD loader Version                              2.2.12
+  ICD loader Profile                              OpenCL 2.2
+</pre>
+
+<p>
+However, Leela Zero is still not working:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">OPENCL_VENDOR_PATH=${HOME}/.local/etc/OpenCL/vendors leelaz --tune-only 2&gt;&amp;1 || true
+</pre>
+</div>
+
+<pre class="example" id="org0e1a6a1">
+Using OpenCL batch size of 5
+Using 10 thread(s).
+RNG seed: 5861000906466935903
+Leela Zero 0.17  Copyright (C) 2017-2019  Gian-Carlo Pascutto and contributors
+This program comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to redistribute it
+under certain conditions; see the COPYING file for details.
+
+BLAS Core: Zen
+Detecting residual layers...v1...256 channels...40 blocks.
+Initializing OpenCL (autodetecting precision).
+Detected 1 OpenCL platforms.
+Platform version: OpenCL 1.1 Mesa 20.2.4
+Platform profile: FULL_PROFILE
+Platform name:    Clover
+Platform vendor:  Mesa
+Device ID:     0
+Device name:   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+Device type:   GPU
+Device vendor: AMD
+Device driver: 20.2.4
+Device speed:  2200 MHz
+Device cores:  40 CU
+Device score:  1111
+Selected platform: Clover
+Selected device: AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+with OpenCL 1.1 capability.
+Half precision compute support: No.
+Tensor Core support: No.
+Detected 1 OpenCL platforms.
+Platform version: OpenCL 1.1 Mesa 20.2.4
+Platform profile: FULL_PROFILE
+Platform name:    Clover
+Platform vendor:  Mesa
+Device ID:     0
+Device name:   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+Device type:   GPU
+Device vendor: AMD
+Device driver: 20.2.4
+Device speed:  2200 MHz
+Device cores:  40 CU
+Device score:  1111
+Selected platform: Clover
+Selected device: AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+with OpenCL 1.1 capability.
+Half precision compute support: No.
+Tensor Core support: No.
+
+Started OpenCL SGEMM tuner.
+Will try 290 valid configurations.
+Failed to compile: 290 kernels.
+Failed to find a working configuration.
+Check your OpenCL drivers.
+Minimum error: 100.000000. Error bound: 0.000100
+
+Started OpenCL SGEMM tuner.
+Will try 290 valid configurations.
+Failed to compile: 290 kernels.
+Failed to find a working configuration.
+Check your OpenCL drivers.
+Minimum error: 100.000000. Error bound: 0.100000
+Both single precision and half precision failed to run.
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Failed to initialize net.
+</pre>
+
+<p>
+There is a curious error from the output of <code>clinfo</code>:
+</p>
+
+<p>
+<code>Preferred work group size multiple              &lt;getWGsizes:1200: create kernel : error -46&gt;</code>
+</p>
+
+<p>
+If we set the <code>LD_DEBUG</code> environment variable to <code>libs</code>, we can shed some light as to what is wrong:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">OPENCL_VENDOR_PATH=${HOME}/.local/etc/OpenCL/vendors LD_DEBUG=libs clinfo 2&gt;&amp;1 |grep error
+</pre>
+</div>
+
+<pre class="example">
+fatal error: cannot open file '/gnu/store/h86b3253bc3mnp3p57n1vls2vkfv2h6z-libclc-9.0.1/share/clc/gfx1010-amdgcn-mesa-mesa3d.bc': No such file or directory
+  Preferred work group size multiple              &lt;getWGsizes:1200: create kernel : error -46&gt;
+</pre>
+
+
+<p>
+Indeed, this file is not present.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">[ -f /gnu/store/h86b3253bc3mnp3p57n1vls2vkfv2h6z-libclc-9.0.1/share/clc/gfx1010-amdgcn-mesa-mesa3d.bc ]
+echo $?
+</pre>
+</div>
+
+<pre class="example">
+1
+</pre>
+
+
+<p>
+Further research turned up a bug (<a href="https://bugs.llvm.org/show_bug.cgi?id=44841">44841</a>) against <code>libclc</code> which suggests that while support for my card was included into LLVM v10 (at the time of this writing, LLVM has released v12), <code>libclc</code> does not support my card's architecture, <code>gfx1010</code>.
+</p>
+
+<p>
+I attempted to build libclc v12.0.0 locally, but it segfaulted. Building v11.0.0 worked, but as suggested by the open bug, support for my card's architecture still has not been implemented.
+</p>
+
+<p>
+I briefly entertained creating a Guix package from AMD's <code>amdgpu-pro</code> <a href="https://www.amd.com/en/support/kb/release-notes/rn-radpro-lin-16-40">packages</a>, but it appears as though my card is not supported, and according to a bug (<a href="https://github.com/RadeonOpenCompute/ROCm/issues/819">819</a>) against ROCm, likely won't be.
+</p>
+
+<p>
+So it would seem I'm out of luck, and I'm stuck running Leela Zero on the CPU for now. Analyzing one of my games on 60 compute cores took somewhere around ten minutes, so not intractable.
+</p>
+
+<p>
+Still, perhaps this helps others running Guix with GPUs that are supported by <code>libclc</code>.
+</p>
+
+<p>
+As an aside, this research is perhaps an indication of why — despite my years of interest in Go — I remain a Kyu player.
+</p>
+
+    </div>
+  </div>
+</div> <!-- /.container -->
+
+        </div> <!-- /.blog-main -->
+        <div class="col-sm-3 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+  <a href="/"><span class="fa fa-home fa-2x"></span></a>
+  <a href="/rss.xml"><span class="fa fa-rss-square fa-2x"></span></a>
+  <a href="/tags/"><span class="fa fa-tags fa-2x"></span></a>
+</div>
+<div class="sidebar-module">
+  <form method="get" id="searchform" action="http://www.google.com/search">
+    <input type="text" class="form-control" name="q" id="s" placeholder="Search">
+    <input type="hidden" name="q" value="site:katherine.cox-buday.com">
+  </form>
+</div>
+<div class="sidebar-module">
+  <h4>Categories</h4>
+  <ol class="list-unstyled">
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/concurrency-in-go/">Concurrency in Go</a></li>
+    <li><a href="/talks/">Talks</a></li>
+    <!-- <li><a href="https://github.com/kelvinh/org-page">GitHub</a></li> -->
+  </ol>
+</div>
+        </div> <!-- /.blog-sidebar -->
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    <script src="//code.jquery.com/jquery-latest.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+<script src="/media/js/main.js"></script>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<div class="container">
+  <script type="text/javascript">
+    $('.post-meta').append('<ul class="list-unstyled"><li><span title="post date" class="post-info">2021-07-05</span></li><li><span title="tags" class="post-info"><a href="/tags/tech/">tech</a></span></li></ul>');
+  </script>
+</div> <!-- /.container -->
+
+<footer class="footer">
+  <div class="container text-muted">
+    <div class="row" style="heigh:2em;">
+      <div class="col-md-2 vertical-center">
+        <a href="https://github.com/kat-co"><span class="fa fa-github-square fa-2x"></span></a>
+        <a href="http://www.linkedin.com/in/katherinecoxbuday"><span class="fa fa-linkedin-square fa-2x"></span></a>
+        <a href="https://twitter.com/katco_"><span class="fa fa-twitter-square fa-2x"></span></a>
+      </div>
+      <div class="col-sm-9 vertical-center">
+        Copyright &copy; <a href="mailto:cox &lt;dot&gt; katherine &lt;dot&gt; e &lt;at&gt; gmail &lt;dot&gt; com">Katherine Cox-Buday</a>,
+        Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x) & <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+      </div>
+    </div> <!-- ./row -->
+  </div> <!-- ./container -->
+</footer>
+
+  </body>
+</html>

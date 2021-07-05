@@ -4,10 +4,450 @@
     <title>Katherine Cox-Buday</title>
     <link>http://katherine.cox-buday.com</link>
     <description>static site generator</description>
-    <pubDate>Wed, 30 Jan 2019 07:50:47 CST</pubDate>
-    <lastBuildDate>Wed, 30 Jan 2019 07:50:47 CST</lastBuildDate>
+    <pubDate>Mon, 05 Jul 2021 07:14:54 CDT</pubDate>
+    <lastBuildDate>Mon, 05 Jul 2021 07:14:54 CDT</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
+    <item>
+      <title>Trying OpenCL on Guix: An Experience Report</title>
+      <link>http://katherine.cox-buday.com/blog/2021/07/05/trying-opencl-on-guix-an-experience-report/</link>
+      <description><![CDATA[<div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3>Trying OpenCL on Guix: An Experience Report</h3>
+      <p>
+Recently, I wanted to run <a href="https://github.com/leela-zero/leela-zero">Leela Zero</a> with <a href="https://github.com/bernds/q5Go">q5go</a> to help me get better at playing Go. I run <a href="https://guix.gnu.org/">GNU Guix</a> on my machine, and so I did the following: <code>guix package -i leela-zero gnugo q5go</code>. This got <code>q5go</code> going and I was able to point it at Leela Zero (<code>~/.guix-profile/bin/leelaz</code>) as an analysis engine; however, it does not work. Here is my experience determining why.
+</p>
+
+<p>
+Like many machine learning programs, Leela Zero can optionally use your GPU utilizing OpenCL to drastically speed up its operations per second. Unfortunately, invoking <code>leelaz</code> with <code>leelaz --gtp</code> wasn't working for me. If I invoked Leela Zero like this: <code>leelaz --cpu-only</code> it worked, but took a long time to analyze moves. This suggested to me that it was an issue with my OpenCL setup. We can use the <code>clinfo</code> program to troubleshoot this.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">guix environment --ad-hoc clinfo -- clinfo
+</pre>
+</div>
+
+<pre class="example">
+Number of platforms                               0
+</pre>
+
+
+<p>
+This strongly suggests there is something wrong with Guix's OpenCL setup. We can use <code>strace</code> to learn more.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">guix environment --ad-hoc strace clinfo -- strace -o/dev/stdout -eopenat clinfo
+</pre>
+</div>
+
+<pre class="example" id="org8853b8b">
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/etc/OpenCL/vendors", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = -1 ENOENT (No such file or directory)
+Number of platforms                               0
++++ exited with 0 +++
+</pre>
+
+<p>
+Despite <code>mesa-opencl</code> being installed in the system profile, Guix had not populated <code>/etc/OpenCL</code> from the package. It is, however present:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">find -L /run/current-system/profile -name OpenCL
+</pre>
+</div>
+
+<pre class="example">
+/run/current-system/profile/etc/OpenCL
+</pre>
+
+
+<p>
+This is mystery number one: why isn't this being populated into Guix's root <code>/etc</code>?
+</p>
+
+<p>
+Pointing <code>clinfo</code> at the vendors directory can be achieved with the <code>OPENCL_VENDOR_PATH</code> environmental variable. The contents of this file are:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">cat /run/current-system/profile/etc/OpenCL/vendors/mesa.icd
+</pre>
+</div>
+
+<pre class="example">
+libMesaOpenCL.so.1
+</pre>
+
+
+<p>
+By running <code>strace</code>, we can see that despite <code>mesa-opencl-icd</code> being installed in the system's profile, it cannot find the location of the library:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">OPENCL_VENDOR_PATH=/run/current-system/profile/etc/OpenCL/vendors guix environment --ad-hoc strace clinfo -- strace -o/dev/stdout -eopenat clinfo
+</pre>
+</div>
+
+<pre class="example" id="org3f2b5ce">
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/run/current-system/profile/etc/OpenCL/vendors", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 3
+openat(AT_FDCWD, "/run/current-system/profile/etc/OpenCL/vendors/mesa.icd", O_RDONLY) = 4
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/x86_64/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../x86_64/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+Number of platforms                               0
++++ exited with 0 +++
+</pre>
+
+<p>
+It is, however, present:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">find -L /run/current-system/profile -name libMesaOpenCL.so.1
+</pre>
+</div>
+
+<pre class="example">
+/run/current-system/profile/lib/libMesaOpenCL.so.1
+</pre>
+
+
+<p>
+This is mystery number two: why can't Guix locate the library?
+</p>
+
+<p>
+If we create our own vendors file, populate it with the location of the <code>libMesaOpenCL.so</code> file, and point <code>clinfo</code> at this, things begin to look better.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">cat ${HOME}/.local/etc/OpenCL/vendors/mesa.icd
+</pre>
+</div>
+
+<pre class="example">
+/run/current-system/profile/lib/libMesaOpenCL.so.1
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-shell">OPENCL_VENDOR_PATH=${HOME}/.local/etc/OpenCL/vendors clinfo
+</pre>
+</div>
+
+<pre class="example" id="org0aef679">
+Number of platforms                               1
+  Platform Name                                   Clover
+  Platform Vendor                                 Mesa
+  Platform Version                                OpenCL 1.1 Mesa 20.2.4
+  Platform Profile                                FULL_PROFILE
+  Platform Extensions                             cl_khr_icd
+  Platform Extensions function suffix             MESA
+
+  Platform Name                                   Clover
+Number of devices                                 1
+  Device Name                                     AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+  Device Vendor                                   AMD
+  Device Vendor ID                                0x1002
+  Device Version                                  OpenCL 1.1 Mesa 20.2.4
+  Driver Version                                  20.2.4
+  Device OpenCL C Version                         OpenCL C 1.1 
+  Device Type                                     GPU
+  Device Profile                                  FULL_PROFILE
+  Device Available                                Yes
+  Compiler Available                              Yes
+  Max compute units                               40
+  Max clock frequency                             2200MHz
+  Max work item dimensions                        3
+  Max work item sizes                             256x256x256
+  Max work group size                             256
+  Preferred work group size multiple              &lt;getWGsizes:1200: create kernel : error -46&gt;
+  Preferred / native vector sizes                 
+    char                                                16 / 16      
+    short                                                8 / 8       
+    int                                                  4 / 4       
+    long                                                 2 / 2       
+    half                                                 0 / 0        (n/a)
+    float                                                4 / 4       
+    double                                               2 / 2        (cl_khr_fp64)
+  Half-precision Floating-point support           (n/a)
+  Single-precision Floating-point support         (core)
+    Denormals                                     No
+    Infinity and NANs                             Yes
+    Round to nearest                              Yes
+    Round to zero                                 No
+    Round to infinity                             No
+    IEEE754-2008 fused multiply-add               No
+    Support is emulated in software               No
+    Correctly-rounded divide and sqrt operations  No
+  Double-precision Floating-point support         (cl_khr_fp64)
+    Denormals                                     Yes
+    Infinity and NANs                             Yes
+    Round to nearest                              Yes
+    Round to zero                                 Yes
+    Round to infinity                             Yes
+    IEEE754-2008 fused multiply-add               Yes
+    Support is emulated in software               No
+  Address bits                                    64, Little-Endian
+  Global memory size                              8589934592 (8GiB)
+  Error Correction support                        No
+  Max memory allocation                           6871947673 (6.4GiB)
+  Unified memory for Host and Device              No
+  Minimum alignment for any data type             128 bytes
+  Alignment of base address                       32768 bits (4096 bytes)
+  Global Memory cache type                        None
+  Image support                                   No
+  Local memory type                               Local
+  Local memory size                               32768 (32KiB)
+  Max number of constant args                     16
+  Max constant buffer size                        2147483392 (2GiB)
+  Max size of kernel argument                     1024
+  Queue properties                                
+    Out-of-order execution                        No
+    Profiling                                     Yes
+  Profiling timer resolution                      0ns
+  Execution capabilities                          
+    Run OpenCL kernels                            Yes
+    Run native kernels                            No
+  Device Extensions                               cl_khr_byte_addressable_store cl_khr_global_int32_base_atomics cl_khr_global_int32_extended_atomics cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics cl_khr_int64_base_atomics cl_khr_int64_extended_atomics cl_khr_fp64
+
+NULL platform behavior
+  clGetPlatformInfo(NULL, CL_PLATFORM_NAME, ...)  Clover
+  clGetDeviceIDs(NULL, CL_DEVICE_TYPE_ALL, ...)   Success [MESA]
+  clCreateContext(NULL, ...) [default]            Success [MESA]
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_DEFAULT)  Success (1)
+    Platform Name                                 Clover
+    Device Name                                   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_CPU)  No devices found in platform
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_GPU)  Success (1)
+    Platform Name                                 Clover
+    Device Name                                   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_ACCELERATOR)  No devices found in platform
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_CUSTOM)  No devices found in platform
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_ALL)  Success (1)
+    Platform Name                                 Clover
+    Device Name                                   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+
+ICD loader properties
+  ICD loader Name                                 OpenCL ICD Loader
+  ICD loader Vendor                               OCL Icd free software
+  ICD loader Version                              2.2.12
+  ICD loader Profile                              OpenCL 2.2
+</pre>
+
+<p>
+However, Leela Zero is still not working:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">OPENCL_VENDOR_PATH=${HOME}/.local/etc/OpenCL/vendors leelaz --tune-only 2&gt;&amp;1 || true
+</pre>
+</div>
+
+<pre class="example" id="org0e1a6a1">
+Using OpenCL batch size of 5
+Using 10 thread(s).
+RNG seed: 5861000906466935903
+Leela Zero 0.17  Copyright (C) 2017-2019  Gian-Carlo Pascutto and contributors
+This program comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to redistribute it
+under certain conditions; see the COPYING file for details.
+
+BLAS Core: Zen
+Detecting residual layers...v1...256 channels...40 blocks.
+Initializing OpenCL (autodetecting precision).
+Detected 1 OpenCL platforms.
+Platform version: OpenCL 1.1 Mesa 20.2.4
+Platform profile: FULL_PROFILE
+Platform name:    Clover
+Platform vendor:  Mesa
+Device ID:     0
+Device name:   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+Device type:   GPU
+Device vendor: AMD
+Device driver: 20.2.4
+Device speed:  2200 MHz
+Device cores:  40 CU
+Device score:  1111
+Selected platform: Clover
+Selected device: AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+with OpenCL 1.1 capability.
+Half precision compute support: No.
+Tensor Core support: No.
+Detected 1 OpenCL platforms.
+Platform version: OpenCL 1.1 Mesa 20.2.4
+Platform profile: FULL_PROFILE
+Platform name:    Clover
+Platform vendor:  Mesa
+Device ID:     0
+Device name:   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+Device type:   GPU
+Device vendor: AMD
+Device driver: 20.2.4
+Device speed:  2200 MHz
+Device cores:  40 CU
+Device score:  1111
+Selected platform: Clover
+Selected device: AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+with OpenCL 1.1 capability.
+Half precision compute support: No.
+Tensor Core support: No.
+
+Started OpenCL SGEMM tuner.
+Will try 290 valid configurations.
+Failed to compile: 290 kernels.
+Failed to find a working configuration.
+Check your OpenCL drivers.
+Minimum error: 100.000000. Error bound: 0.000100
+
+Started OpenCL SGEMM tuner.
+Will try 290 valid configurations.
+Failed to compile: 290 kernels.
+Failed to find a working configuration.
+Check your OpenCL drivers.
+Minimum error: 100.000000. Error bound: 0.100000
+Both single precision and half precision failed to run.
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Failed to initialize net.
+</pre>
+
+<p>
+There is a curious error from the output of <code>clinfo</code>:
+</p>
+
+<p>
+<code>Preferred work group size multiple              &lt;getWGsizes:1200: create kernel : error -46&gt;</code>
+</p>
+
+<p>
+If we set the <code>LD_DEBUG</code> environment variable to <code>libs</code>, we can shed some light as to what is wrong:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">OPENCL_VENDOR_PATH=${HOME}/.local/etc/OpenCL/vendors LD_DEBUG=libs clinfo 2&gt;&amp;1 |grep error
+</pre>
+</div>
+
+<pre class="example">
+fatal error: cannot open file '/gnu/store/h86b3253bc3mnp3p57n1vls2vkfv2h6z-libclc-9.0.1/share/clc/gfx1010-amdgcn-mesa-mesa3d.bc': No such file or directory
+  Preferred work group size multiple              &lt;getWGsizes:1200: create kernel : error -46&gt;
+</pre>
+
+
+<p>
+Indeed, this file is not present.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">[ -f /gnu/store/h86b3253bc3mnp3p57n1vls2vkfv2h6z-libclc-9.0.1/share/clc/gfx1010-amdgcn-mesa-mesa3d.bc ]
+echo $?
+</pre>
+</div>
+
+<pre class="example">
+1
+</pre>
+
+
+<p>
+Further research turned up a bug (<a href="https://bugs.llvm.org/show_bug.cgi?id=44841">44841</a>) against <code>libclc</code> which suggests that while support for my card was included into LLVM v10 (at the time of this writing, LLVM has released v12), <code>libclc</code> does not support my card's architecture, <code>gfx1010</code>.
+</p>
+
+<p>
+I attempted to build libclc v12.0.0 locally, but it segfaulted. Building v11.0.0 worked, but as suggested by the open bug, support for my card's architecture still has not been implemented.
+</p>
+
+<p>
+I briefly entertained creating a Guix package from AMD's <code>amdgpu-pro</code> <a href="https://www.amd.com/en/support/kb/release-notes/rn-radpro-lin-16-40">packages</a>, but it appears as though my card is not supported, and according to a bug (<a href="https://github.com/RadeonOpenCompute/ROCm/issues/819">819</a>) against ROCm, likely won't be.
+</p>
+
+<p>
+So it would seem I'm out of luck, and I'm stuck running Leela Zero on the CPU for now. Analyzing one of my games on 60 compute cores took somewhere around ten minutes, so not intractable.
+</p>
+
+<p>
+Still, perhaps this helps others running Guix with GPUs that are supported by <code>libclc</code>.
+</p>
+
+<p>
+As an aside, this research is perhaps an indication of why — despite my years of interest in Go — I remain a Kyu player.
+</p>
+
+    </div>
+  </div>
+</div> <!-- /.container -->
+]]></description>
+      <pubDate>2021-07-05</pubDate>
+      <guid>http://katherine.cox-buday.com/blog/2021/07/05/trying-opencl-on-guix-an-experience-report/</guid>
+    </item>
     <item>
       <title>The Utility of a Cup</title>
       <link>http://katherine.cox-buday.com/blog/2018/07/18/the-utility-of-a-cup/</link>
@@ -165,7 +605,7 @@ I have often wondered how qubits might be regarded under Taoism.
     <div class="post">
       <h3></h3>
       
-<div class="figure">
+<div id="org58fd9ba" class="figure">
 <p><img src="/assets/concurrency-in-go/book-cover.jpg" alt="book-cover.jpg" class="img-responsive pull-left" style="margin-right:15px; width:250px" />
 </p>
 </div>
@@ -183,9 +623,9 @@ Author Katherine Cox-Buday takes you through the tools and techniques to develop
 </p>
 <div class="clearfix"></div>
 
-<div id="outline-container-org6e3aac2" class="outline-2">
-<h2 id="org6e3aac2">Available for Purchase</h2>
-<div class="outline-text-2" id="text-org6e3aac2">
+<div id="outline-container-org8caff3d" class="outline-2">
+<h2 id="org8caff3d">Available for Purchase</h2>
+<div class="outline-text-2" id="text-org8caff3d">
 <ul class="org-ul">
 <li><a href="http://www.ebooks.com/95820962/concurrency-in-go/cox-buday-katherine/">ebooks.com</a> (DRM free!)</li>
 <li><a href="https://www.amazon.com/gp/product/1491941197/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;tag=katherinecoxb-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=1491941197&amp;linkId=50618894344eaf64dbf967755272d941">Amazon</a></li>
@@ -368,9 +808,9 @@ So perhaps it's because I'm paranoid, but I like to validate my inputs as close 
 There are advantages and disadvantages to this technique.
 </p>
 
-<div id="outline-container-orgfb9c915" class="outline-2">
-<h2 id="orgfb9c915">Advantages</h2>
-<div class="outline-text-2" id="text-orgfb9c915">
+<div id="outline-container-org98841e0" class="outline-2">
+<h2 id="org98841e0">Advantages</h2>
+<div class="outline-text-2" id="text-org98841e0">
 <ol class="org-ol">
 <li><p>
 <b>Adherence to the <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail Fast principle</a>.</b>
@@ -399,9 +839,9 @@ If I'm calling this code, what can I pass in? Are nulls OK? If I'm reading the c
 </div>
 </div>
 
-<div id="outline-container-org3c0781c" class="outline-2">
-<h2 id="org3c0781c">Disadvantages</h2>
-<div class="outline-text-2" id="text-org3c0781c">
+<div id="outline-container-org10ae8a0" class="outline-2">
+<h2 id="org10ae8a0">Disadvantages</h2>
+<div class="outline-text-2" id="text-org10ae8a0">
 <ol class="org-ol">
 <li><p>
 <b>Performance</b>
@@ -430,9 +870,9 @@ This is the one I struggle with most. How many times are you going to check that
 </div>
 </div>
 
-<div id="outline-container-org29b21c6" class="outline-2">
-<h2 id="org29b21c6">Smart Parameter Validation</h2>
-<div class="outline-text-2" id="text-org29b21c6">
+<div id="outline-container-orgc207bdd" class="outline-2">
+<h2 id="orgc207bdd">Smart Parameter Validation</h2>
+<div class="outline-text-2" id="text-orgc207bdd">
 <p>
 A long chain of if statements at the beginning of your code is cumbersome to write and maintain. It's prone to bugs, and it can actually hide incorrect parameters which are checked after other failing parameters. Do your parameter validation smarter:
 </p>
@@ -551,10 +991,10 @@ Katherine
 </p>
 
 <ul class="org-ul">
-<li>NAMI (<a href="http://www.charitynavigator.org/index.cfm?bay=search.summary&amp;orgid=4827">National Alliance on Mental Illness</a>)</li>
-<li>HRC (<a href="http://www.charitynavigator.org/index.cfm?bay=search.summary&amp;orgid=6229">The Human Rights Campaign</a>)</li>
-<li>WWF (<a href="http://www.charitynavigator.org/index.cfm?bay=search.summary&amp;orgid=4770">World Wildlife Fund</a>)</li>
-<li>Wikimedia Foundation (<a href="http://www.charitynavigator.org/index.cfm?bay=search.summary&amp;orgid=11212">Wikipedia</a>)</li>
+<li>NAMI (<a href="http://www.charitynavigator.org/index.cfm?bay%3Dsearch.summary&amp;orgid%3D4827">National Alliance on Mental Illness</a>)</li>
+<li>HRC (<a href="http://www.charitynavigator.org/index.cfm?bay%3Dsearch.summary&amp;orgid%3D6229">The Human Rights Campaign</a>)</li>
+<li>WWF (<a href="http://www.charitynavigator.org/index.cfm?bay%3Dsearch.summary&amp;orgid%3D4770">World Wildlife Fund</a>)</li>
+<li>Wikimedia Foundation (<a href="http://www.charitynavigator.org/index.cfm?bay%3Dsearch.summary&amp;orgid%3D11212">Wikipedia</a>)</li>
 </ul>
 
     </div>
@@ -609,9 +1049,9 @@ Juju is written in Go, and so I'll be taking a look at the <a href="https://gith
 With that said, on to the analysis!
 </p>
 
-<div id="outline-container-org7cf98fe" class="outline-2">
-<h2 id="org7cf98fe">Key Concepts</h2>
-<div class="outline-text-2" id="text-org7cf98fe">
+<div id="outline-container-org2b54b2f" class="outline-2">
+<h2 id="org2b54b2f">Key Concepts</h2>
+<div class="outline-text-2" id="text-org2b54b2f">
 <ul class="org-ul">
 <li><b>span</b>: A logical unit of work in the system.</li>
 <li><b>baggage</b>: Information intended to be carried on to subsequent spans.</li>
@@ -621,9 +1061,9 @@ With that said, on to the analysis!
 </div>
 </div>
 
-<div id="outline-container-orge71c9d1" class="outline-2">
-<h2 id="orge71c9d1">Sanity Check</h2>
-<div class="outline-text-2" id="text-orge71c9d1">
+<div id="outline-container-org9b9bd83" class="outline-2">
+<h2 id="org9b9bd83">Sanity Check</h2>
+<div class="outline-text-2" id="text-org9b9bd83">
 <p>
 First of all, the <a href="https://github.com/opentracing/opentracing-go/blob/master/LICENSE">license</a> is MIT. No issues there.
 </p>
@@ -638,9 +1078,9 @@ Juju also has Python bindings to its API, so ideally any tracing standard will b
 </div>
 </div>
 
-<div id="outline-container-org86fe60c" class="outline-2">
-<h2 id="org86fe60c">Performance</h2>
-<div class="outline-text-2" id="text-org86fe60c">
+<div id="outline-container-orgfc91208" class="outline-2">
+<h2 id="orgfc91208">Performance</h2>
+<div class="outline-text-2" id="text-orgfc91208">
 <p>
 First the obvious question. If I'm going to be embedding a lot of spans, this needs to be fast. How quick is it to create and tear down a new span?
 </p>
@@ -745,13 +1185,13 @@ Looks pretty reasonable; just some information about the spans for the receiver 
 </div>
 </div>
 
-<div id="outline-container-orgc249e1a" class="outline-2">
-<h2 id="orgc249e1a">Integration with Juju</h2>
-<div class="outline-text-2" id="text-orgc249e1a">
+<div id="outline-container-org58b864f" class="outline-2">
+<h2 id="org58b864f">Integration with Juju</h2>
+<div class="outline-text-2" id="text-org58b864f">
 </div>
-<div id="outline-container-org851d6db" class="outline-3">
-<h3 id="org851d6db">Gating API Calls</h3>
-<div class="outline-text-3" id="text-org851d6db">
+<div id="outline-container-orga16322e" class="outline-3">
+<h3 id="orga16322e">Gating API Calls</h3>
+<div class="outline-text-3" id="text-orga16322e">
 <p>
 Juju's API server is the bottleneck gating access to and from a Juju daemon and is the natural place to ensure a trace either exists or is started. Ideally the things calling Juju's API server would have started a trace, but if not, we need to ensure that one exists. Let's first see how we can ensure that all API server connections know about OpenTracing and spans.
 </p>
@@ -983,18 +1423,18 @@ The <code>ctx</code> would in turn be created further up the stack from our requ
 </div>
 </div>
 
-<div id="outline-container-org50b7731" class="outline-3">
-<h3 id="org50b7731">Backwards compatibility</h3>
-<div class="outline-text-3" id="text-org50b7731">
+<div id="outline-container-org776005b" class="outline-3">
+<h3 id="org776005b">Backwards compatibility</h3>
+<div class="outline-text-3" id="text-org776005b">
 <p>
 Since The API server gate looks for an incoming span but does not expect it, all existing clients &#x2013; including those from prior versions of Juju &#x2013; should be able to utilize the new endpoints. Thus, we should remain backwards compatible, and no new upgrade steps need be written.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge2c8f4c" class="outline-3">
-<h3 id="orge2c8f4c">Writing Audit Events to Mongo</h3>
-<div class="outline-text-3" id="text-orge2c8f4c">
+<div id="outline-container-org97c74b5" class="outline-3">
+<h3 id="org97c74b5">Writing Audit Events to Mongo</h3>
+<div class="outline-text-3" id="text-org97c74b5">
 <p>
 Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All audit events will be written to a Mongo collection. To do this, we'll write our own OpenTracing recorder which will do nothing but persist audit events to the collection. It will probably look very similar to the provided <a href="https://github.com/opentracing/basictracer-go">basic tracer</a>.
 </p>
@@ -1023,9 +1463,9 @@ Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All
 A lot of people have commented on the specifications I produce for the products I have worked on. I can't think of a humble way to say this, and I must make the point, so here it is: it is not uncommon for them to say that they are easy to read, clear, and more useful than most specifications they've read. Very often the next thing is a question: how'd you do that?
 </p>
 
-<div id="outline-container-org2ad1679" class="outline-2">
-<h2 id="org2ad1679">Core Ideas</h2>
-<div class="outline-text-2" id="text-org2ad1679">
+<div id="outline-container-org31b39ef" class="outline-2">
+<h2 id="org31b39ef">Core Ideas</h2>
+<div class="outline-text-2" id="text-org31b39ef">
 <p>
 Right off the bat, let's get one thing clear: content is paramount. You can spend a lot of time producing a beautiful document that is useless. Don't do that. The style should support the content, and help bring out the information. Having said that, after a little bit of setup, you can produce beautiful <i>and</i> useful documents in about as long as it takes you to form the ideas. I've tested this.
 </p>
@@ -1050,9 +1490,9 @@ Number 3 is quite handy as the details form. You can be sure that the code alway
 </div>
 </div>
 
-<div id="outline-container-orga842b7e" class="outline-2">
-<h2 id="orga842b7e">Drawbacks</h2>
-<div class="outline-text-2" id="text-orga842b7e">
+<div id="outline-container-org4ea79e1" class="outline-2">
+<h2 id="org4ea79e1">Drawbacks</h2>
+<div class="outline-text-2" id="text-org4ea79e1">
 <p>
 Like anything, there are a few drawbacks.
 </p>
@@ -1081,9 +1521,9 @@ This is only an issue in some environments, but because the specifications you'l
 </div>
 </div>
 
-<div id="outline-container-org76a2bdc" class="outline-2">
-<h2 id="org76a2bdc">The Tools</h2>
-<div class="outline-text-2" id="text-org76a2bdc">
+<div id="outline-container-orgbe51ee7" class="outline-2">
+<h2 id="orgbe51ee7">The Tools</h2>
+<div class="outline-text-2" id="text-orgbe51ee7">
 <ul class="org-ul">
 <li><p>
 Emacs
@@ -1124,21 +1564,21 @@ This is only part of the stack because this is what we'll tell Org-mode to expor
 </div>
 </div>
 
-<div id="outline-container-orgb95fd4f" class="outline-2">
-<h2 id="orgb95fd4f">The Work flow</h2>
-<div class="outline-text-2" id="text-orgb95fd4f">
+<div id="outline-container-org2569807" class="outline-2">
+<h2 id="org2569807">The Work flow</h2>
+<div class="outline-text-2" id="text-org2569807">
 </div>
-<div id="outline-container-org605282a" class="outline-3">
-<h3 id="org605282a">One-time Setup</h3>
-<div class="outline-text-3" id="text-org605282a">
+<div id="outline-container-orgcefc3a4" class="outline-3">
+<h3 id="orgcefc3a4">One-time Setup</h3>
+<div class="outline-text-3" id="text-orgcefc3a4">
 <p>
 When you start, you'll have to set up a few things, namely the specification editor and optionally a LaTeX style-sheet to stylize your documents. However, after this is done, you'll only have to revisit it if you wish to change the style. After the initial setup, your documents just fall out as you type.
 </p>
 </div>
 
-<div id="outline-container-orgdf40790" class="outline-4">
-<h4 id="orgdf40790">Installing the Tools</h4>
-<div class="outline-text-4" id="text-orgdf40790">
+<div id="outline-container-org6512b41" class="outline-4">
+<h4 id="org6512b41">Installing the Tools</h4>
+<div class="outline-text-4" id="text-org6512b41">
 <ol class="org-ol">
 <li>Install Emacs</li>
 <li>Install LaTeX</li>
@@ -1227,9 +1667,9 @@ Those already utilizing Emacs should strip out the requisite pieces and place th
 </div>
 </div>
 
-<div id="outline-container-orgc8d83cd" class="outline-4">
-<h4 id="orgc8d83cd">Create Your Style</h4>
-<div class="outline-text-4" id="text-orgc8d83cd">
+<div id="outline-container-org500c466" class="outline-4">
+<h4 id="org500c466">Create Your Style</h4>
+<div class="outline-text-4" id="text-org500c466">
 <p>
 If you wanted to, you could skip the section and just utilize LaTeX's very sensible default style. Your document won't look quite as pretty, but all of your documents will be well-formed, readable, and consistent.
 </p>
@@ -1245,9 +1685,9 @@ For the sake of brevity I'm going to skip any walkthrough on creating a LaTeX st
 </div>
 </div>
 
-<div id="outline-container-org4d80a4c" class="outline-3">
-<h3 id="org4d80a4c">Creating Documents</h3>
-<div class="outline-text-3" id="text-org4d80a4c">
+<div id="outline-container-org00a2a9a" class="outline-3">
+<h3 id="org00a2a9a">Creating Documents</h3>
+<div class="outline-text-3" id="text-org00a2a9a">
 <p>
 Once you have everything set up, things become very easy. The only thing you truly need is a few headers:
 </p>
@@ -1286,9 +1726,9 @@ That's it. After this, it's all content &#x2013; and it's all in plain text. So 
 </div>
 </div>
 
-<div id="outline-container-org16c9321" class="outline-4">
-<h4 id="org16c9321">PlantUML</h4>
-<div class="outline-text-4" id="text-org16c9321">
+<div id="outline-container-org8e7646b" class="outline-4">
+<h4 id="org8e7646b">PlantUML</h4>
+<div class="outline-text-4" id="text-org8e7646b">
 <p>
 As stated above, PlantUML isn't necessary if you don't plan on including any UML diagrams. If you would like to include some diagrams, you will be taking advantage of Org-Mode's source-code block features.
 </p>
@@ -1315,9 +1755,9 @@ This will open a new buffer in emacs where you can type in PlantUML code &#x2013
 </div>
 </div>
 
-<div id="outline-container-org7962b63" class="outline-3">
-<h3 id="org7962b63">Exporting</h3>
-<div class="outline-text-3" id="text-org7962b63">
+<div id="outline-container-org514ea17" class="outline-3">
+<h3 id="org514ea17">Exporting</h3>
+<div class="outline-text-3" id="text-org514ea17">
 <p>
 To further expand our example above, the document might look like this:
 </p>
@@ -1353,14 +1793,14 @@ To export this, navigate to the menu-bar and click on the "Org &gt; Export/Publi
 </p>
 
 
-<div class="figure">
+<div id="orga59070c" class="figure">
 <p><img src="/assets/blog/2015/03/14/writing-specs-with-org-mode/finished-spec-pdf.png" alt="finished-spec-pdf.png" width="300px" class="img-thumbnail" />
 </p>
 <p><span class="figure-number">Figure 1: </span>An Unstyled Document</p>
 </div>
 
 
-<div class="figure">
+<div id="org41500fd" class="figure">
 <p><img src="/assets/blog/2015/03/14/writing-specs-with-org-mode/finished-styled-spec-pdf.png" alt="finished-styled-spec-pdf.png" width="300px" class="img-thumbnail" />
 </p>
 <p><span class="figure-number">Figure 2: </span>A Styled Document</p>
@@ -1372,9 +1812,9 @@ Not bad for a few lines of plain text, right? In the second example, we can see 
 </div>
 </div>
 
-<div id="outline-container-org47fb9d2" class="outline-3">
-<h3 id="org47fb9d2">Exporting Artifacts</h3>
-<div class="outline-text-3" id="text-org47fb9d2">
+<div id="outline-container-orgc3ca376" class="outline-3">
+<h3 id="orgc3ca376">Exporting Artifacts</h3>
+<div class="outline-text-3" id="text-orgc3ca376">
 <p>
 I'm only going to touch on this since it's slightly more advanced, but since it's a feature I use in my documents, I thought I'd at least mention it.
 </p>
@@ -1413,9 +1853,9 @@ Your code should now be sitting in the directory you specified!
 </div>
 </div>
 
-<div id="outline-container-org0820e74" class="outline-2">
-<h2 id="org0820e74">Conclusion</h2>
-<div class="outline-text-2" id="text-org0820e74">
+<div id="outline-container-org034af15" class="outline-2">
+<h2 id="org034af15">Conclusion</h2>
+<div class="outline-text-2" id="text-org034af15">
 <p>
 I've often found that specifications in the IT industry have received a negative reputation in our industry. People say things such as, "Code is worth a thousand specifications," or complain that writing specifications is just a waste of time.
 </p>
@@ -1454,47 +1894,6 @@ Happy hacking!
 ]]></description>
       <pubDate>2015-03-14</pubDate>
       <guid>http://katherine.cox-buday.com/blog/2015/03/14/writing-specs-with-org-mode/</guid>
-    </item>
-    <item>
-      <title>Migrating to a Statically Generated Blog</title>
-      <link>http://katherine.cox-buday.com/blog/2015/01/02/migrating-to-a-statically-generated-blog/</link>
-      <description><![CDATA[<div class="post">
-  <div class="col-sm-3 right-align post-meta">
-    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
-  </div>
-  <div class="col-sm-9">
-    <div class="post">
-      <h3>Migrating to a Statically Generated Blog</h3>
-      <p>
-Up until now, I have been utilizing Google's <a href="https://blogger.com">Blogger</a> service. It made sense: I use a lot of Google's services, and Blogger is well integrated with a lot of them; free hosting, decent flexibility.
-</p>
-
-<p>
-However, I am slowly migrating towards the idea of my entire online presence being managed by me and not by hosted services (more on the motivation for this in a later post), and also to the idea that my website is the hub for all of this. A statically generated site meets these goals while being both cheap and simple.
-</p>
-
-<p>
-It's also easier to use general web-development techniques now that I'm not hamstrung by a service's blogging engine. As you can see I've kept the look and feel very simple, but there are interesting things you can do with web technologies that I may take advantage of in the future.
-</p>
-
-<p>
-The software I'm utilizing is <a href="https://github.com/kelvinh/org-page">Org-page</a>, an <a href="http://www.gnu.org/software/emacs/">Emacs</a> plug-in which allows you to do you writing in <a href="http://orgmode.org/">Org mode</a>, which is where I spend a lot of my time. Org-page in itself is a nice tool, however over time I may eventually fork it or write one of my own.
-</p>
-
-<p>
-Currently I'm using <a href="https://pages.github.com/">GitHub Pages</a> for hosting although this is probably largely unimportant and may change in the future.
-</p>
-
-<p>
-I will back-fill entries made from Blogger in the near future. Until then, things will look a little sparse.
-</p>
-
-    </div>
-  </div>
-</div> <!-- /.container -->
-]]></description>
-      <pubDate>2015-01-02</pubDate>
-      <guid>http://katherine.cox-buday.com/blog/2015/01/02/migrating-to-a-statically-generated-blog/</guid>
     </item>
   </channel>
 </rss>
