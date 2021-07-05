@@ -1,0 +1,363 @@
+#+TITLE: Trying OpenCL on Guix: An Experience Report
+#+DATE: 2021-07-05
+#+TAGS: tech
+
+Recently, I wanted to run [[https://github.com/leela-zero/leela-zero][Leela Zero]] with [[https://github.com/bernds/q5Go][q5go]] to help me get better at playing Go. I run [[https://guix.gnu.org/][GNU Guix]] on my machine, and so I did the following: =guix package -i leela-zero gnugo q5go=. This got =q5go= going and I was able to point it at Leela Zero (=~/.guix-profile/bin/leelaz=) as an analysis engine; however, it does not work. Here is my experience determining why.
+
+Like many machine learning programs, Leela Zero can optionally use your GPU utilizing OpenCL to drastically speed up its operations per second. Unfortunately, invoking ~leelaz~ with =leelaz --gtp= wasn't working for me. If I invoked Leela Zero like this: =leelaz --cpu-only= it worked, but took a long time to analyze moves. This suggested to me that it was an issue with my OpenCL setup. We can use the ~clinfo~ program to troubleshoot this.
+
+#+BEGIN_SRC shell :results verbatim :exports both
+guix environment --ad-hoc clinfo -- clinfo
+#+END_SRC
+
+#+RESULTS:
+: Number of platforms                               0
+
+This strongly suggests there is something wrong with Guix's OpenCL setup. We can use ~strace~ to learn more.
+
+#+BEGIN_SRC shell :results verbatim :exports both
+guix environment --ad-hoc strace clinfo -- strace -o/dev/stdout -eopenat clinfo
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/etc/OpenCL/vendors", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = -1 ENOENT (No such file or directory)
+Number of platforms                               0
++++ exited with 0 +++
+#+end_example
+
+Despite ~mesa-opencl~ being installed in the system profile, Guix had not populated ~/etc/OpenCL~ from the package. It is, however present:
+
+#+BEGIN_SRC shell :results verbatim :exports both
+find -L /run/current-system/profile -name OpenCL
+#+END_SRC
+
+#+RESULTS:
+: /run/current-system/profile/etc/OpenCL
+
+This is mystery number one: why isn't this being populated into Guix's root =/etc=?
+
+Pointing ~clinfo~ at the vendors directory can be achieved with the =OPENCL_VENDOR_PATH= environmental variable. The contents of this file are:
+
+  #+BEGIN_SRC shell :exports both
+cat /run/current-system/profile/etc/OpenCL/vendors/mesa.icd
+  #+END_SRC
+
+  #+RESULTS:
+  : libMesaOpenCL.so.1
+
+By running ~strace~, we can see that despite ~mesa-opencl-icd~ being installed in the system's profile, it cannot find the location of the library:
+
+#+BEGIN_SRC shell :results verbatim :exports both
+OPENCL_VENDOR_PATH=/run/current-system/profile/etc/OpenCL/vendors guix environment --ad-hoc strace clinfo -- strace -o/dev/stdout -eopenat clinfo
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/run/current-system/profile/etc/OpenCL/vendors", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 3
+openat(AT_FDCWD, "/run/current-system/profile/etc/OpenCL/vendors/mesa.icd", O_RDONLY) = 4
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/x86_64/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../x86_64/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+Number of platforms                               0
++++ exited with 0 +++
+#+end_example
+
+It is, however, present:
+
+#+BEGIN_SRC shell :exports both
+find -L /run/current-system/profile -name libMesaOpenCL.so.1
+#+END_SRC
+
+#+RESULTS:
+: /run/current-system/profile/lib/libMesaOpenCL.so.1
+
+This is mystery number two: why can't Guix locate the library?
+
+If we create our own vendors file, populate it with the location of the ~libMesaOpenCL.so~ file, and point ~clinfo~ at this, things begin to look better.
+
+#+BEGIN_SRC shell :exports both
+cat ${HOME}/.local/etc/OpenCL/vendors/mesa.icd
+#+END_SRC
+
+#+RESULTS:
+: /run/current-system/profile/lib/libMesaOpenCL.so.1
+
+#+BEGIN_SRC shell :results verbatim :exports both
+OPENCL_VENDOR_PATH=${HOME}/.local/etc/OpenCL/vendors clinfo
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Number of platforms                               1
+  Platform Name                                   Clover
+  Platform Vendor                                 Mesa
+  Platform Version                                OpenCL 1.1 Mesa 20.2.4
+  Platform Profile                                FULL_PROFILE
+  Platform Extensions                             cl_khr_icd
+  Platform Extensions function suffix             MESA
+
+  Platform Name                                   Clover
+Number of devices                                 1
+  Device Name                                     AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+  Device Vendor                                   AMD
+  Device Vendor ID                                0x1002
+  Device Version                                  OpenCL 1.1 Mesa 20.2.4
+  Driver Version                                  20.2.4
+  Device OpenCL C Version                         OpenCL C 1.1
+  Device Type                                     GPU
+  Device Profile                                  FULL_PROFILE
+  Device Available                                Yes
+  Compiler Available                              Yes
+  Max compute units                               40
+  Max clock frequency                             2200MHz
+  Max work item dimensions                        3
+  Max work item sizes                             256x256x256
+  Max work group size                             256
+  Preferred work group size multiple              <getWGsizes:1200: create kernel : error -46>
+  Preferred / native vector sizes
+    char                                                16 / 16
+    short                                                8 / 8
+    int                                                  4 / 4
+    long                                                 2 / 2
+    half                                                 0 / 0        (n/a)
+    float                                                4 / 4
+    double                                               2 / 2        (cl_khr_fp64)
+  Half-precision Floating-point support           (n/a)
+  Single-precision Floating-point support         (core)
+    Denormals                                     No
+    Infinity and NANs                             Yes
+    Round to nearest                              Yes
+    Round to zero                                 No
+    Round to infinity                             No
+    IEEE754-2008 fused multiply-add               No
+    Support is emulated in software               No
+    Correctly-rounded divide and sqrt operations  No
+  Double-precision Floating-point support         (cl_khr_fp64)
+    Denormals                                     Yes
+    Infinity and NANs                             Yes
+    Round to nearest                              Yes
+    Round to zero                                 Yes
+    Round to infinity                             Yes
+    IEEE754-2008 fused multiply-add               Yes
+    Support is emulated in software               No
+  Address bits                                    64, Little-Endian
+  Global memory size                              8589934592 (8GiB)
+  Error Correction support                        No
+  Max memory allocation                           6871947673 (6.4GiB)
+  Unified memory for Host and Device              No
+  Minimum alignment for any data type             128 bytes
+  Alignment of base address                       32768 bits (4096 bytes)
+  Global Memory cache type                        None
+  Image support                                   No
+  Local memory type                               Local
+  Local memory size                               32768 (32KiB)
+  Max number of constant args                     16
+  Max constant buffer size                        2147483392 (2GiB)
+  Max size of kernel argument                     1024
+  Queue properties
+    Out-of-order execution                        No
+    Profiling                                     Yes
+  Profiling timer resolution                      0ns
+  Execution capabilities
+    Run OpenCL kernels                            Yes
+    Run native kernels                            No
+  Device Extensions                               cl_khr_byte_addressable_store cl_khr_global_int32_base_atomics cl_khr_global_int32_extended_atomics cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics cl_khr_int64_base_atomics cl_khr_int64_extended_atomics cl_khr_fp64
+
+NULL platform behavior
+  clGetPlatformInfo(NULL, CL_PLATFORM_NAME, ...)  Clover
+  clGetDeviceIDs(NULL, CL_DEVICE_TYPE_ALL, ...)   Success [MESA]
+  clCreateContext(NULL, ...) [default]            Success [MESA]
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_DEFAULT)  Success (1)
+    Platform Name                                 Clover
+    Device Name                                   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_CPU)  No devices found in platform
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_GPU)  Success (1)
+    Platform Name                                 Clover
+    Device Name                                   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_ACCELERATOR)  No devices found in platform
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_CUSTOM)  No devices found in platform
+  clCreateContextFromType(NULL, CL_DEVICE_TYPE_ALL)  Success (1)
+    Platform Name                                 Clover
+    Device Name                                   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+
+ICD loader properties
+  ICD loader Name                                 OpenCL ICD Loader
+  ICD loader Vendor                               OCL Icd free software
+  ICD loader Version                              2.2.12
+  ICD loader Profile                              OpenCL 2.2
+#+end_example
+
+However, Leela Zero is still not working:
+
+#+BEGIN_SRC shell :results verbatim :exports both
+OPENCL_VENDOR_PATH=${HOME}/.local/etc/OpenCL/vendors leelaz --tune-only 2>&1 || true
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Using OpenCL batch size of 5
+Using 10 thread(s).
+RNG seed: 9713289732080951199
+Leela Zero 0.17  Copyright (C) 2017-2019  Gian-Carlo Pascutto and contributors
+This program comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to redistribute it
+under certain conditions; see the COPYING file for details.
+
+BLAS Core: Zen
+Detecting residual layers...v1...256 channels...40 blocks.
+Initializing OpenCL (autodetecting precision).
+Detected 1 OpenCL platforms.
+Platform version: OpenCL 1.1 Mesa 20.2.4
+Platform profile: FULL_PROFILE
+Platform name:    Clover
+Platform vendor:  Mesa
+Device ID:     0
+Device name:   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+Device type:   GPU
+Device vendor: AMD
+Device driver: 20.2.4
+Device speed:  2200 MHz
+Device cores:  40 CU
+Device score:  1111
+Selected platform: Clover
+Selected device: AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+with OpenCL 1.1 capability.
+Half precision compute support: No.
+Tensor Core support: No.
+Detected 1 OpenCL platforms.
+Platform version: OpenCL 1.1 Mesa 20.2.4
+Platform profile: FULL_PROFILE
+Platform name:    Clover
+Platform vendor:  Mesa
+Device ID:     0
+Device name:   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+Device type:   GPU
+Device vendor: AMD
+Device driver: 20.2.4
+Device speed:  2200 MHz
+Device cores:  40 CU
+Device score:  1111
+Selected platform: Clover
+Selected device: AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
+with OpenCL 1.1 capability.
+Half precision compute support: No.
+Tensor Core support: No.
+
+Started OpenCL SGEMM tuner.
+Will try 290 valid configurations.
+Failed to compile: 290 kernels.
+Failed to find a working configuration.
+Check your OpenCL drivers.
+Minimum error: 100.000000. Error bound: 0.000100
+
+Started OpenCL SGEMM tuner.
+Will try 290 valid configurations.
+Failed to compile: 290 kernels.
+Failed to find a working configuration.
+Check your OpenCL drivers.
+Minimum error: 100.000000. Error bound: 0.100000
+Both single precision and half precision failed to run.
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Failed to initialize net.
+#+end_example
+
+There is a curious error from the output of ~clinfo~:
+
+=Preferred work group size multiple              <getWGsizes:1200: create kernel : error -46>=
+
+If we set the =LD_DEBUG= environment variable to =libs=, we can shed some light as to what is wrong:
+
+#+BEGIN_SRC shell :results verbatim :exports both
+OPENCL_VENDOR_PATH=${HOME}/.local/etc/OpenCL/vendors LD_DEBUG=libs clinfo 2>&1 |grep error
+#+END_SRC
+
+#+RESULTS:
+: fatal error: cannot open file '/gnu/store/h86b3253bc3mnp3p57n1vls2vkfv2h6z-libclc-9.0.1/share/clc/gfx1010-amdgcn-mesa-mesa3d.bc': No such file or directory
+:   Preferred work group size multiple              <getWGsizes:1200: create kernel : error -46>
+
+Indeed, this file is not present.
+
+#+BEGIN_SRC shell :results verbatim :exports both
+  [ -f /gnu/store/h86b3253bc3mnp3p57n1vls2vkfv2h6z-libclc-9.0.1/share/clc/gfx1010-amdgcn-mesa-mesa3d.bc ]
+  echo $?
+#+END_SRC
+
+#+RESULTS:
+: 1
+
+Further research turned up a bug ([[https://bugs.llvm.org/show_bug.cgi?id=44841][44841]]) against ~libclc~ which suggests that while support for my card was included into LLVM v10 (at the time of this writing, LLVM has released v12), ~libclc~ does not support my card's architecture, ~gfx1010~.
+
+I attempted to build libclc v12.0.0 locally, but it segfaulted. Building v11.0.0 worked, but as suggested by the open bug, support for my card's architecture still has not been implemented.
+
+I briefly entertained creating a Guix package from AMD's ~amdgpu-pro~ [[https://www.amd.com/en/support/kb/release-notes/rn-radpro-lin-16-40][packages]], but it appears as though my card is not supported, and according to a bug ([[https://github.com/RadeonOpenCompute/ROCm/issues/819][819]]) against ROCm, likely won't be.
+
+So it would seem I'm out of luck, and I'm stuck running Leela Zero on the CPU for now. Analyzing one of my games on 60 compute cores took somewhere around ten minutes, so not intractable.
+
+Still, perhaps this helps others running Guix with GPUs that are supported by ~libclc~.
+
+As an aside, this research is perhaps an indication of why — despite my years of interest in Go — I remain a Kyu player.
