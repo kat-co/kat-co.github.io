@@ -43,9 +43,9 @@ Juju is written in Go, and so I'll be taking a look at the <a href="https://gith
 With that said, on to the analysis!
 </p>
 
-<div id="outline-container-org2b54b2f" class="outline-2">
-<h2 id="org2b54b2f">Key Concepts</h2>
-<div class="outline-text-2" id="text-org2b54b2f">
+<div id="outline-container-org96ec221" class="outline-2">
+<h2 id="org96ec221">Key Concepts</h2>
+<div class="outline-text-2" id="text-org96ec221">
 <ul class="org-ul">
 <li><b>span</b>: A logical unit of work in the system.</li>
 <li><b>baggage</b>: Information intended to be carried on to subsequent spans.</li>
@@ -55,9 +55,9 @@ With that said, on to the analysis!
 </div>
 </div>
 
-<div id="outline-container-org9b9bd83" class="outline-2">
-<h2 id="org9b9bd83">Sanity Check</h2>
-<div class="outline-text-2" id="text-org9b9bd83">
+<div id="outline-container-org4052da3" class="outline-2">
+<h2 id="org4052da3">Sanity Check</h2>
+<div class="outline-text-2" id="text-org4052da3">
 <p>
 First of all, the <a href="https://github.com/opentracing/opentracing-go/blob/master/LICENSE">license</a> is MIT. No issues there.
 </p>
@@ -72,9 +72,9 @@ Juju also has Python bindings to its API, so ideally any tracing standard will b
 </div>
 </div>
 
-<div id="outline-container-orgfc91208" class="outline-2">
-<h2 id="orgfc91208">Performance</h2>
-<div class="outline-text-2" id="text-orgfc91208">
+<div id="outline-container-org1ea27f7" class="outline-2">
+<h2 id="org1ea27f7">Performance</h2>
+<div class="outline-text-2" id="text-org1ea27f7">
 <p>
 First the obvious question. If I'm going to be embedding a lot of spans, this needs to be fast. How quick is it to create and tear down a new span?
 </p>
@@ -173,19 +173,25 @@ fmt.Printf("Header (after): %v\n", httpReq.Header)
 </pre>
 </div>
 
+<pre class="example">
+Header (before): map[]
+Header (after): map[Ot-Tracer-Traceid:[7ab6ba52e1e748c1] Ot-Tracer-Spanid:[1b4c98c3b3f048aa] Ot-Tracer-Sampled:[false] Ot-Baggage-My-Baggage:[current+user]]
+</pre>
+
+
 <p>
 Looks pretty reasonable; just some information about the spans for the receiver to pick up the trace.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org58b864f" class="outline-2">
-<h2 id="org58b864f">Integration with Juju</h2>
-<div class="outline-text-2" id="text-org58b864f">
+<div id="outline-container-orgc36fe03" class="outline-2">
+<h2 id="orgc36fe03">Integration with Juju</h2>
+<div class="outline-text-2" id="text-orgc36fe03">
 </div>
-<div id="outline-container-orga16322e" class="outline-3">
-<h3 id="orga16322e">Gating API Calls</h3>
-<div class="outline-text-3" id="text-orga16322e">
+<div id="outline-container-org1dba160" class="outline-3">
+<h3 id="org1dba160">Gating API Calls</h3>
+<div class="outline-text-3" id="text-org1dba160">
 <p>
 Juju's API server is the bottleneck gating access to and from a Juju daemon and is the natural place to ensure a trace either exists or is started. Ideally the things calling Juju's API server would have started a trace, but if not, we need to ensure that one exists. Let's first see how we can ensure that all API server connections know about OpenTracing and spans.
 </p>
@@ -417,18 +423,18 @@ The <code>ctx</code> would in turn be created further up the stack from our requ
 </div>
 </div>
 
-<div id="outline-container-org776005b" class="outline-3">
-<h3 id="org776005b">Backwards compatibility</h3>
-<div class="outline-text-3" id="text-org776005b">
+<div id="outline-container-orgdf016db" class="outline-3">
+<h3 id="orgdf016db">Backwards compatibility</h3>
+<div class="outline-text-3" id="text-orgdf016db">
 <p>
 Since The API server gate looks for an incoming span but does not expect it, all existing clients &#x2013; including those from prior versions of Juju &#x2013; should be able to utilize the new endpoints. Thus, we should remain backwards compatible, and no new upgrade steps need be written.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org97c74b5" class="outline-3">
-<h3 id="org97c74b5">Writing Audit Events to Mongo</h3>
-<div class="outline-text-3" id="text-org97c74b5">
+<div id="outline-container-orge328c45" class="outline-3">
+<h3 id="orge328c45">Writing Audit Events to Mongo</h3>
+<div class="outline-text-3" id="text-orge328c45">
 <p>
 Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All audit events will be written to a Mongo collection. To do this, we'll write our own OpenTracing recorder which will do nothing but persist audit events to the collection. It will probably look very similar to the provided <a href="https://github.com/opentracing/basictracer-go">basic tracer</a>.
 </p>
@@ -486,11 +492,11 @@ Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All
       <div class="col-md-2 vertical-center">
         <a href="https://github.com/kat-co"><span class="fa fa-github-square fa-2x"></span></a>
         <a href="http://www.linkedin.com/in/katherinecoxbuday"><span class="fa fa-linkedin-square fa-2x"></span></a>
-        <a href="https://twitter.com/katco_"><span class="fa fa-twitter-square fa-2x"></span></a>
+        <a href="https://mstdn.social/@katco"><span class="fa fa-link fa-2x"></span></a>
       </div>
       <div class="col-sm-9 vertical-center">
         Copyright &copy; <a href="mailto:cox &lt;dot&gt; katherine &lt;dot&gt; e &lt;at&gt; gmail &lt;dot&gt; com">Katherine Cox-Buday</a>,
-        Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x) & <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+        Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 28.x (<a href="http://orgmode.org">Org mode</a> 9.x) & <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
       </div>
     </div> <!-- ./row -->
   </div> <!-- ./container -->

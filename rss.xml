@@ -4,10 +4,93 @@
     <title>Katherine Cox-Buday</title>
     <link>http://katherine.cox-buday.com</link>
     <description>static site generator</description>
-    <pubDate>Mon, 05 Jul 2021 07:14:54 CDT</pubDate>
-    <lastBuildDate>Mon, 05 Jul 2021 07:14:54 CDT</lastBuildDate>
+    <pubDate>Tue, 01 Nov 2022 18:31:17 MDT</pubDate>
+    <lastBuildDate>Tue, 01 Nov 2022 18:31:17 MDT</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
+    <item>
+      <title>On Twitter&#39;s Acquisition, and Leaving</title>
+      <link>http://katherine.cox-buday.com/blog/2022/11/01/on-twitters-acquisition-and-leaving/</link>
+      <description><![CDATA[<div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3>On Twitter&#39;s Acquisition, and Leaving</h3>
+      <p>
+Since Twitter changed hands, I've seen calls for people to remain on the platform in an effort to not cede it to those with extremist views, and to keep communities connected. Although worthy goals, I don't think remaining on the platform is a great idea, and I wanted to share my opinion in the hopes it will influence people, communities, and public services, to change how they engage with society.
+</p>
+
+<p>
+This is an odd issue for me to take a stance on because I abandoned social media awhile ago. It's unclear to me that its benefits outweigh its risks to society<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>. As a life-long netizen who has benefited immensely from online spaces over the years, I also understand that these spaces are important, and that for many, a vital and sometimes life-saving alternative to the real world. I'm just not sure about social media in it's current form. Still, a lot of people like and use it, and what happens with Twitter will impact me, indirectly. So onto the question: why shouldn't people stay?
+</p>
+
+<p>
+⚜
+</p>
+
+<p>
+The value in Twitter, and any social media network, comes from the people who engage with it. These networks don't produce any content; that comes from you. And you wouldn't put content into the network unless you thought someone was going to read it. It's a positive feedback loop: the more you feed the machine, the more valuable the machine becomes, to the public, and, more importantly, to those who control it. In Twitter's case, one person now controls it, and the people he borrowed money from control him. Is this is the platform we want to be society's "town square"? To host our political discourse? To hear from our public servants?
+</p>
+
+<p>
+If you fear Twitter becoming a mouthpiece for extremism, disinformation, and mass manipulation, the best way to resist isn't to stay, it's to exit the platform. With fewer accounts, there will be fewer people feeding it content, and less reason for those who remain to do so: a negative feedback loop. Its importance will wane. Starved and spiraling, it will cease to be the "town square", and like many social networks before it, it will fade away. Remaining, at best, ensures the platform retains its status, and — if your fears are true — thus ensures extremism, disinformation, and mass manipulation have an audience.
+</p>
+
+<p>
+If you fear your community fracturing, I don't think there's a way to stop this. This acquisition has already driven people away, and it will continue to do so. The best way to keep communities connected, and to ensure this doesn't happen again, is to reform the community around a platform where this type of thing could never happen in the first place, and then exiting the one where it did. Even if you somehow avoid shedding community members, the risk remains going forward: someone you don't trust is dictating the rules, and the community could disband or involuntarily be disbanded at any point.
+</p>
+
+<p>
+Which brings me to my most important point: trying to resist within a system of rules your opponent dictates is pointless. You can tweet the best take-down of Twitter ever written, and they can ensure no one sees it. You can start a banging hashtag campaign, and they can ensure no one sees it. You can confront disinformation and offer insight into why it's untrue, and their algorithm can make sure no one sees it. They can outright delete your account: the tool you've chosen for resisting. You have no agency from which to resits.
+</p>
+
+<p>
+For example, I've seen claims that leaving now is disrupting the means of mass communication right before what's expected to be a tumultuous US election. Setting aside the fact that Twitter isn't the only way people communicate en masse, if that's something important to you, why would you want to depend on a platform you have no confidence in? Wouldn't it be <i>more</i> important to start building your network on something you know won't be manipulating its users?
+</p>
+
+<p>
+Wasn't there an entire <a href="https://en.wikipedia.org/wiki/The_Matrix">movie</a> about this? Wasn't the problem that trying to resist from within was pointless? Wasn't the solution to exit? Exit.
+</p>
+
+<p>
+⚜
+</p>
+
+<p>
+If you agree, but are unsure what to do, here are some suggestions:
+</p>
+
+<ul class="org-ul">
+<li>Join a federated network.
+These operate like email: every member can interact with every other member, regardless of which provider they use. There are many more benefits (and some drawbacks), but it removes any private, central, control on what has become an important substrate of our society. I suggest <a href="https://joinmastodon.org/servers">Mastadon</a>. From what I'm told, it doesn't behave exactly like Twitter, but it's a functioning, useful, social network.</li>
+<li>As I have for this post, practice <a href="https://indieweb.org/POSSE">POSSE</a> (Publish (on your) Own Site, Syndicate Elsewhere). The linked site has a great breakdown of why this is useful, including a point on "Friends are more important than federation".</li>
+<li>Support <a href="https://www.eff.org/deeplinks/2021/06/access-act-takes-step-towards-more-interoperable-future">political efforts</a> which require platforms to federate.</li>
+</ul>
+
+
+<p>
+And, next time a curmudgeon like me <a href="https://usesthis.com/interviews/katherine.cox-buday/">blathers on</a> about standards, protocols, ownership, and openness, consider that there may be a horizon, closer now than you think, where these things might be important, and in ways you didn't anticipate. And that <a href="https://www.cnet.com/culture/how-twitter-replaced-my-rss-reader/">the present convenience</a> won't be worth what we're giving up.
+</p>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+In <a href="https://openlibrary.org/works/OL20730900W/How_to_Do_Nothing">How to Do Nothing</a>, Jenny Odell makes a compelling case that our attention is one of the few remaining commodities individuals have left to affect change, and that increasingly people are spending that attention engaging with inflammatory content on social media, while not actually doing anything substantive. I'm probably not representing her excellent and nuanced points well, so if that strikes a chord with you, go read the book.
+</p></div></div>
+
+
+</div>
+</div>
+    </div>
+  </div>
+</div> <!-- /.container -->
+]]></description>
+      <pubDate>2022-11-01</pubDate>
+      <guid>http://katherine.cox-buday.com/blog/2022/11/01/on-twitters-acquisition-and-leaving/</guid>
+    </item>
     <item>
       <title>Trying OpenCL on Guix: An Experience Report</title>
       <link>http://katherine.cox-buday.com/blog/2021/07/05/trying-opencl-on-guix-an-experience-report/</link>
@@ -45,39 +128,18 @@ This strongly suggests there is something wrong with Guix's OpenCL setup. We can
 </pre>
 </div>
 
-<pre class="example" id="org8853b8b">
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = 3
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+<pre class="example">
+openat(AT_FDCWD, "/gnu/store/2ax9z25142khhqx61ks767jr758pzq5r-clinfo-3.0.21.02.21/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/i70jq190cpc45crbnrw8g8lgb4djyi9r-opencl-icd-loader-2021.06.30/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/5h2w4qi9hk1qzzgi1w83220ydslinr4s-glibc-2.33/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/094bbaq6glba86h1d4cj16xhdi6fk2jl-gcc-10.3.0-lib/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/5h2w4qi9hk1qzzgi1w83220ydslinr4s-glibc-2.33/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/5h2w4qi9hk1qzzgi1w83220ydslinr4s-glibc-2.33/lib/libpthread.so.0", O_RDONLY|O_CLOEXEC) = 3
 openat(AT_FDCWD, "/etc/OpenCL/vendors", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = -1 ENOENT (No such file or directory)
 Number of platforms                               0
 +++ exited with 0 +++
 </pre>
+
 
 <p>
 Despite <code>mesa-opencl</code> being installed in the system profile, Guix had not populated <code>/etc/OpenCL</code> from the package. It is, however present:
@@ -107,7 +169,7 @@ Pointing <code>clinfo</code> at the vendors directory can be achieved with the <
 </div>
 
 <pre class="example">
-libMesaOpenCL.so.1
+/gnu/store/48qh6x7ky8r1cxbfalwzngch4hgnrrr9-mesa-opencl-icd-21.3.8/lib/libMesaOpenCL.so.1
 </pre>
 
 
@@ -120,51 +182,18 @@ By running <code>strace</code>, we can see that despite <code>mesa-opencl-icd</c
 </pre>
 </div>
 
-<pre class="example" id="org3f2b5ce">
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/tls/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/x86_64/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/sj62kjd5dfn59cwlgldhpyijg7d3ljjb-ocl-icd-2.2.12/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = 3
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
-openat(AT_FDCWD, "/run/current-system/profile/etc/OpenCL/vendors", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 3
-openat(AT_FDCWD, "/run/current-system/profile/etc/OpenCL/vendors/mesa.icd", O_RDONLY) = 4
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/x86_64/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../tls/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../x86_64/x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../x86_64/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/01b4w3m6mp55y531kyi1g8shh722kwqm-gcc-7.5.0-lib/lib/gcc/x86_64-unknown-linux-gnu/7.5.0/../../../libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/gnu/store/fa6wj5bxkj5ll1d7292a70knmyl7a0cr-glibc-2.31/lib/libMesaOpenCL.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+<pre class="example">
+openat(AT_FDCWD, "/gnu/store/2ax9z25142khhqx61ks767jr758pzq5r-clinfo-3.0.21.02.21/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/i70jq190cpc45crbnrw8g8lgb4djyi9r-opencl-icd-loader-2021.06.30/lib/libOpenCL.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/5h2w4qi9hk1qzzgi1w83220ydslinr4s-glibc-2.33/lib/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/094bbaq6glba86h1d4cj16xhdi6fk2jl-gcc-10.3.0-lib/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/5h2w4qi9hk1qzzgi1w83220ydslinr4s-glibc-2.33/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/gnu/store/5h2w4qi9hk1qzzgi1w83220ydslinr4s-glibc-2.33/lib/libpthread.so.0", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/etc/OpenCL/vendors", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = -1 ENOENT (No such file or directory)
 Number of platforms                               0
 +++ exited with 0 +++
 </pre>
+
 
 <p>
 It is, however, present:
@@ -203,105 +232,10 @@ If we create our own vendors file, populate it with the location of the <code>li
 </pre>
 </div>
 
-<pre class="example" id="org0aef679">
-Number of platforms                               1
-  Platform Name                                   Clover
-  Platform Vendor                                 Mesa
-  Platform Version                                OpenCL 1.1 Mesa 20.2.4
-  Platform Profile                                FULL_PROFILE
-  Platform Extensions                             cl_khr_icd
-  Platform Extensions function suffix             MESA
-
-  Platform Name                                   Clover
-Number of devices                                 1
-  Device Name                                     AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
-  Device Vendor                                   AMD
-  Device Vendor ID                                0x1002
-  Device Version                                  OpenCL 1.1 Mesa 20.2.4
-  Driver Version                                  20.2.4
-  Device OpenCL C Version                         OpenCL C 1.1 
-  Device Type                                     GPU
-  Device Profile                                  FULL_PROFILE
-  Device Available                                Yes
-  Compiler Available                              Yes
-  Max compute units                               40
-  Max clock frequency                             2200MHz
-  Max work item dimensions                        3
-  Max work item sizes                             256x256x256
-  Max work group size                             256
-  Preferred work group size multiple              &lt;getWGsizes:1200: create kernel : error -46&gt;
-  Preferred / native vector sizes                 
-    char                                                16 / 16      
-    short                                                8 / 8       
-    int                                                  4 / 4       
-    long                                                 2 / 2       
-    half                                                 0 / 0        (n/a)
-    float                                                4 / 4       
-    double                                               2 / 2        (cl_khr_fp64)
-  Half-precision Floating-point support           (n/a)
-  Single-precision Floating-point support         (core)
-    Denormals                                     No
-    Infinity and NANs                             Yes
-    Round to nearest                              Yes
-    Round to zero                                 No
-    Round to infinity                             No
-    IEEE754-2008 fused multiply-add               No
-    Support is emulated in software               No
-    Correctly-rounded divide and sqrt operations  No
-  Double-precision Floating-point support         (cl_khr_fp64)
-    Denormals                                     Yes
-    Infinity and NANs                             Yes
-    Round to nearest                              Yes
-    Round to zero                                 Yes
-    Round to infinity                             Yes
-    IEEE754-2008 fused multiply-add               Yes
-    Support is emulated in software               No
-  Address bits                                    64, Little-Endian
-  Global memory size                              8589934592 (8GiB)
-  Error Correction support                        No
-  Max memory allocation                           6871947673 (6.4GiB)
-  Unified memory for Host and Device              No
-  Minimum alignment for any data type             128 bytes
-  Alignment of base address                       32768 bits (4096 bytes)
-  Global Memory cache type                        None
-  Image support                                   No
-  Local memory type                               Local
-  Local memory size                               32768 (32KiB)
-  Max number of constant args                     16
-  Max constant buffer size                        2147483392 (2GiB)
-  Max size of kernel argument                     1024
-  Queue properties                                
-    Out-of-order execution                        No
-    Profiling                                     Yes
-  Profiling timer resolution                      0ns
-  Execution capabilities                          
-    Run OpenCL kernels                            Yes
-    Run native kernels                            No
-  Device Extensions                               cl_khr_byte_addressable_store cl_khr_global_int32_base_atomics cl_khr_global_int32_extended_atomics cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics cl_khr_int64_base_atomics cl_khr_int64_extended_atomics cl_khr_fp64
-
-NULL platform behavior
-  clGetPlatformInfo(NULL, CL_PLATFORM_NAME, ...)  Clover
-  clGetDeviceIDs(NULL, CL_DEVICE_TYPE_ALL, ...)   Success [MESA]
-  clCreateContext(NULL, ...) [default]            Success [MESA]
-  clCreateContextFromType(NULL, CL_DEVICE_TYPE_DEFAULT)  Success (1)
-    Platform Name                                 Clover
-    Device Name                                   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
-  clCreateContextFromType(NULL, CL_DEVICE_TYPE_CPU)  No devices found in platform
-  clCreateContextFromType(NULL, CL_DEVICE_TYPE_GPU)  Success (1)
-    Platform Name                                 Clover
-    Device Name                                   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
-  clCreateContextFromType(NULL, CL_DEVICE_TYPE_ACCELERATOR)  No devices found in platform
-  clCreateContextFromType(NULL, CL_DEVICE_TYPE_CUSTOM)  No devices found in platform
-  clCreateContextFromType(NULL, CL_DEVICE_TYPE_ALL)  Success (1)
-    Platform Name                                 Clover
-    Device Name                                   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
-
-ICD loader properties
-  ICD loader Name                                 OpenCL ICD Loader
-  ICD loader Vendor                               OCL Icd free software
-  ICD loader Version                              2.2.12
-  ICD loader Profile                              OpenCL 2.2
+<pre class="example">
+Number of platforms                               0
 </pre>
+
 
 <p>
 However, Leela Zero is still not working:
@@ -312,72 +246,11 @@ However, Leela Zero is still not working:
 </pre>
 </div>
 
-<pre class="example" id="org0e1a6a1">
-Using OpenCL batch size of 5
-Using 10 thread(s).
-RNG seed: 5861000906466935903
-Leela Zero 0.17  Copyright (C) 2017-2019  Gian-Carlo Pascutto and contributors
-This program comes with ABSOLUTELY NO WARRANTY.
-This is free software, and you are welcome to redistribute it
-under certain conditions; see the COPYING file for details.
-
-BLAS Core: Zen
-Detecting residual layers...v1...256 channels...40 blocks.
-Initializing OpenCL (autodetecting precision).
-Detected 1 OpenCL platforms.
-Platform version: OpenCL 1.1 Mesa 20.2.4
-Platform profile: FULL_PROFILE
-Platform name:    Clover
-Platform vendor:  Mesa
-Device ID:     0
-Device name:   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
-Device type:   GPU
-Device vendor: AMD
-Device driver: 20.2.4
-Device speed:  2200 MHz
-Device cores:  40 CU
-Device score:  1111
-Selected platform: Clover
-Selected device: AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
-with OpenCL 1.1 capability.
-Half precision compute support: No.
-Tensor Core support: No.
-Detected 1 OpenCL platforms.
-Platform version: OpenCL 1.1 Mesa 20.2.4
-Platform profile: FULL_PROFILE
-Platform name:    Clover
-Platform vendor:  Mesa
-Device ID:     0
-Device name:   AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
-Device type:   GPU
-Device vendor: AMD
-Device driver: 20.2.4
-Device speed:  2200 MHz
-Device cores:  40 CU
-Device score:  1111
-Selected platform: Clover
-Selected device: AMD Radeon RX 5700 XT (NAVI10, DRM 3.40.0, 5.12.13, LLVM 11.0.0)
-with OpenCL 1.1 capability.
-Half precision compute support: No.
-Tensor Core support: No.
-
-Started OpenCL SGEMM tuner.
-Will try 290 valid configurations.
-Failed to compile: 290 kernels.
-Failed to find a working configuration.
-Check your OpenCL drivers.
-Minimum error: 100.000000. Error bound: 0.000100
-
-Started OpenCL SGEMM tuner.
-Will try 290 valid configurations.
-Failed to compile: 290 kernels.
-Failed to find a working configuration.
-Check your OpenCL drivers.
-Minimum error: 100.000000. Error bound: 0.100000
-Both single precision and half precision failed to run.
-terminate called after throwing an instance of 'std::runtime_error'
-  what():  Failed to initialize net.
+<pre class="example">
+A network weights file is required to use the program.
+By default, Leela Zero looks for it in /home/katco/.local/share/leela-zero/best-network.
 </pre>
+
 
 <p>
 There is a curious error from the output of <code>clinfo</code>:
@@ -395,12 +268,6 @@ If we set the <code>LD_DEBUG</code> environment variable to <code>libs</code>, w
 <pre class="src src-shell">OPENCL_VENDOR_PATH=${HOME}/.local/etc/OpenCL/vendors LD_DEBUG=libs clinfo 2&gt;&amp;1 |grep error
 </pre>
 </div>
-
-<pre class="example">
-fatal error: cannot open file '/gnu/store/h86b3253bc3mnp3p57n1vls2vkfv2h6z-libclc-9.0.1/share/clc/gfx1010-amdgcn-mesa-mesa3d.bc': No such file or directory
-  Preferred work group size multiple              &lt;getWGsizes:1200: create kernel : error -46&gt;
-</pre>
-
 
 <p>
 Indeed, this file is not present.
@@ -487,7 +354,7 @@ After I had decided to write the book, a number of things happened from early 20
 </ul>
 
 <p>
-I am always very reticent to claim hardship in life &#x2013; there are people who have much different and much more serious problems than I do &#x2013; but this sequence of events ground me down like a pestle working a bit of spice. There were no nights off, there were no weekends off, and writing in the apartment was rarely an option<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. I sacrificed a lot of time with my family, and much of the time I was afraid. It is only in retrospect that I realize I was severely burnt out. Fear is the mind killer.
+I am always very reticent to claim hardship in life &#x2013; there are people who have much different and much more serious problems than I do &#x2013; but this sequence of events ground me down like a pestle working a bit of spice. There were no nights off, there were no weekends off, and writing in the apartment was rarely an option<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>. I sacrificed a lot of time with my family, and much of the time I was afraid. It is only in retrospect that I realize I was severely burnt out. Fear is the mind killer.
 </p>
 
 <p>
@@ -497,7 +364,7 @@ Although I didn't realize why, I began withdrawing from different spaces, and li
 <hr>
 
 <p>
-Occasionally I flip through the Tao Te Ching. I first learned of its existence in high school when we were covering eastern philosophy, and I remember immediately agreeing with a core truth in the philosophy of Taoism: that everything comes in pairs<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. Light and dark, dry and wet, and so on. Laozi, author of the Tao Te Ching, has a way of distilling problems down into their most base components, and offering equally simple advice.
+Occasionally I flip through the Tao Te Ching. I first learned of its existence in high school when we were covering eastern philosophy, and I remember immediately agreeing with a core truth in the philosophy of Taoism: that everything comes in pairs<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>. Light and dark, dry and wet, and so on. Laozi, author of the Tao Te Ching, has a way of distilling problems down into their most base components, and offering equally simple advice.
 </p>
 
 <p>
@@ -576,11 +443,11 @@ That altruistic justification still rings true, and since the book was published
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 It's for this reason that in my acknowledgments I thank the wonderful St. Louis library system! Support your libraries!
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 I have often wondered how qubits might be regarded under Taoism.
 </p></div></div>
 
@@ -605,7 +472,7 @@ I have often wondered how qubits might be regarded under Taoism.
     <div class="post">
       <h3></h3>
       
-<div id="org58fd9ba" class="figure">
+<div id="org539a57a" class="figure">
 <p><img src="/assets/concurrency-in-go/book-cover.jpg" alt="book-cover.jpg" class="img-responsive pull-left" style="margin-right:15px; width:250px" />
 </p>
 </div>
@@ -623,9 +490,9 @@ Author Katherine Cox-Buday takes you through the tools and techniques to develop
 </p>
 <div class="clearfix"></div>
 
-<div id="outline-container-org8caff3d" class="outline-2">
-<h2 id="org8caff3d">Available for Purchase</h2>
-<div class="outline-text-2" id="text-org8caff3d">
+<div id="outline-container-org8feb6c0" class="outline-2">
+<h2 id="org8feb6c0">Available for Purchase</h2>
+<div class="outline-text-2" id="text-org8feb6c0">
 <ul class="org-ul">
 <li><a href="http://www.ebooks.com/95820962/concurrency-in-go/cox-buday-katherine/">ebooks.com</a> (DRM free!)</li>
 <li><a href="https://www.amazon.com/gp/product/1491941197/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;tag=katherinecoxb-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=1491941197&amp;linkId=50618894344eaf64dbf967755272d941">Amazon</a></li>
@@ -808,9 +675,9 @@ So perhaps it's because I'm paranoid, but I like to validate my inputs as close 
 There are advantages and disadvantages to this technique.
 </p>
 
-<div id="outline-container-org98841e0" class="outline-2">
-<h2 id="org98841e0">Advantages</h2>
-<div class="outline-text-2" id="text-org98841e0">
+<div id="outline-container-orgfd4c02e" class="outline-2">
+<h2 id="orgfd4c02e">Advantages</h2>
+<div class="outline-text-2" id="text-orgfd4c02e">
 <ol class="org-ol">
 <li><p>
 <b>Adherence to the <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail Fast principle</a>.</b>
@@ -839,9 +706,9 @@ If I'm calling this code, what can I pass in? Are nulls OK? If I'm reading the c
 </div>
 </div>
 
-<div id="outline-container-org10ae8a0" class="outline-2">
-<h2 id="org10ae8a0">Disadvantages</h2>
-<div class="outline-text-2" id="text-org10ae8a0">
+<div id="outline-container-org82f17a0" class="outline-2">
+<h2 id="org82f17a0">Disadvantages</h2>
+<div class="outline-text-2" id="text-org82f17a0">
 <ol class="org-ol">
 <li><p>
 <b>Performance</b>
@@ -870,9 +737,9 @@ This is the one I struggle with most. How many times are you going to check that
 </div>
 </div>
 
-<div id="outline-container-orgc207bdd" class="outline-2">
-<h2 id="orgc207bdd">Smart Parameter Validation</h2>
-<div class="outline-text-2" id="text-orgc207bdd">
+<div id="outline-container-org086502f" class="outline-2">
+<h2 id="org086502f">Smart Parameter Validation</h2>
+<div class="outline-text-2" id="text-org086502f">
 <p>
 A long chain of if statements at the beginning of your code is cumbersome to write and maintain. It's prone to bugs, and it can actually hide incorrect parameters which are checked after other failing parameters. Do your parameter validation smarter:
 </p>
@@ -1049,9 +916,9 @@ Juju is written in Go, and so I'll be taking a look at the <a href="https://gith
 With that said, on to the analysis!
 </p>
 
-<div id="outline-container-org2b54b2f" class="outline-2">
-<h2 id="org2b54b2f">Key Concepts</h2>
-<div class="outline-text-2" id="text-org2b54b2f">
+<div id="outline-container-org96ec221" class="outline-2">
+<h2 id="org96ec221">Key Concepts</h2>
+<div class="outline-text-2" id="text-org96ec221">
 <ul class="org-ul">
 <li><b>span</b>: A logical unit of work in the system.</li>
 <li><b>baggage</b>: Information intended to be carried on to subsequent spans.</li>
@@ -1061,9 +928,9 @@ With that said, on to the analysis!
 </div>
 </div>
 
-<div id="outline-container-org9b9bd83" class="outline-2">
-<h2 id="org9b9bd83">Sanity Check</h2>
-<div class="outline-text-2" id="text-org9b9bd83">
+<div id="outline-container-org4052da3" class="outline-2">
+<h2 id="org4052da3">Sanity Check</h2>
+<div class="outline-text-2" id="text-org4052da3">
 <p>
 First of all, the <a href="https://github.com/opentracing/opentracing-go/blob/master/LICENSE">license</a> is MIT. No issues there.
 </p>
@@ -1078,9 +945,9 @@ Juju also has Python bindings to its API, so ideally any tracing standard will b
 </div>
 </div>
 
-<div id="outline-container-orgfc91208" class="outline-2">
-<h2 id="orgfc91208">Performance</h2>
-<div class="outline-text-2" id="text-orgfc91208">
+<div id="outline-container-org1ea27f7" class="outline-2">
+<h2 id="org1ea27f7">Performance</h2>
+<div class="outline-text-2" id="text-org1ea27f7">
 <p>
 First the obvious question. If I'm going to be embedding a lot of spans, this needs to be fast. How quick is it to create and tear down a new span?
 </p>
@@ -1179,19 +1046,25 @@ fmt.Printf("Header (after): %v\n", httpReq.Header)
 </pre>
 </div>
 
+<pre class="example">
+Header (before): map[]
+Header (after): map[Ot-Tracer-Traceid:[7ab6ba52e1e748c1] Ot-Tracer-Spanid:[1b4c98c3b3f048aa] Ot-Tracer-Sampled:[false] Ot-Baggage-My-Baggage:[current+user]]
+</pre>
+
+
 <p>
 Looks pretty reasonable; just some information about the spans for the receiver to pick up the trace.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org58b864f" class="outline-2">
-<h2 id="org58b864f">Integration with Juju</h2>
-<div class="outline-text-2" id="text-org58b864f">
+<div id="outline-container-orgc36fe03" class="outline-2">
+<h2 id="orgc36fe03">Integration with Juju</h2>
+<div class="outline-text-2" id="text-orgc36fe03">
 </div>
-<div id="outline-container-orga16322e" class="outline-3">
-<h3 id="orga16322e">Gating API Calls</h3>
-<div class="outline-text-3" id="text-orga16322e">
+<div id="outline-container-org1dba160" class="outline-3">
+<h3 id="org1dba160">Gating API Calls</h3>
+<div class="outline-text-3" id="text-org1dba160">
 <p>
 Juju's API server is the bottleneck gating access to and from a Juju daemon and is the natural place to ensure a trace either exists or is started. Ideally the things calling Juju's API server would have started a trace, but if not, we need to ensure that one exists. Let's first see how we can ensure that all API server connections know about OpenTracing and spans.
 </p>
@@ -1423,18 +1296,18 @@ The <code>ctx</code> would in turn be created further up the stack from our requ
 </div>
 </div>
 
-<div id="outline-container-org776005b" class="outline-3">
-<h3 id="org776005b">Backwards compatibility</h3>
-<div class="outline-text-3" id="text-org776005b">
+<div id="outline-container-orgdf016db" class="outline-3">
+<h3 id="orgdf016db">Backwards compatibility</h3>
+<div class="outline-text-3" id="text-orgdf016db">
 <p>
 Since The API server gate looks for an incoming span but does not expect it, all existing clients &#x2013; including those from prior versions of Juju &#x2013; should be able to utilize the new endpoints. Thus, we should remain backwards compatible, and no new upgrade steps need be written.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org97c74b5" class="outline-3">
-<h3 id="org97c74b5">Writing Audit Events to Mongo</h3>
-<div class="outline-text-3" id="text-org97c74b5">
+<div id="outline-container-orge328c45" class="outline-3">
+<h3 id="orge328c45">Writing Audit Events to Mongo</h3>
+<div class="outline-text-3" id="text-orge328c45">
 <p>
 Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All audit events will be written to a Mongo collection. To do this, we'll write our own OpenTracing recorder which will do nothing but persist audit events to the collection. It will probably look very similar to the provided <a href="https://github.com/opentracing/basictracer-go">basic tracer</a>.
 </p>
@@ -1448,452 +1321,6 @@ Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All
 ]]></description>
       <pubDate>2016-06-06</pubDate>
       <guid>http://katherine.cox-buday.com/blog/2016/06/06/analyzing-opentracing-for-go/</guid>
-    </item>
-    <item>
-      <title>Writing Specs with Org-mode</title>
-      <link>http://katherine.cox-buday.com/blog/2015/03/14/writing-specs-with-org-mode/</link>
-      <description><![CDATA[<div class="post">
-  <div class="col-sm-3 right-align post-meta">
-    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
-  </div>
-  <div class="col-sm-9">
-    <div class="post">
-      <h3>Writing Specs with Org-mode</h3>
-      <p>
-A lot of people have commented on the specifications I produce for the products I have worked on. I can't think of a humble way to say this, and I must make the point, so here it is: it is not uncommon for them to say that they are easy to read, clear, and more useful than most specifications they've read. Very often the next thing is a question: how'd you do that?
-</p>
-
-<div id="outline-container-org31b39ef" class="outline-2">
-<h2 id="org31b39ef">Core Ideas</h2>
-<div class="outline-text-2" id="text-org31b39ef">
-<p>
-Right off the bat, let's get one thing clear: content is paramount. You can spend a lot of time producing a beautiful document that is useless. Don't do that. The style should support the content, and help bring out the information. Having said that, after a little bit of setup, you can produce beautiful <i>and</i> useful documents in about as long as it takes you to form the ideas. I've tested this.
-</p>
-
-<p>
-The key is that the entire spec will be written in plain-text with a bit of markup supported by the spec-editor. This allows you to stay agile, and stay focused on the content, not how your document looks.
-</p>
-
-<p>
-After setting things up, you can have a nice specification that:
-</p>
-
-<ol class="org-ol">
-<li>Looks great, and includes example diagrams.</li>
-<li>Is easy to update.</li>
-<li>Automatically generates code for developers to fill-out.</li>
-</ol>
-
-<p>
-Number 3 is quite handy as the details form. You can be sure that the code always reflects the latest iteration of the specifications and vice-versa. This also saves lots of time since the code doesn't have to be written twice.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org4ea79e1" class="outline-2">
-<h2 id="org4ea79e1">Drawbacks</h2>
-<div class="outline-text-2" id="text-org4ea79e1">
-<p>
-Like anything, there are a few drawbacks.
-</p>
-
-<ol class="org-ol">
-<li><p>
-Collaboration.
-</p>
-
-<p>
-If you expect others to edit this document, and they're not using an editor that understands Org-mode syntax, it can very quickly become too cumbersome to manually merge their changes into the "master" document. The alternative: to allow them to use any editor and conform to Org syntax isn't horrible by any stretch of the imagination &#x2013; Org's syntax is incredibly sparse &#x2013; but people who don't already know Org will probably be resistant. If collaboration for your team means multiple people editing the document &#x2013; not just making comments &#x2013; then this method might not be worth it.
-</p>
-
-<p>
-A cursory search turns up Org syntax support for <a href="https://github.com/jceb/vim-orgmode">VIM</a> and <a href="https://github.com/danielmagnussons/orgmode">Sublime</a>, two other popular editors, although since I don't use them I can't comment on their usefulness.
-</p></li>
-
-<li><p>
-Perception
-</p>
-
-<p>
-This is only an issue in some environments, but because the specifications you'll be producing are such high-quality, a perception can sneak in that the team is spending much too long creating them. This is a valid concern; some teams spend entirely too much time on their specs only to find out that the thing they've been designing needs to go in a different direction. This is why the speed of this technique is so crucial. Usually this concern can be addressed with a bit of education (send them here!)
-</p></li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-orgbe51ee7" class="outline-2">
-<h2 id="orgbe51ee7">The Tools</h2>
-<div class="outline-text-2" id="text-orgbe51ee7">
-<ul class="org-ul">
-<li><p>
-Emacs
-</p>
-
-<p>
-Editor choice can be a contentious topic, but because Emacs provides the best support for Org-mode, it's what I would use. For this article's purposes, you could replace the word Emacs with "Specification Creator". I will be providing a config file that will make Emacs operate like a notepad-clone with a few cool Org-mode tricks. Basically, you can pretend this is just a specification editor, not a general-purpose editor choice. Open it, work on your spec, and then go back to your editor of choice for the rest of your work.
-</p>
-
-<p>
-I should note that if you use Emacs as your editor for programming as well, things will move even faster, but this is by no means a requisite for this system.
-</p></li>
-
-<li><p>
-Org-mode
-</p>
-
-<p>
-Plug-in for Emacs. Although Org-mode can do many things, for this article, we're only interested in it's document creation and export functionality. The most important property of Org-mode is that it's plain-text.
-</p></li>
-
-<li><p>
-Plant UML
-</p>
-
-<p>
-If you don't plan on making UML diagrams, you don't need this. Plain-text based UML diagraming tool used to produce most diagrams. Sparse syntax.
-</p></li>
-
-<li><p>
-LaTeX
-</p>
-
-<p>
-This is only part of the stack because this is what we'll tell Org-mode to export in order to receive PDF's. If you don't want to, you won't have to deal with LaTeX at all. In fact, I'm going to omit any custom styling in this tutorial for the sake of simplicity.
-</p></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org2569807" class="outline-2">
-<h2 id="org2569807">The Work flow</h2>
-<div class="outline-text-2" id="text-org2569807">
-</div>
-<div id="outline-container-orgcefc3a4" class="outline-3">
-<h3 id="orgcefc3a4">One-time Setup</h3>
-<div class="outline-text-3" id="text-orgcefc3a4">
-<p>
-When you start, you'll have to set up a few things, namely the specification editor and optionally a LaTeX style-sheet to stylize your documents. However, after this is done, you'll only have to revisit it if you wish to change the style. After the initial setup, your documents just fall out as you type.
-</p>
-</div>
-
-<div id="outline-container-org6512b41" class="outline-4">
-<h4 id="org6512b41">Installing the Tools</h4>
-<div class="outline-text-4" id="text-org6512b41">
-<ol class="org-ol">
-<li>Install Emacs</li>
-<li>Install LaTeX</li>
-<li><p>
-Install Plant UML
-</p>
-
-<p>
-You must have Java installed to use Plant UML. Grab the latest version of the <a href="http://sourceforge.net/projects/plantuml/files/plantuml.jar/download">.jar file</a> and put it in your path.
-</p></li>
-
-<li><p>
-Copy this Emacs <a href="/assets/blog/2015/03/14/writing-specs-with-org-mode/spec-cfg.el">config-file</a>
-</p>
-
-<p>
-You can either place it in ~/.emacs, or alternatively run emacs as such:
-</p>
-
-<pre class="example">
-emacs --no-init-file --load ./spec-cfg.el
-</pre>
-
-
-<p>
-This is a simple config-file aimed at people who are unfamiliar with Emacs and don't care to be. It will automatically install all required packages, and place the user in an editor with <a href="http://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts#General_shortcuts">CUA key-bindings</a>.
-</p>
-
-<p>
-Those already utilizing Emacs should strip out the requisite pieces and place them into their own config file.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-emacs-lisp"><span class="linenr"> 1: </span>(require 'package)
-<span class="linenr"> 2: </span>
-<span class="linenr"> 3: </span>;; Install requisite packages
-<span class="linenr"> 4: </span>;;
-<span class="linenr"> 5: </span>;;
-<span class="linenr"> 6: </span>
-<span class="linenr"> 7: </span>(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-<span class="linenr"> 8: </span>(package-initialize)
-<span class="linenr"> 9: </span>(when (not package-archive-contents)
-<span class="linenr">10: </span>  (package-refresh-contents))
-<span class="linenr">11: </span>
-<span class="linenr">12: </span>(mapcar #'(lambda (package) (unless (package-installed-p package) (package-install package)))
-<span class="linenr">13: </span>        '(org-plus-contrib plantuml-mode))
-<span class="linenr">14: </span>
-<span class="linenr">15: </span>;; Set up plantuml.
-<span class="linenr">16: </span>;;
-<span class="linenr">17: </span>;;
-<span class="linenr">18: </span>
-<span class="linenr">19: </span>(org-babel-do-load-languages
-<span class="linenr">20: </span> 'org-babel-load-languages
-<span class="linenr">21: </span> '((plantuml . t)))
-<span class="linenr">22: </span>
-<span class="linenr">23: </span>(setq org-plantuml-jar-path
-<span class="linenr">24: </span>      (setq plantuml-jar-path (expand-file-name "./plantuml.jar")))
-<span class="linenr">25: </span>
-<span class="linenr">26: </span>;; Setup latex exporting
-<span class="linenr">27: </span>;;
-<span class="linenr">28: </span>;;
-<span class="linenr">29: </span>
-<span class="linenr">30: </span>(unless (boundp 'org-latex-classes)
-<span class="linenr">31: </span>  (setq org-latex-classes nil))
-<span class="linenr">32: </span>
-<span class="linenr">33: </span>(add-to-list 'org-latex-classes
-<span id="coderef-stylesheet-name" class="coderef-off"><span class="linenr">34: </span>             '("my-style"</span>
-<span id="coderef-stylesheet-loc" class="coderef-off"><span class="linenr">35: </span>               "\\documentclass{./my-style}</span>
-<span class="linenr">36: </span>                 [DEFAULT-PACKAGES]
-<span class="linenr">37: </span>                 [PACKAGES]
-<span class="linenr">38: </span>                 [EXTRA]"
-<span class="linenr">39: </span>               ("\\section{%s}" . "\\section{%s}")
-<span class="linenr">40: </span>               ("\\subsection{%s}" . "\\subsection{%s}")
-<span class="linenr">41: </span>               ("\\subsubsection{%s}" . "\\subsubsection{%s}")
-<span class="linenr">42: </span>               ("\\paragraph{%s}" . "\\paragraph{%s}")
-<span class="linenr">43: </span>               ("\\subparagraph{%s}" . "\\subparagraph{%s}")))
-<span class="linenr">44: </span>
-<span class="linenr">45: </span>;; Switch into CUA mode for those not familar with emacs keybindings.
-<span class="linenr">46: </span>;;
-<span class="linenr">47: </span>;;
-<span class="linenr">48: </span>
-<span class="linenr">49: </span>(cua-mode)
-</pre>
-</div></li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-org500c466" class="outline-4">
-<h4 id="org500c466">Create Your Style</h4>
-<div class="outline-text-4" id="text-org500c466">
-<p>
-If you wanted to, you could skip the section and just utilize LaTeX's very sensible default style. Your document won't look quite as pretty, but all of your documents will be well-formed, readable, and consistent.
-</p>
-
-<p>
-In the config-file, we let Org-mode know about the <a href="#coderef-stylesheet-name" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-stylesheet-name');" onmouseout="CodeHighlightOff(this, 'coderef-stylesheet-name');">my-style</a> style located in the <a href="#coderef-stylesheet-loc" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-stylesheet-loc');" onmouseout="CodeHighlightOff(this, 'coderef-stylesheet-loc');">local-directory</a>. If you wanted to add additional styles, you would just repeat lines 33-43 for each additional style.
-</p>
-
-<p>
-For the sake of brevity I'm going to skip any walkthrough on creating a LaTeX stylesheet. There are pleanty of resources for this elsewhere.
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org00a2a9a" class="outline-3">
-<h3 id="org00a2a9a">Creating Documents</h3>
-<div class="outline-text-3" id="text-org00a2a9a">
-<p>
-Once you have everything set up, things become very easy. The only thing you truly need is a few headers:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-org">#+TITLE: My Software Specification
-#+AUTHOR: Katherine Cox-Buday
-#+LaTeX_CLASS: my-style
-</pre>
-</div>
-
-<p>
-That's it. After this, it's all content &#x2013; and it's all in plain text. So here's what a small document might look like:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-org">#+TITLE: My Software Specification
-#+AUTHOR: Katherine Cox-Buday
-#+LaTeX_CLASS: my-style
-
-* Heading One
-
-** Sub Heading A
-- List Item 1
-- List Item 2
-
-* Heading Two
-
-| Column 1 | Column 2 |
-|----------+----------|
-| A        |        1 |
-| B        |        2 |
-| C        |        3 |
-|----------+----------|
-</pre>
-</div>
-</div>
-
-<div id="outline-container-org8e7646b" class="outline-4">
-<h4 id="org8e7646b">PlantUML</h4>
-<div class="outline-text-4" id="text-org8e7646b">
-<p>
-As stated above, PlantUML isn't necessary if you don't plan on including any UML diagrams. If you would like to include some diagrams, you will be taking advantage of Org-Mode's source-code block features.
-</p>
-
-<p>
-To open a source-code block, enter the following:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-org">#+BEGIN_SRC plantuml
-
-#+END_SRC
-</pre>
-</div>
-
-<p>
-Then place the cursor in between the opening and closing blocks and navigate to the menu bar. Click on "Org &gt; Editing &gt; Edit Source Example."
-</p>
-
-<p>
-This will open a new buffer in emacs where you can type in PlantUML code &#x2013; and because you told Org that this was going to be PlantUML code &#x2013; you have all the features you'd expect from emacs when editing a PlantUML file. In fact, this works with almost any language.
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org514ea17" class="outline-3">
-<h3 id="org514ea17">Exporting</h3>
-<div class="outline-text-3" id="text-org514ea17">
-<p>
-To further expand our example above, the document might look like this:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-org">#+TITLE: My Software Specification
-#+AUTHOR: Katherine Cox-Buday
-#+LaTeX_CLASS: my-style
-
-* Heading One
-
-** Sub Heading A
-- List Item 1
-- List Item 2
-
-* Heading Two
-
-| Column 1 | Column 2 |
-|----------+----------|
-| A        |        1 |
-| B        |        2 |
-| C        |        3 |
-|----------+----------|
-
-#+BEGIN_SRC plantuml
-Bob-&gt;Alice : hello
-#+END_SRC
-</pre>
-</div>
-
-<p>
-To export this, navigate to the menu-bar and click on the "Org &gt; Export/Publish" menu. You'll see a menu come up with a lot of options, and the hot-keys in square brackets. Since we're producing PDFs, you would strike "l" for "Export to LaTeX" and then "o" for "As PDF file and open". The final result would look like this:
-</p>
-
-
-<div id="orga59070c" class="figure">
-<p><img src="/assets/blog/2015/03/14/writing-specs-with-org-mode/finished-spec-pdf.png" alt="finished-spec-pdf.png" width="300px" class="img-thumbnail" />
-</p>
-<p><span class="figure-number">Figure 1: </span>An Unstyled Document</p>
-</div>
-
-
-<div id="org41500fd" class="figure">
-<p><img src="/assets/blog/2015/03/14/writing-specs-with-org-mode/finished-styled-spec-pdf.png" alt="finished-styled-spec-pdf.png" width="300px" class="img-thumbnail" />
-</p>
-<p><span class="figure-number">Figure 2: </span>A Styled Document</p>
-</div>
-
-<p>
-Not bad for a few lines of plain text, right? In the second example, we can see a nice title page, an auto-generated table-of-contents, page numbers, and descriptive footers. Here, LaTeX is doing the heavy lifting, and all we've done is write some plaint text. This is the essence of how we can turn out beautiful, useful documents so quickly: we spend all of our time focusing on the ideas and not the layout or style.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgc3ca376" class="outline-3">
-<h3 id="orgc3ca376">Exporting Artifacts</h3>
-<div class="outline-text-3" id="text-orgc3ca376">
-<p>
-I'm only going to touch on this since it's slightly more advanced, but since it's a feature I use in my documents, I thought I'd at least mention it.
-</p>
-
-<p>
-The source blocks we mentioned earlier are very powerful. Not only can Org mode export the results of running the code they contain, Org mode can save &#x2013; or "tangle" &#x2013; this code to files. In this manner, we can perhaps write code interfaces we expect the code we're describing to conform to, and then "tangle" these interfaces to the actual code-base and begin coding off of them. If the interfaces need to change, we change the specification and regenerate the files. In this way, the specification and codebase are never out of sync &#x2013; something that is frequently a problem with these types of documents.
-</p>
-
-<p>
-To take advantage of this, all you have to do is specify a code block as such:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-org">#+BEGIN_SRC java :noweb tangle :tangle ~/code/interfaces.java
-
-#+END_SRC
-</pre>
-</div>
-
-<p>
-The "noweb" option tells Org mode to tangle the file, and the "tangle" option tells it where to place the file.
-</p>
-
-<p>
-Now type:
-</p>
-<pre class="example">
-M-x org-babel-tangle
-</pre>
-
-
-<p>
-Your code should now be sitting in the directory you specified!
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org034af15" class="outline-2">
-<h2 id="org034af15">Conclusion</h2>
-<div class="outline-text-2" id="text-org034af15">
-<p>
-I've often found that specifications in the IT industry have received a negative reputation in our industry. People say things such as, "Code is worth a thousand specifications," or complain that writing specifications is just a waste of time.
-</p>
-
-<p>
-I concede that when doing exploratory programming, or maybe working on a very small team, specifications may not be necessary; however, on large projects they are absolutely <i>critical</i>.
-</p>
-
-<p>
-Without a blueprint, or top-level view of the architecture of a system, it can be difficult to understand how things are supposed to be laid out. Worse, it's near impossible to accurately and repeatably dissiminate the architecture of a system without a specification to point at. One-on-one conversations are not a scalable model.
-</p>
-
-<p>
-I think the reason specification documents receive such a bad reputation stem from the following 3 reasons:
-</p>
-
-<ol class="org-ol">
-<li>They're not coding. And coders wanna code.</li>
-<li>Generally speaking, they're <i>hard</i> to do well, and they take too long to create. Hopefully I've shown that they don't have to be difficult to write, and that as quickly as you can jot down ideas, you can create a usable specification.</li>
-<li>They're seen as wasted effort &#x2013; something you discard. Hopefully, I've also show how the specification can grow with the code and become a living artifact.</li>
-</ol>
-
-<p>
-So love your specs, and give your team the documentation they deserve. There do exist methodologies that are a joy to use, and this &#x2013; I feel &#x2013; is one of them.
-</p>
-
-<p>
-Happy hacking!
-</p>
-</div>
-</div>
-
-    </div>
-  </div>
-</div> <!-- /.container -->
-]]></description>
-      <pubDate>2015-03-14</pubDate>
-      <guid>http://katherine.cox-buday.com/blog/2015/03/14/writing-specs-with-org-mode/</guid>
     </item>
   </channel>
 </rss>
