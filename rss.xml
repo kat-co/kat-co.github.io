@@ -4,8 +4,8 @@
     <title>Katherine Cox-Buday</title>
     <link>http://katherine.cox-buday.com</link>
     <description>static site generator</description>
-    <pubDate>Tue, 01 Nov 2022 18:31:17 MDT</pubDate>
-    <lastBuildDate>Tue, 01 Nov 2022 18:31:17 MDT</lastBuildDate>
+    <pubDate>Tue, 01 Nov 2022 18:54:58 MDT</pubDate>
+    <lastBuildDate>Tue, 01 Nov 2022 18:54:58 MDT</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
     <item>
@@ -43,7 +43,7 @@ If you fear your community fracturing, I don't think there's a way to stop this.
 </p>
 
 <p>
-Which brings me to my most important point: trying to resist within a system of rules your opponent dictates is pointless. You can tweet the best take-down of Twitter ever written, and they can ensure no one sees it. You can start a banging hashtag campaign, and they can ensure no one sees it. You can confront disinformation and offer insight into why it's untrue, and their algorithm can make sure no one sees it. They can outright delete your account: the tool you've chosen for resisting. You have no agency from which to resits.
+Which brings me to my most important point: trying to resist within a system of rules your opponent dictates is pointless. You can tweet the best take-down of Twitter ever written, and they can ensure no one sees it. You can start a banging hashtag campaign, and they can ensure no one sees it. You can confront disinformation and offer insight into why it's untrue, and their algorithm can make sure no one sees it. They can outright delete your account: the tool you've chosen for resisting. You have no agency from which to resist.
 </p>
 
 <p>
@@ -472,7 +472,7 @@ I have often wondered how qubits might be regarded under Taoism.
     <div class="post">
       <h3></h3>
       
-<div id="org539a57a" class="figure">
+<div id="org5a93334" class="figure">
 <p><img src="/assets/concurrency-in-go/book-cover.jpg" alt="book-cover.jpg" class="img-responsive pull-left" style="margin-right:15px; width:250px" />
 </p>
 </div>
@@ -490,9 +490,9 @@ Author Katherine Cox-Buday takes you through the tools and techniques to develop
 </p>
 <div class="clearfix"></div>
 
-<div id="outline-container-org8feb6c0" class="outline-2">
-<h2 id="org8feb6c0">Available for Purchase</h2>
-<div class="outline-text-2" id="text-org8feb6c0">
+<div id="outline-container-orgd9c94df" class="outline-2">
+<h2 id="orgd9c94df">Available for Purchase</h2>
+<div class="outline-text-2" id="text-orgd9c94df">
 <ul class="org-ul">
 <li><a href="http://www.ebooks.com/95820962/concurrency-in-go/cox-buday-katherine/">ebooks.com</a> (DRM free!)</li>
 <li><a href="https://www.amazon.com/gp/product/1491941197/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;tag=katherinecoxb-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=1491941197&amp;linkId=50618894344eaf64dbf967755272d941">Amazon</a></li>
@@ -675,9 +675,9 @@ So perhaps it's because I'm paranoid, but I like to validate my inputs as close 
 There are advantages and disadvantages to this technique.
 </p>
 
-<div id="outline-container-orgfd4c02e" class="outline-2">
-<h2 id="orgfd4c02e">Advantages</h2>
-<div class="outline-text-2" id="text-orgfd4c02e">
+<div id="outline-container-org118e2e8" class="outline-2">
+<h2 id="org118e2e8">Advantages</h2>
+<div class="outline-text-2" id="text-org118e2e8">
 <ol class="org-ol">
 <li><p>
 <b>Adherence to the <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail Fast principle</a>.</b>
@@ -706,9 +706,9 @@ If I'm calling this code, what can I pass in? Are nulls OK? If I'm reading the c
 </div>
 </div>
 
-<div id="outline-container-org82f17a0" class="outline-2">
-<h2 id="org82f17a0">Disadvantages</h2>
-<div class="outline-text-2" id="text-org82f17a0">
+<div id="outline-container-orgc6c5b28" class="outline-2">
+<h2 id="orgc6c5b28">Disadvantages</h2>
+<div class="outline-text-2" id="text-orgc6c5b28">
 <ol class="org-ol">
 <li><p>
 <b>Performance</b>
@@ -737,9 +737,9 @@ This is the one I struggle with most. How many times are you going to check that
 </div>
 </div>
 
-<div id="outline-container-org086502f" class="outline-2">
-<h2 id="org086502f">Smart Parameter Validation</h2>
-<div class="outline-text-2" id="text-org086502f">
+<div id="outline-container-orge7e6567" class="outline-2">
+<h2 id="orge7e6567">Smart Parameter Validation</h2>
+<div class="outline-text-2" id="text-orge7e6567">
 <p>
 A long chain of if statements at the beginning of your code is cumbersome to write and maintain. It's prone to bugs, and it can actually hide incorrect parameters which are checked after other failing parameters. Do your parameter validation smarter:
 </p>
@@ -916,9 +916,9 @@ Juju is written in Go, and so I'll be taking a look at the <a href="https://gith
 With that said, on to the analysis!
 </p>
 
-<div id="outline-container-org96ec221" class="outline-2">
-<h2 id="org96ec221">Key Concepts</h2>
-<div class="outline-text-2" id="text-org96ec221">
+<div id="outline-container-org21f45ee" class="outline-2">
+<h2 id="org21f45ee">Key Concepts</h2>
+<div class="outline-text-2" id="text-org21f45ee">
 <ul class="org-ul">
 <li><b>span</b>: A logical unit of work in the system.</li>
 <li><b>baggage</b>: Information intended to be carried on to subsequent spans.</li>
@@ -928,9 +928,9 @@ With that said, on to the analysis!
 </div>
 </div>
 
-<div id="outline-container-org4052da3" class="outline-2">
-<h2 id="org4052da3">Sanity Check</h2>
-<div class="outline-text-2" id="text-org4052da3">
+<div id="outline-container-org5300ac5" class="outline-2">
+<h2 id="org5300ac5">Sanity Check</h2>
+<div class="outline-text-2" id="text-org5300ac5">
 <p>
 First of all, the <a href="https://github.com/opentracing/opentracing-go/blob/master/LICENSE">license</a> is MIT. No issues there.
 </p>
@@ -945,9 +945,9 @@ Juju also has Python bindings to its API, so ideally any tracing standard will b
 </div>
 </div>
 
-<div id="outline-container-org1ea27f7" class="outline-2">
-<h2 id="org1ea27f7">Performance</h2>
-<div class="outline-text-2" id="text-org1ea27f7">
+<div id="outline-container-org36818a6" class="outline-2">
+<h2 id="org36818a6">Performance</h2>
+<div class="outline-text-2" id="text-org36818a6">
 <p>
 First the obvious question. If I'm going to be embedding a lot of spans, this needs to be fast. How quick is it to create and tear down a new span?
 </p>
@@ -1058,13 +1058,13 @@ Looks pretty reasonable; just some information about the spans for the receiver 
 </div>
 </div>
 
-<div id="outline-container-orgc36fe03" class="outline-2">
-<h2 id="orgc36fe03">Integration with Juju</h2>
-<div class="outline-text-2" id="text-orgc36fe03">
+<div id="outline-container-org1cfdf9c" class="outline-2">
+<h2 id="org1cfdf9c">Integration with Juju</h2>
+<div class="outline-text-2" id="text-org1cfdf9c">
 </div>
-<div id="outline-container-org1dba160" class="outline-3">
-<h3 id="org1dba160">Gating API Calls</h3>
-<div class="outline-text-3" id="text-org1dba160">
+<div id="outline-container-org8cae748" class="outline-3">
+<h3 id="org8cae748">Gating API Calls</h3>
+<div class="outline-text-3" id="text-org8cae748">
 <p>
 Juju's API server is the bottleneck gating access to and from a Juju daemon and is the natural place to ensure a trace either exists or is started. Ideally the things calling Juju's API server would have started a trace, but if not, we need to ensure that one exists. Let's first see how we can ensure that all API server connections know about OpenTracing and spans.
 </p>
@@ -1296,18 +1296,18 @@ The <code>ctx</code> would in turn be created further up the stack from our requ
 </div>
 </div>
 
-<div id="outline-container-orgdf016db" class="outline-3">
-<h3 id="orgdf016db">Backwards compatibility</h3>
-<div class="outline-text-3" id="text-orgdf016db">
+<div id="outline-container-org85dc983" class="outline-3">
+<h3 id="org85dc983">Backwards compatibility</h3>
+<div class="outline-text-3" id="text-org85dc983">
 <p>
 Since The API server gate looks for an incoming span but does not expect it, all existing clients &#x2013; including those from prior versions of Juju &#x2013; should be able to utilize the new endpoints. Thus, we should remain backwards compatible, and no new upgrade steps need be written.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge328c45" class="outline-3">
-<h3 id="orge328c45">Writing Audit Events to Mongo</h3>
-<div class="outline-text-3" id="text-orge328c45">
+<div id="outline-container-orgb2e97c8" class="outline-3">
+<h3 id="orgb2e97c8">Writing Audit Events to Mongo</h3>
+<div class="outline-text-3" id="text-orgb2e97c8">
 <p>
 Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All audit events will be written to a Mongo collection. To do this, we'll write our own OpenTracing recorder which will do nothing but persist audit events to the collection. It will probably look very similar to the provided <a href="https://github.com/opentracing/basictracer-go">basic tracer</a>.
 </p>
