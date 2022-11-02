@@ -1,0 +1,41 @@
+#+TITLE: On Twitter's Acquisition, and Leaving
+#+AUTHOR: Katherine Cox-Buday
+#+DATE: 2022-11-01
+#+OPTIONS: num:nil
+#+TAGS: opinion
+#+KEYWORDS: twitter, communities
+
+Since Twitter changed hands, I've seen calls for people to remain on the platform in an effort to not cede it to those with extremist views, and to keep communities connected. Although worthy goals, I don't think remaining on the platform is a great idea, and I wanted to share my opinion in the hopes it will influence people, communities, and public services, to change how they engage with society.
+
+This is an odd issue for me to take a stance on because I abandoned social media awhile ago. It's unclear to me that its benefits outweigh its risks to society[fn:1]. As a life-long netizen who has benefited immensely from online spaces over the years, I also understand that these spaces are important, and that for many, a vital and sometimes life-saving alternative to the real world. I'm just not sure about social media in it's current form. Still, a lot of people like and use it, and what happens with Twitter will impact me, indirectly. So onto the question: why shouldn't people stay?
+
+⚜
+
+The value in Twitter, and any social media network, comes from the people who engage with it. These networks don't produce any content; that comes from you. And you wouldn't put content into the network unless you thought someone was going to read it. It's a positive feedback loop: the more you feed the machine, the more valuable the machine becomes, to the public, and, more importantly, to those who control it. In Twitter's case, one person now controls it, and the people he borrowed money from control him. Is this is the platform we want to be society's "town square"? To host our political discourse? To hear from our public servants?
+
+If you fear Twitter becoming a mouthpiece for extremism, disinformation, and mass manipulation, the best way to resist isn't to stay, it's to exit the platform. With fewer accounts, there will be fewer people feeding it content, and less reason for those who remain to do so: a negative feedback loop. Its importance will wane. Starved and spiraling, it will cease to be the "town square", and like many social networks before it, it will fade away. Remaining, at best, ensures the platform retains its status, and — if your fears are true — thus ensures extremism, disinformation, and mass manipulation have an audience.
+
+If you fear your community fracturing, I don't think there's a way to stop this. This acquisition has already driven people away, and it will continue to do so. The best way to keep communities connected, and to ensure this doesn't happen again, is to reform the community around a platform where this type of thing could never happen in the first place, and then exiting the one where it did. Even if you somehow avoid shedding community members, the risk remains going forward: someone you don't trust is dictating the rules, and the community could disband or involuntarily be disbanded at any point.
+
+Which brings me to my most important point: trying to resist within a system of rules your opponent dictates is pointless. You can tweet the best take-down of Twitter ever written, and they can ensure no one sees it. You can start a banging hashtag campaign, and they can ensure no one sees it. You can confront disinformation and offer insight into why it's untrue, and their algorithm can make sure no one sees it. They can outright delete your account: the tool you've chosen for resisting. You have no agency from which to resits.
+
+For example, I've seen claims that leaving now is disrupting the means of mass communication right before what's expected to be a tumultuous US election. Setting aside the fact that Twitter isn't the only way people communicate en masse, if that's something important to you, why would you want to depend on a platform you have no confidence in? Wouldn't it be /more/ important to start building your network on something you know won't be manipulating its users?
+
+Wasn't there an entire [[https://en.wikipedia.org/wiki/The_Matrix][movie]] about this? Wasn't the problem that trying to resist from within was pointless? Wasn't the solution to exit? Exit.
+
+⚜
+
+If you agree, but are unsure what to do, here are some suggestions:
+
+- Join a federated network.
+  These operate like email: every member can interact with every other member, regardless of which provider they use. There are many more benefits (and some drawbacks), but it removes any private, central, control on what has become an important substrate of our society. I suggest [[https://joinmastodon.org/servers][Mastadon]]. From what I'm told, it doesn't behave exactly like Twitter, but it's a functioning, useful, social network.
+- As I have for this post, practice [[https://indieweb.org/POSSE][POSSE]] (Publish (on your) Own Site, Syndicate Elsewhere). The linked site has a great breakdown of why this is useful, including a point on "Friends are more important than federation".
+- Support [[https://www.eff.org/deeplinks/2021/06/access-act-takes-step-towards-more-interoperable-future][political efforts]] which require platforms to federate.
+
+
+And, next time a curmudgeon like me [[https://usesthis.com/interviews/katherine.cox-buday/][blathers on]] about standards, protocols, ownership, and openness, consider that there may be a horizon, closer now than you think, where these things might be important, and in ways you didn't anticipate. And that [[https://www.cnet.com/culture/how-twitter-replaced-my-rss-reader/][the present convenience]] won't be worth what we're giving up.
+
+
+* Footnotes
+
+[fn:1] In [[https://openlibrary.org/works/OL20730900W/How_to_Do_Nothing][How to Do Nothing]], Jenny Odell makes a compelling case that our attention is one of the few remaining commodities individuals have left to affect change, and that increasingly people are spending that attention engaging with inflammatory content on social media, while not actually doing anything substantive. I'm probably not representing her excellent and nuanced points well, so if that strikes a chord with you, go read the book.
