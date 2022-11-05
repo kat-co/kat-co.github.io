@@ -1,7 +1,7 @@
 #+TITLE: Is migrating from Twitter to Mastodon risky?
 #+DATE: 2022-11-05
 #+AUTHOR: Katherine Cox-Buday
-#+OPTIONS: num:nil
+#+OPTIONS: num:nil toc:nil
 #+TAGS: opinion
 #+KEYWORDS: twitter, communities
 
