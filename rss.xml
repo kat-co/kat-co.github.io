@@ -4,10 +4,204 @@
     <title>Katherine Cox-Buday</title>
     <link>http://katherine.cox-buday.com</link>
     <description>static site generator</description>
-    <pubDate>Tue, 01 Nov 2022 18:54:58 MDT</pubDate>
-    <lastBuildDate>Tue, 01 Nov 2022 18:54:58 MDT</lastBuildDate>
+    <pubDate>Sat, 05 Nov 2022 17:42:54 MDT</pubDate>
+    <lastBuildDate>Sat, 05 Nov 2022 17:42:54 MDT</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
+    <item>
+      <title>Is migrating from Twitter to Mastodon risky?</title>
+      <link>http://katherine.cox-buday.com/blog/2022/11/05/is-migrating-from-twitter-to-mastodon-risky/</link>
+      <description><![CDATA[<div class="post">
+  <div class="col-sm-3 right-align post-meta">
+    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
+  </div>
+  <div class="col-sm-9">
+    <div class="post">
+      <h3>Is migrating from Twitter to Mastodon risky?</h3>
+      <div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org00ad441">Your provider could read your DMs and private posts!</a></li>
+<li><a href="#orge192597">Your provider can just delete your account!</a></li>
+<li><a href="#org112733b">Your provider could get bored and shut everything down! You could lose everything!</a></li>
+<li><a href="#org4484377">There's no moderation!</a></li>
+<li><a href="#org03710c1">There's too much moderation! Your provider could block an entire instance!</a></li>
+<li><a href="#orgdf3efbf">I don't want to be siloed into an instance!</a></li>
+</ul>
+</div>
+</div>
+<p>
+Apparently I care about this way more than I realized, because here I am with another hot take on Twitter vs. federation/Mastodon, and only four days after my last one. This actually started out as a Toot (a word that irrationally grates on me), but like a lot of writers, I'm prone to rambling, so here we are together, mired in another blog post. Welcome.
+</p>
+
+<p>
+I'm starting to entertain the possibility that I abandoned social media mostly due to the platforms available, and feeling like my social graph, content, and activity, were being packed up for sale, and not wanting to endure hateful people with uninformed opinions that weren't even their own. Maybe in time I'll be proven wrong, but I don't feel like that's the case over in the fediverse — or at least you have more agency here.
+</p>
+
+<div class="org-center">
+<p>
+⚜
+</p>
+</div>
+
+<p>
+At this point, I'm mostly perusing Twitter to get the <a href="https://activitypub.rocks/">ActivityPub</a> handles for the people I'd like to reconnect with (I plan on closing my account after the election on Nov. 8th), but while over there, I'm still seeing people express concern about federation, and Mastodon in particular — sometimes quite vehemently, as if leaving was some kind of moral failing, or that it is offensive to suggest that <a href="https://en.wikipedia.org/wiki/The_Dark_Tower_(series)">there are other worlds than these</a>.
+</p>
+
+<p>
+Some of the concerns are so bewildering to me, that — aside from prompting another post — it made me start wondering what people's motivations were for defending the platform so strongly. So far, here are my best guesses:
+</p>
+
+<ol class="org-ol">
+<li>People who have built careers around their Twitter social graph are scrambling to maintain their graph and trying to convince their followers not to leave.</li>
+<li>People who are familiar with (can I say maybe addicted to?) Twitter don't want to face the possibility of change.</li>
+<li>People fundamentally misunderstand what Twitter is, and what is possible for social media to be.</li>
+</ol>
+
+
+<p>
+There are of course lots of people using Twitter without getting caught up in the goings-on, but they're also not the people emphatically stating that there's nothing like Twitter in the world, and how <i>dare</i> you suggest otherwise.
+</p>
+
+<p>
+Of the three motivations, only the third is interesting to me, because it's the only one which can be directly addressed with information. The other two are circumstantial, and certainly understandable.
+</p>
+
+<p>
+So let's get into it: people are giving reasons for why switching over to a federated network, and Mastodon in particular, is a bad idea; here are my opinions on why these are rooted in misunderstanding.
+</p>
+
+<div class="org-center">
+<p>
+⚜
+</p>
+</div>
+
+
+<div id="outline-container-org00ad441" class="outline-2">
+<h2 id="org00ad441">Your provider could read your DMs and private posts!</h2>
+<div class="outline-text-2" id="text-org00ad441">
+<p>
+This is also possible on Twitter. That so many don't understand this, and that politicians — famously ignorant of technology — seem to heavily use Twitter, worries me.
+</p>
+
+<p>
+I think the strongest argument that can be made here is that with larger platforms, there are checks on this kind of power: policies, managers, governance teams, and regulations. But if that's your kind of thing, you can just choose a provider with similar <a href="https://mstdn.social/privacy-policy">terms of service</a>, pay <a href="https://masto.host/pricing/">$6/month</a> (less than Twitter's rumored $8/month by the way), or, if you're capable, host your own instance.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge192597" class="outline-2">
+<h2 id="orge192597">Your provider can just delete your account!</h2>
+<div class="outline-text-2" id="text-orge192597">
+<p>
+This is also possible on Twitter. In fact, there's an amusing trend happening right now of people leaving Twitter by making fun of its new owner. Their accounts are summarily suspended.
+</p>
+
+<p>
+If you're concerned that your provider's admins are particular vindictive, or impulsive, migrate to a provider you're more comfortable with.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org112733b" class="outline-2">
+<h2 id="org112733b">Your provider could get bored and shut everything down! You could lose everything!</h2>
+<div class="outline-text-2" id="text-org112733b">
+<p>
+Like Google+, Vine, <a href="https://en.wikipedia.org/wiki/List_of_defunct_social_networking_services">etc.</a>? Large, monolithic, platforms are not immune to this.
+</p>
+
+<p>
+Mastodon has robust <a href="https://docs.joinmastodon.org/user/moving/#migration">migration capabilities</a>, and no incentive to dissuade users from using it. If you're using a smaller provider, and you're concerned about its staying power, find a larger provider that's unlikely to shutdown without notice.
+</p>
+
+<p>
+But I think you should be comfortable even with the smaller providers. In my years of participating in communities around the internet, it's been my experience that administrators of smaller communities are no less considerate than companies when deciding to wind things down, often feel guilty for doing so, and try to give their community a lot of warning.
+</p>
+
+<p>
+Generally speaking, people taking on the administrative burden of hosting a small community are doing so out of love and passion for the community they're participating in.
+</p>
+
+<p>
+Still not convinced? Like any data you value, keep backups. You can <a href="https://docs.joinmastodon.org/user/moving/#export">export</a> all of your data, at any time.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4484377" class="outline-2">
+<h2 id="org4484377">There's no moderation!</h2>
+<div class="outline-text-2" id="text-org4484377">
+<p>
+This is plainly false. Provider administrators are doing plenty of moderation, including blocking providers which serve host to hateful, extremist, communities.
+</p>
+
+<p>
+One of the benefits of the federated model is that, in addition to having agency over what you personally see, you might join a provider which carries a torch for a specific cohort you identify with. Not only can they keep your experience with others using the same provider friendly, they can take action against other providers which have demonstrated that they are acting in bad faith.
+</p>
+
+<p>
+Lots of distributed communities are grappling with this at the moment, but my favorite take on this comes from <a href="https://element.io/blog/moderation-needs-a-radical-change/">Matrix</a> (another federated platform): a bottom-up, federated, moderation platform with plenty of knobs for folks to turn to get things right for smaller groups of people.
+</p>
+
+<p>
+Finally, without belittling the hard work moderation teams at companies do, I would not hold large social networks like Twitter up as paragons of content moderation by which everything else is measured.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org03710c1" class="outline-2">
+<h2 id="org03710c1">There's too much moderation! Your provider could block an entire instance!</h2>
+<div class="outline-text-2" id="text-org03710c1">
+<p>
+Unless you're using a provider which is overzealous, as stated in the last point, I think this is a good thing. If you feel they're casting too wide a net (can you guess it?), migrate to a different provider.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdf3efbf" class="outline-2">
+<h2 id="orgdf3efbf">I don't want to be siloed into an instance!</h2>
+<div class="outline-text-2" id="text-orgdf3efbf">
+<p>
+Let me see if I understand this: you fear not being able to interact with people regardless of where they choose to spend their time, and your solution is&#x2026; to use a platform that people must join to interact with you?
+</p>
+
+<p>
+I think the strongest argument that can be made here is that yes, Twitter is a silo, but it's a really <i>big</i> silo! OK, but then why not make the big silo a <i>really</i> big provider of a federated platform? Like Gmail is for email.
+</p>
+
+<p>
+Most likely, this is just a fundamental misunderstanding of the federated model. That's understandable when most people have been primarily exposed to the walled gardens of the past two decades.
+</p>
+
+<div class="org-center">
+<p>
+⚜
+</p>
+</div>
+
+<p>
+So why am I suddenly shilling for Mastodon; does any of this really matter?
+</p>
+
+<p>
+Yes, and no. Insofar as <a href="https://en.wikipedia.org/wiki/Absurdism">anything can have meaning</a>, there are certainly <a href="https://www.charitynavigator.org/discover-charities/where-to-give/ukranian-crisis/">more</a> <a href="https://transequality.org/action-centers">important</a> <a href="https://www.charitynavigator.org/discover-charities/where-to-give/voting-rights/">issues</a> to focus on, but to rephrase what I said in my last post, for better or worse, humanity has invented and uses social media, and a lot of other important issues are affected by what happens there. So yeah, it kind of does matter.
+</p>
+
+<p>
+And besides, wouldn't it be nice to claw back some agency from the ads and algorithms? We could have nice things, dear reader. Not perfect, but nice.
+</p>
+</div>
+</div>
+
+    </div>
+  </div>
+</div> <!-- /.container -->
+]]></description>
+      <pubDate>2022-11-05</pubDate>
+      <guid>http://katherine.cox-buday.com/blog/2022/11/05/is-migrating-from-twitter-to-mastodon-risky/</guid>
+    </item>
     <item>
       <title>On Twitter&#39;s Acquisition, and Leaving</title>
       <link>http://katherine.cox-buday.com/blog/2022/11/01/on-twitters-acquisition-and-leaving/</link>
@@ -26,9 +220,11 @@ Since Twitter changed hands, I've seen calls for people to remain on the platfor
 This is an odd issue for me to take a stance on because I abandoned social media awhile ago. It's unclear to me that its benefits outweigh its risks to society<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>. As a life-long netizen who has benefited immensely from online spaces over the years, I also understand that these spaces are important, and that for many, a vital and sometimes life-saving alternative to the real world. I'm just not sure about social media in it's current form. Still, a lot of people like and use it, and what happens with Twitter will impact me, indirectly. So onto the question: why shouldn't people stay?
 </p>
 
+<div class="org-center">
 <p>
 ⚜
 </p>
+</div>
 
 <p>
 The value in Twitter, and any social media network, comes from the people who engage with it. These networks don't produce any content; that comes from you. And you wouldn't put content into the network unless you thought someone was going to read it. It's a positive feedback loop: the more you feed the machine, the more valuable the machine becomes, to the public, and, more importantly, to those who control it. In Twitter's case, one person now controls it, and the people he borrowed money from control him. Is this is the platform we want to be society's "town square"? To host our political discourse? To hear from our public servants?
@@ -54,9 +250,11 @@ For example, I've seen claims that leaving now is disrupting the means of mass c
 Wasn't there an entire <a href="https://en.wikipedia.org/wiki/The_Matrix">movie</a> about this? Wasn't the problem that trying to resist from within was pointless? Wasn't the solution to exit? Exit.
 </p>
 
+<div class="org-center">
 <p>
 ⚜
 </p>
+</div>
 
 <p>
 If you agree, but are unsure what to do, here are some suggestions:
@@ -88,7 +286,7 @@ In <a href="https://openlibrary.org/works/OL20730900W/How_to_Do_Nothing">How to 
   </div>
 </div> <!-- /.container -->
 ]]></description>
-      <pubDate>2022-11-01</pubDate>
+      <pubDate>2022-11-05</pubDate>
       <guid>http://katherine.cox-buday.com/blog/2022/11/01/on-twitters-acquisition-and-leaving/</guid>
     </item>
     <item>
@@ -472,7 +670,7 @@ I have often wondered how qubits might be regarded under Taoism.
     <div class="post">
       <h3></h3>
       
-<div id="org5a93334" class="figure">
+<div id="orgce6d8ef" class="figure">
 <p><img src="/assets/concurrency-in-go/book-cover.jpg" alt="book-cover.jpg" class="img-responsive pull-left" style="margin-right:15px; width:250px" />
 </p>
 </div>
@@ -490,9 +688,9 @@ Author Katherine Cox-Buday takes you through the tools and techniques to develop
 </p>
 <div class="clearfix"></div>
 
-<div id="outline-container-orgd9c94df" class="outline-2">
-<h2 id="orgd9c94df">Available for Purchase</h2>
-<div class="outline-text-2" id="text-orgd9c94df">
+<div id="outline-container-orga76a3b2" class="outline-2">
+<h2 id="orga76a3b2">Available for Purchase</h2>
+<div class="outline-text-2" id="text-orga76a3b2">
 <ul class="org-ul">
 <li><a href="http://www.ebooks.com/95820962/concurrency-in-go/cox-buday-katherine/">ebooks.com</a> (DRM free!)</li>
 <li><a href="https://www.amazon.com/gp/product/1491941197/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;tag=katherinecoxb-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=1491941197&amp;linkId=50618894344eaf64dbf967755272d941">Amazon</a></li>
@@ -675,9 +873,9 @@ So perhaps it's because I'm paranoid, but I like to validate my inputs as close 
 There are advantages and disadvantages to this technique.
 </p>
 
-<div id="outline-container-org118e2e8" class="outline-2">
-<h2 id="org118e2e8">Advantages</h2>
-<div class="outline-text-2" id="text-org118e2e8">
+<div id="outline-container-org1a5604c" class="outline-2">
+<h2 id="org1a5604c">Advantages</h2>
+<div class="outline-text-2" id="text-org1a5604c">
 <ol class="org-ol">
 <li><p>
 <b>Adherence to the <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail Fast principle</a>.</b>
@@ -706,9 +904,9 @@ If I'm calling this code, what can I pass in? Are nulls OK? If I'm reading the c
 </div>
 </div>
 
-<div id="outline-container-orgc6c5b28" class="outline-2">
-<h2 id="orgc6c5b28">Disadvantages</h2>
-<div class="outline-text-2" id="text-orgc6c5b28">
+<div id="outline-container-org1dd83c4" class="outline-2">
+<h2 id="org1dd83c4">Disadvantages</h2>
+<div class="outline-text-2" id="text-org1dd83c4">
 <ol class="org-ol">
 <li><p>
 <b>Performance</b>
@@ -737,9 +935,9 @@ This is the one I struggle with most. How many times are you going to check that
 </div>
 </div>
 
-<div id="outline-container-orge7e6567" class="outline-2">
-<h2 id="orge7e6567">Smart Parameter Validation</h2>
-<div class="outline-text-2" id="text-orge7e6567">
+<div id="outline-container-org95800ca" class="outline-2">
+<h2 id="org95800ca">Smart Parameter Validation</h2>
+<div class="outline-text-2" id="text-org95800ca">
 <p>
 A long chain of if statements at the beginning of your code is cumbersome to write and maintain. It's prone to bugs, and it can actually hide incorrect parameters which are checked after other failing parameters. Do your parameter validation smarter:
 </p>
@@ -893,434 +1091,6 @@ Katherine
 ]]></description>
       <pubDate>2017-01-19</pubDate>
       <guid>http://katherine.cox-buday.com/blog/2015/07/08/simplicity-and-go/</guid>
-    </item>
-    <item>
-      <title>Analyzing Opentracing for Go</title>
-      <link>http://katherine.cox-buday.com/blog/2016/06/06/analyzing-opentracing-for-go/</link>
-      <description><![CDATA[<div class="post">
-  <div class="col-sm-3 right-align post-meta">
-    <h3>&nbsp;<!-- Placeholder for alignment with post --></h3>
-  </div>
-  <div class="col-sm-9">
-    <div class="post">
-      <h3>Analyzing Opentracing for Go</h3>
-      <p>
-I'm in the middle of designing the architecture for an audit log for <a href="https://jujucharms.com">Juju</a>, and some of my colleagues suggested <a href="http://opentracing.io/">OpenTracing</a>. I flipped through the site and it looks like it might meet our needs quite nicely, and so I've set out to do a deeper analysis to make sure it's something that is a good fit. I'm hoping this post will serve as a place I can point my coworkers for that analysis, as well as to help anyone else considering utilizing this project.
-</p>
-
-<p>
-Juju is written in Go, and so I'll be taking a look at the <a href="https://github.com/opentracing/opentracing-go">Go implementation</a> of the project. I'm going to ignore any kind of general overview as the project's web page does a pretty good job of that. Instead this post will focus on the things that aren't immediately apparent: ease of use, and performance.
-</p>
-
-<p>
-With that said, on to the analysis!
-</p>
-
-<div id="outline-container-org21f45ee" class="outline-2">
-<h2 id="org21f45ee">Key Concepts</h2>
-<div class="outline-text-2" id="text-org21f45ee">
-<ul class="org-ul">
-<li><b>span</b>: A logical unit of work in the system.</li>
-<li><b>baggage</b>: Information intended to be carried on to subsequent spans.</li>
-<li><b>tracer</b>: Manages spans. A <b>trace</b> is a tree of spans.</li>
-<li><b>recorder</b>: Records span information to the system's backing-store.</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org5300ac5" class="outline-2">
-<h2 id="org5300ac5">Sanity Check</h2>
-<div class="outline-text-2" id="text-org5300ac5">
-<p>
-First of all, the <a href="https://github.com/opentracing/opentracing-go/blob/master/LICENSE">license</a> is MIT. No issues there.
-</p>
-
-<p>
-At the time of this post, the project has 110 stars on GitHub, the last merge was 14 days ago, and there are 5 open issues, 15 closed. As far as project activity goes, looks OK.
-</p>
-
-<p>
-Juju also has Python bindings to its API, so ideally any tracing standard will be polyglot implementation. It looks like Opentrace does have Python binding, and it also looks like Java, JavaScript, Objective C, C++, PHP, and Ruby are in <a href="http://opentracing.io/integration/">various stages</a> of support. We should be good to go.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org36818a6" class="outline-2">
-<h2 id="org36818a6">Performance</h2>
-<div class="outline-text-2" id="text-org36818a6">
-<p>
-First the obvious question. If I'm going to be embedding a lot of spans, this needs to be fast. How quick is it to create and tear down a new span?
-</p>
-
-<div class="org-src-container">
-<pre class="src src-go">func BenchmarkSpanCreation(b *testing.B) {
-    for i := b.N; i &gt;= 0; i-- {
-        s := opentracing.StartSpan(fmt.Sprintf("span %d", i))
-        s.Finish()
-    }
-}
-</pre>
-</div>
-
-<div class="org-src-container">
-<pre class="src src-sh">go test /tmp/analyzing-opentrace/b_span_creation_test.go
-</pre>
-</div>
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">ok</td>
-<td class="org-left">command-line-arguments</td>
-<td class="org-left">0.003s</td>
-</tr>
-</tbody>
-</table>
-
-<p>
-Looks to be fast enough to be non-impactful. What about creating spans from other spans?
-</p>
-
-<div class="org-src-container">
-<pre class="src src-go">func BenchmarkChildSpanCreation(b *testing.B) {
-    p := opentracing.StartSpan("parent-spam")
-    defer p.Finish()
-    for i := b.N; i &gt;= 0; i-- {
-        s := opentracing.StartChildSpan(p, fmt.Sprintf("child-span-%d", i))
-        s.Finish()
-    }
-}
-</pre>
-</div>
-
-<div class="org-src-container">
-<pre class="src src-sh">go test /tmp/analyzing-opentrace/b_span_child_creation_test.go
-</pre>
-</div>
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">ok</td>
-<td class="org-left">command-line-arguments</td>
-<td class="org-left">0.026s</td>
-</tr>
-</tbody>
-</table>
-
-<p>
-Also reasonable. Our RPC system utilizes web sockets; if we were to inject span information, how much extra space could we expect it to take up?
-</p>
-
-<div class="org-src-container">
-<pre class="src src-go">tracer := basictracer.New(nil)
-
-httpReq, _ := http.NewRequest("GET", "http://myservice/", nil)
-fmt.Printf("Header (before): %v\n", httpReq.Header)
-
-s := tracer.StartSpan("my-span")
-// defer s.Finish() &lt;-- Normally we would call this to trigger writes by the recorder
-s.LogEvent("test event")
-s.SetBaggageItem("my-baggage", "current user")
-
-tracer.Inject(s, opentracing.TextMap, opentracing.HTTPHeaderTextMapCarrier(httpReq.Header))
-fmt.Printf("Header (after): %v\n", httpReq.Header)
-</pre>
-</div>
-
-<pre class="example">
-Header (before): map[]
-Header (after): map[Ot-Tracer-Traceid:[7ab6ba52e1e748c1] Ot-Tracer-Spanid:[1b4c98c3b3f048aa] Ot-Tracer-Sampled:[false] Ot-Baggage-My-Baggage:[current+user]]
-</pre>
-
-
-<p>
-Looks pretty reasonable; just some information about the spans for the receiver to pick up the trace.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org1cfdf9c" class="outline-2">
-<h2 id="org1cfdf9c">Integration with Juju</h2>
-<div class="outline-text-2" id="text-org1cfdf9c">
-</div>
-<div id="outline-container-org8cae748" class="outline-3">
-<h3 id="org8cae748">Gating API Calls</h3>
-<div class="outline-text-3" id="text-org8cae748">
-<p>
-Juju's API server is the bottleneck gating access to and from a Juju daemon and is the natural place to ensure a trace either exists or is started. Ideally the things calling Juju's API server would have started a trace, but if not, we need to ensure that one exists. Let's first see how we can ensure that all API server connections know about OpenTracing and spans.
-</p>
-
-<p>
-Ideally I wish I could decorate our API server endpoints so that the cross-cutting concern of injecting tracing could be encapsulated elsewhere, but Go doesn't make this easy. The next best thing is to inject the tracing information into all API requests.
-</p>
-
-<p>
-Go's <code>context.Context</code> type has become the standard way at providing context to long-running processes, and so it makes sense to create a type that conforms to that interface and also has OpenTracing information embedded so that functions and methods down the call-tree can either perform traces or do the things <code>context.Context</code> advertises it can do.
-</p>
-
-<p>
-It is a little strange to utilize <code>context.Context</code> along-side Juju's RPC implementation because timeouts are already baked in, but as this has become the standard way of managing things like this in Go, I think we should move this way. So how would we go about injecting a <code>context.Context</code> into all API calls?
-</p>
-
-<p>
-In <a href="https://github.com/juju/juju/blob/master/apiserver/root.go#L119-L127">apiserver/root.go</a> there is a method which utilizes reflection to perform a call on API server methods. It looks like this:
-</p>
-
-<div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span>github.com/juju/juju/apiserver/root.go</label><pre class="src src-go">// Call takes the object Id and an instance of ParamsType to create an
-// object and place a call on its method. It then returns an instance
-// of ResultType.
-func (s *srvCaller) Call(objId string, arg reflect.Value) (reflect.Value, error) {
-    objVal, err := s.creator(objId)
-    if err != nil {
-        return reflect.Value{}, err
-    }
-    return s.objMethod.Call(objVal, arg) // &lt;1&gt;
-}
-</pre>
-</div>
-
-<p>
-The interesting bit is at &lt;1&gt; where we call an API's server endpoint and pass in the method receiver and a struct which is depersisted from the client. The <code>Call</code> method is something specific to Juju's RPC mechanism and has the following function signature:
-</p>
-
-<div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 2: </span>github.com/rpc/rpcreflect/type.go</label><pre class="src src-go">// Call calls the method with the given argument on the given receiver
-// value. If the method does not return a value, the returned value
-// will not be valid.
-Call func(rcvr, arg reflect.Value) (reflect.Value, error)
-</pre>
-</div>
-
-<p>
-It's instantiated at the time the RPC call is made and by reflecting on the type of facade registered on the server. Here's the interesting bit:
-</p>
-
-<div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 3: </span>github.com/juju/rpc/rpcreflect/type.go</label><pre class="src src-go">func newMethod(m reflect.Method, receiverKind reflect.Kind) *ObjMethod {
-    if m.PkgPath != "" {
-        return nil
-    }
-    var p ObjMethod
-    var assemble func(arg reflect.Value) []reflect.Value
-    // N.B. The method type has the receiver as its first argument
-    // unless the receiver is an interface.
-    receiverArgCount := 1
-    if receiverKind == reflect.Interface {
-        receiverArgCount = 0
-    }
-    t := m.Type
-    switch {                    // &lt;1&gt;
-    case t.NumIn() == 0+receiverArgCount:
-        // Method() ...
-        assemble = func(arg reflect.Value) []reflect.Value {
-            return nil
-        }
-    case t.NumIn() == 1+receiverArgCount:
-        // Method(T) ...
-        p.Params = t.In(receiverArgCount)
-        assemble = func(arg reflect.Value) []reflect.Value {
-            return []reflect.Value{arg}
-        }
-    default:
-        return nil
-    }
-
-    switch {
-    case t.NumOut() == 0:
-        // Method(...)
-        p.Call = func(rcvr, arg reflect.Value) (r reflect.Value, err error) {
-            rcvr.Method(m.Index).Call(assemble(arg))
-            return
-        }
-    case t.NumOut() == 1 &amp;&amp; t.Out(0) == errorType:
-        // Method(...) error
-        p.Call = func(rcvr, arg reflect.Value) (r reflect.Value, err error) {
-            out := rcvr.Method(m.Index).Call(assemble(arg))
-            if !out[0].IsNil() {
-                err = out[0].Interface().(error)
-            }
-            return
-        }
-    case t.NumOut() == 1:
-        // Method(...) R
-        p.Result = t.Out(0)
-        p.Call = func(rcvr, arg reflect.Value) (reflect.Value, error) {
-            out := rcvr.Method(m.Index).Call(assemble(arg))
-            return out[0], nil
-        }
-    case t.NumOut() == 2 &amp;&amp; t.Out(1) == errorType:
-        // Method(...) (R, error)
-        p.Result = t.Out(0)
-        p.Call = func(rcvr, arg reflect.Value) (r reflect.Value, err error) {
-            out := rcvr.Method(m.Index).Call(assemble(arg))
-            r = out[0]
-            if !out[1].IsNil() {
-                err = out[1].Interface().(error)
-            }
-            return
-        }
-    default:
-        return nil
-    }
-    // The parameters and return value must be of struct type.
-    if p.Params != nil &amp;&amp; p.Params.Kind() != reflect.Struct { // &lt;2&gt;
-        return nil
-    }
-    if p.Result != nil &amp;&amp; p.Result.Kind() != reflect.Struct {
-        return nil
-    }
-    return &amp;p
-}
-</pre>
-</div>
-
-<p>
-You can see at &lt;1&gt; that we're specifying that the there can be at most 1 argument, and at &lt;2&gt; that this argument must be a struct.
-</p>
-
-<p>
-If we want to also pass a <code>context.Context</code> into the API server method, we'll have to modify both the signature, <i>and</i> all the existing API methods. Then, in the generic API server connection handling logic back in <a href="https://github.com/juju/juju/blob/master/apiserver/root.go#L119-L127">apiserver/root.go</a>, we would join to the incoming span, or &#x2013; if the caller doesn't know about spans &#x2013; create our own, and then pass the span into the <code>context.Context</code>. It would probably look something like this:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-go">// Call takes the object Id and an instance of ParamsType to create an
-// object and place a call on its method. It then returns an instance
-// of ResultType.
-func (s *srvCaller) Call(ctx context.Context, objId string, arg reflect.Value) (reflect.Value, error) {
-    objVal, err := s.creator(objId)
-    if err != nil {
-        return reflect.Value{}, err
-    }
-
-    return s.objMethod.Call(objVal, ctx, arg)
-}
-</pre>
-</div>
-
-<p>
-The <code>ctx</code> would in turn be created further up the stack from our request headers:
-</p>
-
-<div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 4: </span>github.com/juju/juju/rpc/server.go</label><pre class="src src-go">func (conn *Conn) handleRequest(hdr *Header) error {
-    serverSpan, err := opentracing.GlobalTracer().Join(
-        "serverSpan",
-        opentracing.TextMap,
-        opentracing.HTTPHeaderTextMapCarrier(hdr),
-    )
-    if err != nil {
-        // Create a root span if necessary
-        serverSpan = opentracing.StartTrace("serverSpan")
-    }
-
-    var ctx context.Context
-    ctx, _ = opentracing.ContextWithSpan(ctx, serverSpan)
-    defer serverSpan.Finish()
-
-    // TODO(perrito666) 2016-05-02 lp:1558657
-    startTime := time.Now()
-    req, err := conn.bindRequest(hdr)
-    if err != nil {
-        conn.notifier.ServerRequest(hdr, nil)
-        if err := conn.readBody(nil, true); err != nil {
-            return err
-        }
-        // We don't transform the error here. bindRequest will have
-        // already transformed it and returned a zero req.
-        return conn.writeErrorResponse(hdr, err, startTime)
-    }
-    var argp interface{}
-    var arg reflect.Value
-    if req.ParamsType() != nil {
-        v := reflect.New(req.ParamsType())
-        arg = v.Elem()
-        argp = v.Interface()
-    }
-    if err := conn.readBody(argp, true); err != nil {
-        conn.notifier.ServerRequest(hdr, nil)
-        // If we get EOF, we know the connection is a
-        // goner, so don't try to respond.
-        if err == io.EOF || err == io.ErrUnexpectedEOF {
-            return err
-        }
-        // An error reading the body often indicates bad
-        // request parameters rather than an issue with
-        // the connection itself, so we reply with an
-        // error rather than tearing down the connection
-        // unless it's obviously a connection issue.  If
-        // the error is actually a framing or syntax
-        // problem, then the next ReadHeader should pick
-        // up the problem and abort.
-        return conn.writeErrorResponse(hdr, req.transformErrors(err), startTime)
-    }
-    if req.ParamsType() != nil {
-        conn.notifier.ServerRequest(hdr, arg.Interface())
-    } else {
-        conn.notifier.ServerRequest(hdr, struct{}{})
-    }
-    conn.mutex.Lock()
-    closing := conn.closing
-    if !closing {
-        conn.srvPending.Add(1)
-        go conn.runRequest(req, ctx, arg, startTime)
-    }
-    conn.mutex.Unlock()
-    if closing {
-        // We're closing down - no new requests may be initiated.
-        return conn.writeErrorResponse(hdr, req.transformErrors(ErrShutdown), startTime)
-    }
-    return nil
-}
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org85dc983" class="outline-3">
-<h3 id="org85dc983">Backwards compatibility</h3>
-<div class="outline-text-3" id="text-org85dc983">
-<p>
-Since The API server gate looks for an incoming span but does not expect it, all existing clients &#x2013; including those from prior versions of Juju &#x2013; should be able to utilize the new endpoints. Thus, we should remain backwards compatible, and no new upgrade steps need be written.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgb2e97c8" class="outline-3">
-<h3 id="orgb2e97c8">Writing Audit Events to Mongo</h3>
-<div class="outline-text-3" id="text-orgb2e97c8">
-<p>
-Juju uses <a href="https://www.mongodb.com/">mongoDB</a> for it's data tier. All audit events will be written to a Mongo collection. To do this, we'll write our own OpenTracing recorder which will do nothing but persist audit events to the collection. It will probably look very similar to the provided <a href="https://github.com/opentracing/basictracer-go">basic tracer</a>.
-</p>
-</div>
-</div>
-</div>
-
-    </div>
-  </div>
-</div> <!-- /.container -->
-]]></description>
-      <pubDate>2016-06-06</pubDate>
-      <guid>http://katherine.cox-buday.com/blog/2016/06/06/analyzing-opentracing-for-go/</guid>
     </item>
   </channel>
 </rss>
