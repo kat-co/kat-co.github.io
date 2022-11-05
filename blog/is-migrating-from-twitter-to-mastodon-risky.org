@@ -1,0 +1,90 @@
+#+TITLE: Is migrating from Twitter to Mastodon risky?
+#+DATE: 2022-11-05
+#+AUTHOR: Katherine Cox-Buday
+#+OPTIONS: num:nil
+#+TAGS: opinion
+#+KEYWORDS: twitter, communities
+
+Apparently I care about this way more than I realized, because here I am with another hot take on Twitter vs. federation/Mastodon, and only four days after my last one. This actually started out as a Toot (a word that irrationally grates on me), but like a lot of writers, I'm prone to rambling, so here we are together, mired in another blog post. Welcome.
+
+I'm starting to entertain the possibility that I abandoned social media mostly due to the platforms available, and feeling like my social graph, content, and activity, were being packed up for sale, and not wanting to endure hateful people with uninformed opinions that weren't even their own. Maybe in time I'll be proven wrong, but I don't feel like that's the case over in the fediverse — or at least you have more agency here.
+
+#+begin_center
+⚜
+#+end_center
+
+At this point, I'm mostly perusing Twitter to get the [[https://activitypub.rocks/][ActivityPub]] handles for the people I'd like to reconnect with (I plan on closing my account after the election on Nov. 8th), but while over there, I'm still seeing people express concern about federation, and Mastodon in particular — sometimes quite vehemently, as if leaving was some kind of moral failing, or that it is offensive to suggest that [[https://en.wikipedia.org/wiki/The_Dark_Tower_(series)][there are other worlds than these]].
+
+Some of the concerns are so bewildering to me, that — aside from prompting another post — it made me start wondering what people's motivations were for defending the platform so strongly. So far, here are my best guesses:
+
+1. People who have built careers around their Twitter social graph are scrambling to maintain their graph and trying to convince their followers not to leave.
+2. People who are familiar with (can I say maybe addicted to?) Twitter don't want to face the possibility of change.
+3. People fundamentally misunderstand what Twitter is, and what is possible for social media to be.
+
+
+There are of course lots of people using Twitter without getting caught up in the goings-on, but they're also not the people emphatically stating that there's nothing like Twitter in the world, and how /dare/ you suggest otherwise.
+
+Of the three motivations, only the third is interesting to me, because it's the only one which can be directly addressed with information. The other two are circumstantial, and certainly understandable.
+
+So let's get into it: people are giving reasons for why switching over to a federated network, and Mastodon in particular, is a bad idea; here are my opinions on why these are rooted in misunderstanding.
+
+#+begin_center
+⚜
+#+end_center
+
+
+* Your provider could read your DMs and private posts!
+
+This is also possible on Twitter. That so many don't understand this, and that politicians — famously ignorant of technology — seem to heavily use Twitter, worries me.
+
+I think the strongest argument that can be made here is that with larger platforms, there are checks on this kind of power: policies, managers, governance teams, and regulations. But if that's your kind of thing, you can just choose a provider with similar [[https://mstdn.social/privacy-policy][terms of service]], pay [[https://masto.host/pricing/][$6/month]] (less than Twitter's rumored $8/month by the way), or, if you're capable, host your own instance.
+
+* Your provider can just delete your account!
+
+This is also possible on Twitter. In fact, there's an amusing trend happening right now of people leaving Twitter by making fun of its new owner. Their accounts are summarily suspended.
+
+If you're concerned that your provider's admins are particular vindictive, or impulsive, migrate to a provider you're more comfortable with.
+
+* Your provider could get bored and shut everything down! You could lose everything!
+
+Like Google+, Vine, [[https://en.wikipedia.org/wiki/List_of_defunct_social_networking_services][etc.]]? Large, monolithic, platforms are not immune to this.
+
+Mastodon has robust [[https://docs.joinmastodon.org/user/moving/#migration][migration capabilities]], and no incentive to dissuade users from using it. If you're using a smaller provider, and you're concerned about its staying power, find a larger provider that's unlikely to shutdown without notice.
+
+But I think you should be comfortable even with the smaller providers. In my years of participating in communities around the internet, it's been my experience that administrators of smaller communities are no less considerate than companies when deciding to wind things down, often feel guilty for doing so, and try to give their community a lot of warning.
+
+Generally speaking, people taking on the administrative burden of hosting a small community are doing so out of love and passion for the community they're participating in.
+
+Still not convinced? Like any data you value, keep backups. You can [[https://docs.joinmastodon.org/user/moving/#export][export]] all of your data, at any time.
+
+* There's no moderation!
+
+This is plainly false. Provider administrators are doing plenty of moderation, including blocking providers which serve host to hateful, extremist, communities.
+
+One of the benefits of the federated model is that, in addition to having agency over what you personally see, you might join a provider which carries a torch for a specific cohort you identify with. Not only can they keep your experience with others using the same provider friendly, they can take action against other providers which have demonstrated that they are acting in bad faith.
+
+Lots of distributed communities are grappling with this at the moment, but my favorite take on this comes from [[https://element.io/blog/moderation-needs-a-radical-change/][Matrix]] (another federated platform): a bottom-up, federated, moderation platform with plenty of knobs for folks to turn to get things right for smaller groups of people.
+
+Finally, without belittling the hard work moderation teams at companies do, I would not hold large social networks like Twitter up as paragons of content moderation by which everything else is measured.
+
+* There's too much moderation! Your provider could block an entire instance!
+
+Unless you're using a provider which is overzealous, as stated in the last point, I think this is a good thing. If you feel they're casting too wide a net (can you guess it?), migrate to a different provider.
+
+* I don't want to be siloed into an instance!
+
+Let me see if I understand this: you fear not being able to interact with people regardless of where they choose to spend their time, and your solution is... to use a platform that people must join to interact with you?
+
+I think the strongest argument that can be made here is that yes, Twitter is a silo, but it's a really /big/ silo! OK, but then why not make the big silo a /really/ big provider of a federated platform? Like Gmail is for email.
+
+Most likely, this is just a fundamental misunderstanding of the federated model. That's understandable when most people have been primarily exposed to the walled gardens of the past two decades.
+
+#+begin_center
+⚜
+#+end_center
+
+So why am I suddenly shilling for Mastodon; does any of this really matter?
+
+Yes, and no. Insofar as [[https://en.wikipedia.org/wiki/Absurdism][anything can have meaning]], there are certainly [[https://www.charitynavigator.org/discover-charities/where-to-give/ukranian-crisis/][more]] [[https://transequality.org/action-centers][important]] [[https://www.charitynavigator.org/discover-charities/where-to-give/voting-rights/][issues]] to focus on, but to rephrase what I said in my last post, for better or worse, humanity has invented and uses social media, and a lot of other important issues are affected by what happens there. So yeah, it kind of does matter.
+
+And besides, wouldn't it be nice to claw back some agency from the ads and algorithms? We could have nice things, dear reader. Not perfect, but nice.
