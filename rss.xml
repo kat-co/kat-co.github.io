@@ -4,8 +4,8 @@
     <title>Katherine Cox-Buday</title>
     <link>http://katherine.cox-buday.com</link>
     <description>static site generator</description>
-    <pubDate>Sat, 05 Nov 2022 17:46:29 MDT</pubDate>
-    <lastBuildDate>Sat, 05 Nov 2022 17:46:29 MDT</lastBuildDate>
+    <pubDate>Sat, 05 Nov 2022 18:31:47 MDT</pubDate>
+    <lastBuildDate>Sat, 05 Nov 2022 18:31:47 MDT</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
     <item>
@@ -66,9 +66,9 @@ So let's get into it: people are giving reasons for why switching over to a fede
 </div>
 
 
-<div id="outline-container-orga1c758e" class="outline-2">
-<h2 id="orga1c758e">Your provider could read your DMs and private posts!</h2>
-<div class="outline-text-2" id="text-orga1c758e">
+<div id="outline-container-org11a8889" class="outline-2">
+<h2 id="org11a8889">Your provider could read your DMs and private posts!</h2>
+<div class="outline-text-2" id="text-org11a8889">
 <p>
 This is also possible on Twitter. That so many don't understand this, and that politicians — famously ignorant of technology — seem to heavily use Twitter, worries me.
 </p>
@@ -79,9 +79,9 @@ I think the strongest argument that can be made here is that with larger platfor
 </div>
 </div>
 
-<div id="outline-container-org00d0de8" class="outline-2">
-<h2 id="org00d0de8">Your provider can just delete your account!</h2>
-<div class="outline-text-2" id="text-org00d0de8">
+<div id="outline-container-org32c18a5" class="outline-2">
+<h2 id="org32c18a5">Your provider can just delete your account!</h2>
+<div class="outline-text-2" id="text-org32c18a5">
 <p>
 This is also possible on Twitter. In fact, there's an amusing trend happening right now of people leaving Twitter by making fun of its new owner. Their accounts are summarily suspended.
 </p>
@@ -92,9 +92,9 @@ If you're concerned that your provider's admins are particular vindictive, or im
 </div>
 </div>
 
-<div id="outline-container-org1aaa242" class="outline-2">
-<h2 id="org1aaa242">Your provider could get bored and shut everything down! You could lose everything!</h2>
-<div class="outline-text-2" id="text-org1aaa242">
+<div id="outline-container-orga0bc4db" class="outline-2">
+<h2 id="orga0bc4db">Your provider could get bored and shut everything down! You could lose everything!</h2>
+<div class="outline-text-2" id="text-orga0bc4db">
 <p>
 Like Google+, Vine, <a href="https://en.wikipedia.org/wiki/List_of_defunct_social_networking_services">etc.</a>? Large, monolithic, platforms are not immune to this.
 </p>
@@ -117,9 +117,9 @@ Still not convinced? Like any data you value, keep backups. You can <a href="htt
 </div>
 </div>
 
-<div id="outline-container-org020c2cc" class="outline-2">
-<h2 id="org020c2cc">There's no moderation!</h2>
-<div class="outline-text-2" id="text-org020c2cc">
+<div id="outline-container-orgf079e54" class="outline-2">
+<h2 id="orgf079e54">There's no moderation!</h2>
+<div class="outline-text-2" id="text-orgf079e54">
 <p>
 This is plainly false. Provider administrators are doing plenty of moderation, including blocking providers which serve host to hateful, extremist, communities.
 </p>
@@ -138,18 +138,18 @@ Finally, without belittling the hard work moderation teams at companies do, I wo
 </div>
 </div>
 
-<div id="outline-container-org24b7276" class="outline-2">
-<h2 id="org24b7276">There's too much moderation! Your provider could block an entire instance!</h2>
-<div class="outline-text-2" id="text-org24b7276">
+<div id="outline-container-orgae3299c" class="outline-2">
+<h2 id="orgae3299c">There's too much moderation! Your provider could block an entire instance!</h2>
+<div class="outline-text-2" id="text-orgae3299c">
 <p>
 Unless you're using a provider which is overzealous, as stated in the last point, I think this is a good thing. If you feel they're casting too wide a net (can you guess it?), migrate to a different provider.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4d9618f" class="outline-2">
-<h2 id="org4d9618f">I don't want to be siloed into an instance!</h2>
-<div class="outline-text-2" id="text-org4d9618f">
+<div id="outline-container-orgc496ef1" class="outline-2">
+<h2 id="orgc496ef1">I don't want to be siloed into an instance!</h2>
+<div class="outline-text-2" id="text-orgc496ef1">
 <p>
 Let me see if I understand this: you fear not being able to interact with people regardless of where they choose to spend their time, and your solution is&#x2026; to use a platform that people must join to interact with you?
 </p>
@@ -657,7 +657,7 @@ I have often wondered how qubits might be regarded under Taoism.
     <div class="post">
       <h3></h3>
       
-<div id="org944733d" class="figure">
+<div id="org16691ce" class="figure">
 <p><img src="/assets/concurrency-in-go/book-cover.jpg" alt="book-cover.jpg" class="img-responsive pull-left" style="margin-right:15px; width:250px" />
 </p>
 </div>
@@ -675,9 +675,9 @@ Author Katherine Cox-Buday takes you through the tools and techniques to develop
 </p>
 <div class="clearfix"></div>
 
-<div id="outline-container-org634fbf5" class="outline-2">
-<h2 id="org634fbf5">Available for Purchase</h2>
-<div class="outline-text-2" id="text-org634fbf5">
+<div id="outline-container-orga807afd" class="outline-2">
+<h2 id="orga807afd">Available for Purchase</h2>
+<div class="outline-text-2" id="text-orga807afd">
 <ul class="org-ul">
 <li><a href="http://www.ebooks.com/95820962/concurrency-in-go/cox-buday-katherine/">ebooks.com</a> (DRM free!)</li>
 <li><a href="https://www.amazon.com/gp/product/1491941197/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;tag=katherinecoxb-20&amp;camp=1789&amp;creative=9325&amp;linkCode=as2&amp;creativeASIN=1491941197&amp;linkId=50618894344eaf64dbf967755272d941">Amazon</a></li>
@@ -860,9 +860,9 @@ So perhaps it's because I'm paranoid, but I like to validate my inputs as close 
 There are advantages and disadvantages to this technique.
 </p>
 
-<div id="outline-container-org2e5361b" class="outline-2">
-<h2 id="org2e5361b">Advantages</h2>
-<div class="outline-text-2" id="text-org2e5361b">
+<div id="outline-container-org5b14227" class="outline-2">
+<h2 id="org5b14227">Advantages</h2>
+<div class="outline-text-2" id="text-org5b14227">
 <ol class="org-ol">
 <li><p>
 <b>Adherence to the <a href="http://en.wikipedia.org/wiki/Fail-fast">Fail Fast principle</a>.</b>
@@ -891,9 +891,9 @@ If I'm calling this code, what can I pass in? Are nulls OK? If I'm reading the c
 </div>
 </div>
 
-<div id="outline-container-orgcbfc66f" class="outline-2">
-<h2 id="orgcbfc66f">Disadvantages</h2>
-<div class="outline-text-2" id="text-orgcbfc66f">
+<div id="outline-container-org55cdbae" class="outline-2">
+<h2 id="org55cdbae">Disadvantages</h2>
+<div class="outline-text-2" id="text-org55cdbae">
 <ol class="org-ol">
 <li><p>
 <b>Performance</b>
@@ -922,9 +922,9 @@ This is the one I struggle with most. How many times are you going to check that
 </div>
 </div>
 
-<div id="outline-container-org2205ee7" class="outline-2">
-<h2 id="org2205ee7">Smart Parameter Validation</h2>
-<div class="outline-text-2" id="text-org2205ee7">
+<div id="outline-container-orgaa2a690" class="outline-2">
+<h2 id="orgaa2a690">Smart Parameter Validation</h2>
+<div class="outline-text-2" id="text-orgaa2a690">
 <p>
 A long chain of if statements at the beginning of your code is cumbersome to write and maintain. It's prone to bugs, and it can actually hide incorrect parameters which are checked after other failing parameters. Do your parameter validation smarter:
 </p>
